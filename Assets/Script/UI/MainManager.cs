@@ -88,4 +88,10 @@ public class MainManager : MonoBehaviour
     {
         SceneManager.LoadScene("Shop");
     }
+
+
+    public void OpenSummonScene()
+    {
+        SceneManager.LoadScene("Summon");
+    }
 }
