@@ -50,6 +50,7 @@ public class User
      * 1 - 缺失账号
      * 2 - 缺失密码
      * 3 - 账号与密码不符合
+     * 4 - 账号已注册
      */
     public static int CheckLogin()
     {

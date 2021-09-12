@@ -55,6 +55,9 @@ public class LoginManager : MonoBehaviour
             case 3:
                 message.text = "您输入的账号和密码有误";
                 break;
+            case 4:
+                message.text = "用户名已被注册";
+                break;
         }
     }
     
