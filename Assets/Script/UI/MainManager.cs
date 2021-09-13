@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class MainManager : MonoBehaviour
 {
-    private static User _user;
+    private static UserUI _user;
 
     public Text name;
     public Text level;
@@ -46,7 +46,7 @@ public class MainManager : MonoBehaviour
      */
     void UserDataSync()
     {
-        _user = User.GetInstance();
+        _user = UserUI.GetInstance();
         // 信息配置
         name.text = _user.GetName();
         level.text = "Lv." + _user.GetLevel();
@@ -63,8 +63,8 @@ public class MainManager : MonoBehaviour
     void UserDataSyncTemp()
     {
         // 测试部分，随后可删除
-        _user = User.SetFreshInstance("测试","测试");
-        User.CheckLogin();
+        _user = UserUI.SetFreshInstance("测试","测试");
+        UserUI.CheckLogin();
         name.text = _user.GetName();
         level.text = "Lv." + _user.GetLevel();
         coin.text = _user.GetCoin() > 1000000 ? _user.GetCoin() / 10000 + "万" : _user.GetCoin() + "";

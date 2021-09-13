@@ -6,12 +6,12 @@ using UnityEngine.UI;
 public class PortraitManager : BoardManager
 {
     
-    public User user;
+    public UserUI user;
     // Start is called before the first frame update
     new void Start()
     {
         base.Start();
-        user = User.GetInstance();
+        user = UserUI.GetInstance();
     }
 
     // Update is called once per frame

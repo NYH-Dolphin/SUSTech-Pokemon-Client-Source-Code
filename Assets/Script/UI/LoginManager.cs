@@ -38,8 +38,8 @@ public class LoginManager : MonoBehaviour
      */
     public void Login()
     {
-        User.SetFreshInstance(account.text, password.text);
-        int checkSum = User.CheckLogin();
+        UserUI.SetFreshInstance(account.text, password.text);
+        int checkSum = UserUI.CheckLogin();
         switch (checkSum)
         {
             case 0:

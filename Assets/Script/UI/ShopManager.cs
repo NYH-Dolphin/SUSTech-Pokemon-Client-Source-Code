@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class ShopManager : MonoBehaviour
 {
-    private static User _user;
+    private static UserUI _user;
     public GameObject itemList;
     private List<GameObject> grids = new List<GameObject>();
     private static int occupy; // 已经使用了多少个格子
@@ -17,7 +17,7 @@ public class ShopManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _user = User.GetInstance();
+        _user = UserUI.GetInstance();
         InitializeShop();
         UserDataSync();
 
@@ -63,7 +63,7 @@ public class ShopManager : MonoBehaviour
 
     private void SetGridMessage(string name, int id, int cost)
     {
-        Item item = new Item(name, id, cost);
+        ItemUI item = new ItemUI(name, id, cost);
         GameObject itemPrefeb = item.CreateItem();
         itemPrefeb.transform.SetParent( grids[occupy].transform,false);
 

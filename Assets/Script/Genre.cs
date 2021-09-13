@@ -1,0 +1,4 @@
+public enum Genre
+{
+    GRASS, WOOD, FIRE, WATER, GROUND, POISON,ELECTRICITY
+}
