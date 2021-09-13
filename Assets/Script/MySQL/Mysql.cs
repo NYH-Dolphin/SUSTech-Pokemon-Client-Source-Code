@@ -8,15 +8,15 @@ using MySql.Data.MySqlClient;
 
 public class Mysql : MonoBehaviour
 {
-    private static string host = "127.0.0.1";
+    private static string host = "cdb-omb6qd8s.cd.tencentcdb.com";
 
-    private static string port = "3306";
+    private static string port = "10090";
 
     private static string id = "root";
 
-    private static string password = "20010922nyh";
+    private static string password = "pokemon2021";
 
-    private static string database = "sustechpokemon";
+    private static string database = "OOAD";
 
     private static string table = "user";
 
