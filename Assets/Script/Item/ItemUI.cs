@@ -22,7 +22,7 @@ public class ItemUI : Item
     /**
      * [实例化ShopItem Prefab并且配置所有内容]
      */
-    public GameObject CreateShopItem()
+    public GameObject CreateShopItemPrefab()
     {
         // 实例化对象并设置各类属性
         GameObject itemPrefab = Resources.Load("Item/Prefab/shop_item") as GameObject;

@@ -1,4 +1,4 @@
-public class MaterialItem
+public class MaterialItem : Item
 {
      
 }

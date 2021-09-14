@@ -2,10 +2,9 @@ using System.Collections.Generic;
 
 public class Package
 {
-    protected HashMap<EnhanceItem,int> EnhanceItems;
-    protected HashMap<BookItem, int> BookItems;
-    protected HashMap<MaterialItem, int> MaterialItem;
-
-
+    protected static HashMap<Item,int> EnhanceItems = new HashMap<Item, int>();
+    protected static HashMap<Item, int> BookItems = new HashMap<Item, int>();
+    protected static HashMap<Item, int> MaterialItems = new HashMap<Item, int>();
+    
 
 }

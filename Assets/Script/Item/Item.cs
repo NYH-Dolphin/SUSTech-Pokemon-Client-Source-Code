@@ -4,4 +4,9 @@ public class Item
     protected int id;
     protected string description;
     protected int cost;
+
+    public int GetId()
+    {
+        return id;
+    }
 }

@@ -61,7 +61,7 @@ public class ShopManager : MonoBehaviour
     private void SetGridMessage(string name, int id, int cost)
     {
         ItemUI item = new ItemUI(name, id, cost);
-        GameObject itemPrefab = item.CreateShopItem();
+        GameObject itemPrefab = item.CreateShopItemPrefab();
         itemPrefab.transform.SetParent(grids[occupy].transform, false);
         occupy++;
     }

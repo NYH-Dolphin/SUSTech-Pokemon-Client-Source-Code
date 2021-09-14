@@ -1,4 +1,4 @@
-public class BookItem
+public class BookItem : Item
 { 
     protected int experience;
 }
