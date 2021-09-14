@@ -6,15 +6,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
-public class ItemUI
+public class ItemUI : Item
 {
-    private string name;
-
-    private int id;
-
-    private int cost; //价格
-
-    private string path;//图片地址
+    private string path; // item 图片地址
 
     public ItemUI(string name, int id, int cost)
     {
@@ -23,11 +17,15 @@ public class ItemUI
         this.cost = cost;
         path = "Item/Image/" + id;
     }
+    
 
-    public GameObject CreateItem()
+    /**
+     * [实例化ShopItem Prefab并且配置所有内容]
+     */
+    public GameObject CreateShopItem()
     {
         // 实例化对象并设置各类属性
-        GameObject itemPrefab = Resources.Load("Item/Prefab/item") as GameObject;
+        GameObject itemPrefab = Resources.Load("Item/Prefab/shop_item") as GameObject;
         // 一定要实例化
         GameObject item = Object.Instantiate(itemPrefab);
         Text pName = item.transform.GetChild(0).GetComponent<Text>();

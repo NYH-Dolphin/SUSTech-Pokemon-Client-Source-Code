@@ -13,20 +13,20 @@ public class ShopManager : MonoBehaviour
 
 
     public Text pokeBall;
+
     public Text coin;
+
     // Start is called before the first frame update
     void Start()
     {
         _user = UserUI.GetInstance();
         InitializeShop();
         UserDataSync();
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 
 
@@ -50,9 +50,6 @@ public class ShopManager : MonoBehaviour
         SetGridMessage("四叶草", 2, 2000);
         SetGridMessage("绿色水晶", 3, 3000);
         SetGridMessage("黄色珍珠", 4, 500);
-
-
-        
     }
 
     private void UserDataSync()
@@ -64,9 +61,8 @@ public class ShopManager : MonoBehaviour
     private void SetGridMessage(string name, int id, int cost)
     {
         ItemUI item = new ItemUI(name, id, cost);
-        GameObject itemPrefeb = item.CreateItem();
-        itemPrefeb.transform.SetParent( grids[occupy].transform,false);
-
+        GameObject itemPrefab = item.CreateShopItem();
+        itemPrefab.transform.SetParent(grids[occupy].transform, false);
         occupy++;
     }
 }

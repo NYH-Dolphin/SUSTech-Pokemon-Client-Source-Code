@@ -10,7 +10,7 @@ public class User
     protected int protrate;
 
     protected HashSet<Pokemon> pokemons;
-    protected Pocket pocket;
+    protected Package pocket;
     protected int coins;
     protected int pokemonBall;
     protected Pokemon[] fightPokemons;
