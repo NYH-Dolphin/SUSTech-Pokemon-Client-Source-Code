@@ -94,4 +94,9 @@ public class MainManager : MonoBehaviour
     {
         SceneManager.LoadScene("Summon");
     }
+
+    public void OpenPackageScene()
+    {
+        SceneManager.LoadScene("Package");
+    }
 }
