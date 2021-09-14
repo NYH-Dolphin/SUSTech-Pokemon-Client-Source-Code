@@ -1,36 +1,72 @@
+using System;
+using Script.Skill;
 
-using System.Collections.Generic;
-
-public abstract class Pokemon
+namespace Script.Pokemon
 {
-
-    protected  string name; // 宝可梦名字
-    protected  int id;// 宝可梦id
-    protected Genre genre; //宝可梦种类
-    protected  int exp; // 宝可梦经验
-    protected List<Skill> skills; //宝可梦的所有技能
-
-    protected int firstEvo = 20;
-    protected int secondEvo = 60;
-    
-    
-
-    // 基础属性
-    protected  double HP;//生命值
-    protected  double ATK;//攻击
-    protected  double DEF;//防御
-    protected  double SPEED;//速度
-    protected  double SATK;//special ATK
-    protected  double SDEF;//special DEF
-    protected  double currentHP;// 当前血量
-
-
-    public int GetLevel()
+    public abstract class Pokemon
     {
-        return 0;
+        protected int ID; // 宝可梦ID
+        protected Genre Genre; //宝可梦种类
+
+        protected HashMap<SkillName, int> SkillsSet; //宝可梦的所有技能 <技能名, 解锁等级>
+
+        // 基础属性
+        protected double Hp; //生命
+        protected double Atk; //攻击
+        protected double Def; //防御
+        protected double SAtk; //特攻
+        protected double SDef; //特防
+        protected double Speed; //速度
+
+        protected double CurrentHp; // 当前生命
+        protected int Exp; // 当前经验
+
+        protected void InitBasicProperty(double hp, double atk, double def,
+            double sAtk, double sDef, double speed)
+        {
+            Hp = hp;
+            Atk = atk;
+            Def = def;
+            SAtk = sAtk;
+            SDef = sDef;
+            Speed = speed;
+        }
+
+        public abstract string GetName(); // 获取宝可梦当前名字
+
+        public int GetLevel() // 获取宝可梦当前等级
+        {
+            return (int)Math.Pow(Exp, 1.0 / 3);
+        }
+
+        public virtual double GetHp()
+        {
+            return Hp;
+        }
+
+        public virtual double GetAtk()
+        {
+            return Atk;
+        }
+
+        public virtual double GetDef()
+        {
+            return Def;
+        }
+
+        public virtual double GetSAtk()
+        {
+            return SAtk;
+        }
+
+        public virtual double GetSDef()
+        {
+            return SDef;
+        }
+
+        public virtual double GetSpeed()
+        {
+            return Speed;
+        }
     }
-    
-    
-
-
 }
