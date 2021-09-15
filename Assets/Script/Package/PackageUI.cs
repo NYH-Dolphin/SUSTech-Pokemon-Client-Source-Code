@@ -138,17 +138,10 @@ public class PackageUI : Package
     public static void InitializeTest()
     {
         EnhanceItems.Add(new EnhanceItem("测试1", 1, "soidhfsoidj"), 1);
-        EnhanceItems.Add(new EnhanceItem("测试2", 1, "soidhfsoidj"), 1);
-        EnhanceItems.Add(new EnhanceItem("测试3", 1, "soidhfsoidj"), 1);
-        EnhanceItems.Add(new EnhanceItem("测试4", 1, "soidhfsoidj"), 1);
-        EnhanceItems.Add(new EnhanceItem("测试5", 1, "soidhfsoidj"), 1);
-        EnhanceItems.Add(new EnhanceItem("测试6", 1, "soidhfsoidj"), 1);
-        EnhanceItems.Add(new EnhanceItem("测试7", 1, "soidhfsoidj"), 1);
-        EnhanceItems.Add(new EnhanceItem("测试", 1, "soidhfsoidj"), 1);
-        EnhanceItems.Add(new EnhanceItem("测试", 1, "soidhfsoidj"), 1);
-        EnhanceItems.Add(new EnhanceItem("测试", 1, "soidhfsoidj"), 1);
-        EnhanceItems.Add(new EnhanceItem("测试", 1, "soidhfsoidj"), 1);
-        EnhanceItems.Add(new EnhanceItem("测试", 1, "soidhfsoidj"), 1);
+        EnhanceItems.Add(new EnhanceItem("测试2", 2, "soidhfsoidj"), 1);
+        EnhanceItems.Add(new EnhanceItem("测试3", 3, "soidhfsoidj"), 1);
+        EnhanceItems.Add(new EnhanceItem("测试4", 4, "soidhfsoidj"), 1);
+
 
 
         MaterialItems.Add(new MaterialItem("测试2", 2, "sdifuwf0upds"), 2);

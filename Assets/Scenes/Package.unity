@@ -358,7 +358,19 @@ MonoBehaviour:
   m_Group: {fileID: 2121969506}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1349337564}
+        m_TargetAssemblyTypeName: PackageManager, Assembly-CSharp
+        m_MethodName: SetItemIntro
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2140955526}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &188598279
 GameObject:
@@ -443,7 +455,19 @@ MonoBehaviour:
   m_Group: {fileID: 2121969506}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1349337564}
+        m_TargetAssemblyTypeName: PackageManager, Assembly-CSharp
+        m_MethodName: SetItemIntro
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1824221784}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &222901988
 GameObject:
@@ -683,7 +707,19 @@ MonoBehaviour:
   m_Group: {fileID: 2121969506}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1349337564}
+        m_TargetAssemblyTypeName: PackageManager, Assembly-CSharp
+        m_MethodName: SetItemIntro
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1396467137}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &307474092
 GameObject:
@@ -872,7 +908,19 @@ MonoBehaviour:
   m_Group: {fileID: 2121969506}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1349337564}
+        m_TargetAssemblyTypeName: PackageManager, Assembly-CSharp
+        m_MethodName: SetItemIntro
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 705096053}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
 --- !u!1 &496541931
 GameObject:
@@ -1112,7 +1160,19 @@ MonoBehaviour:
   m_Group: {fileID: 1570550227}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1349337564}
+        m_TargetAssemblyTypeName: PackageManager, Assembly-CSharp
+        m_MethodName: BookToggle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &567076032
 GameObject:
@@ -1499,7 +1559,19 @@ MonoBehaviour:
   m_Group: {fileID: 2121969506}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1349337564}
+        m_TargetAssemblyTypeName: PackageManager, Assembly-CSharp
+        m_MethodName: SetItemIntro
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 76485530}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &682433159
 GameObject:
@@ -1584,7 +1656,19 @@ MonoBehaviour:
   m_Group: {fileID: 2121969506}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1349337564}
+        m_TargetAssemblyTypeName: PackageManager, Assembly-CSharp
+        m_MethodName: SetItemIntro
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1374146414}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &698408731
 GameObject:
@@ -1669,7 +1753,19 @@ MonoBehaviour:
   m_Group: {fileID: 2121969506}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1349337564}
+        m_TargetAssemblyTypeName: PackageManager, Assembly-CSharp
+        m_MethodName: SetItemIntro
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 730325465}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &705096053
 GameObject:
@@ -2082,7 +2178,19 @@ MonoBehaviour:
   m_Group: {fileID: 2121969506}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1349337564}
+        m_TargetAssemblyTypeName: PackageManager, Assembly-CSharp
+        m_MethodName: SetItemIntro
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1769393997}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &755059016
 GameObject:
@@ -3306,7 +3414,19 @@ MonoBehaviour:
   m_Group: {fileID: 1570550227}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1349337564}
+        m_TargetAssemblyTypeName: PackageManager, Assembly-CSharp
+        m_MethodName: MaterialToggle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &1294578704
 GameObject:
@@ -3582,6 +3702,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridList: {fileID: 2121969500}
+  itemIntro: {fileID: 750395232}
+  currentGrid: {fileID: 0}
   inEnhance: {fileID: 1376135449}
   inMaterial: {fileID: 1252658956}
   inBook: {fileID: 519767678}
@@ -3877,7 +3999,19 @@ MonoBehaviour:
   m_Group: {fileID: 1570550227}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1349337564}
+        m_TargetAssemblyTypeName: PackageManager, Assembly-CSharp
+        m_MethodName: EnhanceToggle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
 --- !u!1 &1379964017
 GameObject:
@@ -4264,7 +4398,19 @@ MonoBehaviour:
   m_Group: {fileID: 2121969506}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1349337564}
+        m_TargetAssemblyTypeName: PackageManager, Assembly-CSharp
+        m_MethodName: SetItemIntro
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1316863702}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &1570550223
 GameObject:
@@ -4824,7 +4970,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1777972012}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1349337564}
+        m_TargetAssemblyTypeName: PackageManager, Assembly-CSharp
+        m_MethodName: PrevPage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1777972012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5257,7 +5415,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1908807501}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1349337564}
+        m_TargetAssemblyTypeName: PackageManager, Assembly-CSharp
+        m_MethodName: NextPage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1908807501
 MonoBehaviour:
   m_ObjectHideFlags: 0
