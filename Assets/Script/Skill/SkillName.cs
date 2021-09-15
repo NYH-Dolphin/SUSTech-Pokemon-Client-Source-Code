@@ -2,9 +2,13 @@
 {
     public enum SkillName
     {
+        // Normal
+        Pound,
+
         // Electricity
-        Spark,
         ThunderPunch,
+        ThunderShock,
+        Thunderbolt,
         VoltTackle,
         ThunderFang,
         WildCharge,

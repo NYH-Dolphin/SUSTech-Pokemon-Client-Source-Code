@@ -9,8 +9,17 @@ namespace Script.Skill
             BasicSkill skill = null;
             switch (skillName)
             {
-                case SkillName.Spark:
-                    skill = SkillSpark.Instance;
+                case SkillName.Pound:
+                    skill = SkillPound.Instance;
+                    break;
+                case SkillName.ThunderShock:
+                    skill = SkillThunderShock.Instance;
+                    break;
+                case SkillName.ThunderPunch:
+                    skill = SkillThunderPunch.Instance;
+                    break;
+                case SkillName.Thunderbolt:
+                    skill = SkillThunderPunch.Instance;
                     break;
             }
 
