@@ -1,6 +1,6 @@
 ﻿namespace Script.Pokemon
 {
-    public abstract class ThreeOrderPokemon : global::Script.Pokemon.Pokemon
+    public abstract class ThreeOrderPokemon : Pokemon
     {
         private string _firstForm;
         private string _secondForm;
