@@ -105,19 +105,31 @@ public class PackageUI : Package
     {
         int gridNum = int.Parse(grid.name.Replace("grid", ""));
         Item item = new Item("", 0, "");
+        int num = 0; // item 的数量
         switch (toggleNum)
         {
             case 1:
                 if (EnhanceItems.Keys.ToList().Count - 1 >= 9 * pageNum + gridNum - 1)
+                {
                     item = EnhanceItems.Keys.ToList()[9 * pageNum + gridNum - 1];
+                    num = EnhanceItems.Values.ToList()[9 * pageNum + gridNum - 1];
+                }
                 break;
             case 2:
                 if (MaterialItems.Keys.ToList().Count - 1 >= 9 * pageNum + gridNum - 1)
+                {
                     item = MaterialItems.Keys.ToList()[9 * pageNum + gridNum - 1];
+                    num = MaterialItems.Values.ToList()[9 * pageNum + gridNum - 1];
+                }
+
                 break;
             case 3:
                 if (BookItems.Keys.ToList().Count - 1 >= 9 * pageNum + gridNum - 1)
+                {
                     item = BookItems.Keys.ToList()[9 * pageNum + gridNum - 1];
+                    num = BookItems.Values.ToList()[9 * pageNum + gridNum - 1];
+                }
+
                 break;
         }
         path = "Item/Image/" + item.GetId();
@@ -127,6 +139,8 @@ public class PackageUI : Package
         itemName.text = item.GetName();
         Text description = itemIntro.transform.GetChild(1).transform.GetChild(1).GetComponent<Text>();
         description.text = item.GetDescription();
+        Text itemNumber = itemIntro.transform.GetChild(2).transform.GetChild(0).GetComponent<Text>();
+        itemNumber.text = "X" + num;
         return grid;
     }
 

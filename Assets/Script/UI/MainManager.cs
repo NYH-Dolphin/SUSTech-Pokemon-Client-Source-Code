@@ -99,4 +99,9 @@ public class MainManager : MonoBehaviour
     {
         SceneManager.LoadScene("Package");
     }
+
+    public void OpenCompeteScene()
+    {
+        SceneManager.LoadScene("Compete");
+    }
 }
