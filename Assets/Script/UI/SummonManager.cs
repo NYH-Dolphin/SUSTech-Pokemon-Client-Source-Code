@@ -8,18 +8,21 @@ public class SummonManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
-    
-    
+
+
     public void BackToMainScene()
     {
         SceneManager.LoadScene("Main");
+    }
+    
+    public void OpenDrawCardScene()
+    {
+        SceneManager.LoadScene("DrawCard");
     }
 }

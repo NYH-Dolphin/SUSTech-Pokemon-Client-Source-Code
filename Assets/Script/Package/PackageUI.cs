@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -151,7 +151,7 @@ public class PackageUI : Package
      */
     public static void InitializeTest()
     {
-        EnhanceItems.Add(new EnhanceItem("测试1", 1, "soidhfsoidj"), 1);
+        EnhanceItems.Add(new EnhanceItem("草系宝石", 1, "可能对草系宝可梦有很大的用处哦！"), 3);
         EnhanceItems.Add(new EnhanceItem("测试2", 2, "soidhfsoidj"), 1);
         EnhanceItems.Add(new EnhanceItem("测试3", 3, "soidhfsoidj"), 1);
         EnhanceItems.Add(new EnhanceItem("测试4", 4, "soidhfsoidj"), 1);
