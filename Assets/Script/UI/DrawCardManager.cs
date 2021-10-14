@@ -30,6 +30,9 @@ public class DrawCardManager : MonoBehaviour
     private int showNum = 0; // 展示第几个宝可梦 点击屏幕会切换下一个宝可梦
 
 
+    private bool pop = true; // 标识着刚开始弹出，从小弹出来！
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,7 +47,6 @@ public class DrawCardManager : MonoBehaviour
         {
             DisplayPokemon(showNum);
         }
-
     }
 
 
@@ -82,9 +84,24 @@ public class DrawCardManager : MonoBehaviour
     void DisplayPokemon(int num)
     {
         pokemonName.text = pokemons[num].GetName();
-        Debug.Log(pokemonName.text);
         pokemonImage.GetComponent<Image>().sprite =
             Resources.Load(imagePath + pokemons[num].GetID(), typeof(Sprite)) as Sprite;
+        
+        // 进行一个精灵从小到大弹出来的效果，表示每个抽到的精灵！
+        if (pop)
+        {
+            pokemonImage.transform.localScale = new Vector3(0, 0, 0);
+            pokemonImage.transform.localScale = new Vector3(0, 0, 0);
+            pop = false;
+        }
+        else
+        {
+            float popOutDelta = pokemonImage.transform.localScale.x + Time.deltaTime * 3;
+            popOutDelta = popOutDelta > 1 ? 1 : popOutDelta;
+            pokemonImage.transform.localScale = new Vector3(popOutDelta, popOutDelta, popOutDelta);
+        }
+
+
         int rarity = pokemons[num].GetRarity();
         for (int i = 0; i < starList.Count; i++)
         {
@@ -109,16 +126,16 @@ public class DrawCardManager : MonoBehaviour
         if (showPokemon)
         {
             showNum++;
+            pop = true;
             if (showNum == pokemons.Count)
             {
                 BackToSummonScene();
             }
         }
     }
-    
+
     public void BackToSummonScene()
     {
         SceneManager.LoadScene("Summon");
     }
-
 }
