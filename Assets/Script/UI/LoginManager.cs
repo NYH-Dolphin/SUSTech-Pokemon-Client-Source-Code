@@ -44,24 +44,31 @@ public class LoginManager : MonoBehaviour
         {
             case 0:
                 message.text = "";
-                StartGame();
+                StartOP();
                 break;
             case 1:
-                message.text = "您尚未输入账号";
+                message.text = "";
+                StartGame();
                 break;
             case 2:
-                message.text = "您尚未输入密码";
+                message.text = "您尚未输入账号";
                 break;
             case 3:
-                message.text = "您输入的账号和密码有误";
+                message.text = "您尚未输入密码";
                 break;
             case 4:
+                message.text = "您输入的账号和密码有误";
+                break;
+            case 5:
                 message.text = "用户名已被注册";
                 break;
         }
     }
     
-    
+    void StartOP()
+    {
+        SceneManager.LoadScene("Op");
+    }
 
 
     void StartGame()

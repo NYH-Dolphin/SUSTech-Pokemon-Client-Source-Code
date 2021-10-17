@@ -10,6 +10,7 @@ namespace Script.Pokemon
 
         protected HashMap<SkillName, int> SkillsSet; //宝可梦的所有技能 <技能名, 解锁等级>
 
+        protected int Rarity; // 稀有度
         // 基础属性
         protected double Hp; // 基础生命
         protected double Atk; // 基础攻击
@@ -69,6 +70,16 @@ namespace Script.Pokemon
         public virtual double GetSpeed()
         {
             return Speed;
+        }
+        
+        public virtual int GetID()
+        {
+            return ID;
+        }
+        
+        public virtual int GetRarity()
+        {
+            return Rarity;
         }
     }
 }

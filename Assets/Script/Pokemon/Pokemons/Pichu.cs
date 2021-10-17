@@ -15,6 +15,7 @@ namespace Script.Pokemon.Pokemons
             Genre = Genre.Electricity;
             InitName("皮丘", "皮卡丘", "雷丘");
             InitBasicProperty(20, 40, 15, 35, 35, 60);
+            Rarity = 4;
             SkillsSet = new HashMap<SkillName, int>();
             SkillsSet.Add(SkillName.Pound, 0);
             SkillsSet.Add(SkillName.ThunderShock, 0);

@@ -6,14 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Start.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
     path: Assets/Scenes/Main.unity
     guid: 85f4a4735a55f514282a1ad6bdfe1bf6
   - enabled: 1
     path: Assets/Scenes/Shop.unity
     guid: acdbe2be1a0f2bc4baa750d4e8958a76
-  - enabled: 1
-    path: Assets/Scenes/Start.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/Summon.unity
     guid: fc4a654f417174b43b68b32cdec76aca
@@ -23,4 +23,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Compete.unity
     guid: 41a5b3f9244672147b197bc8056f7bf9
+  - enabled: 1
+    path: Assets/Scenes/Op.unity
+    guid: bc56a2edc83890f4eaa10a92df821863
+  - enabled: 1
+    path: Assets/Scenes/DrawCard.unity
+    guid: 7e3e99fafd7cc4048b1be9704eb12ee1
+  - enabled: 1
+    path: Assets/Scenes/Adventure.unity
+    guid: 515931263ba3a5a4f946989a4af4b3e6
+  - enabled: 1
+    path: Assets/Scenes/Pokemon.unity
+    guid: 702d6ab2cd0e5cb4fba58c853f972d50
   m_configObjects: {}

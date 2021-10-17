@@ -104,4 +104,14 @@ public class MainManager : MonoBehaviour
     {
         SceneManager.LoadScene("Compete");
     }
+
+    public void OpenAdventureScene()
+    {
+        SceneManager.LoadScene("Adventure");
+    }
+
+    public void OpenPokemonScene()
+    {
+        SceneManager.LoadScene("Pokemon");
+    }
 }
