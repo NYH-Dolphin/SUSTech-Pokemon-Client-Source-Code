@@ -1,4 +1,4 @@
-﻿%YAML 1.1
+%YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!29 &1
 OcclusionCullingSettings:
@@ -22595,6 +22595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56e17999c5e9671449e0511b1dc8cc68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anima: {fileID: 0}
 --- !u!61 &1453625588
 BoxCollider2D:
   m_ObjectHideFlags: 0
