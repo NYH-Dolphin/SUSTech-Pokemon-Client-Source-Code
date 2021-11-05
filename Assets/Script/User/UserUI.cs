@@ -2,22 +2,74 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public class UserUI
 {
-    private  string _name; //名字
 
-    private  string _password; //密码
+    private string _account; // 账户
+    public string Account
+    {
+        get => _account;
+        set => _account = value;
+    }
+    private string _name; //名字
+    public string Name
+    {
+        get => _name;
+        set => _name = value;
+    }
 
-    private  int _level; // 等级
+    private string _password; //密码
 
-    private  int _coin; //金币
+    public String Password
+    {
+        get => _password;
+        set => _password = value;
+    }
 
-    private  int _pokeBall; //精灵球
-    
-    private  int _portrait; // 头像 1-9
-    
+    private string _token;
+
+    public String Token
+    {
+        get => _token;
+        set => _token = value;
+    }
+
+    private int _level; // 等级
+
+    public int Level
+    {
+        get => _level;
+        set => _level = value;
+    }
+
+    private int _coin; //金币
+
+    public int Coin
+    {
+        get => _coin;
+        set => _coin = value;
+    }
+
+    private int _pokeBall; //精灵球
+
+    public int PokeBall
+    {
+        get => _pokeBall;
+        set => _pokeBall = value;
+    }
+
+    private int _portrait; // 头像 1-9
+
+    public int Portrait
+    {
+        get => _portrait;
+        set => _portrait = value;
+    }
+
+
     private static UserUI _instance; // 单例模式用户实例
 
     private UserUI(string uName, string uPassword)
@@ -25,6 +77,29 @@ public class UserUI
         _name = uName;
         _password = uPassword;
     }
+
+    
+    
+    public void CheckLogin(string account, String password)
+    {
+        // if (account.Equals(""))
+        // {
+        //     // return 2;
+        // }
+        //
+        // if (password.Equals(""))
+        // {
+        //     // return 3;
+        // }
+       
+
+
+
+        // return 0;
+    }
+    
+    
+    
 
     /**
      * 重新配置新的User
@@ -73,37 +148,4 @@ public class UserUI
         _instance._portrait = 1;
     }
     
-    
-    public String GetName()
-    {
-        return _instance._name;
-    }
-
-    public int GetLevel()
-    {
-        return _instance._level;
-    }
-    
-    public int GetCoin()
-    {
-        return _instance._coin;
-    }
-
-    public int GetPokeBall()
-    {
-        return _instance._pokeBall;
-    }
-
-    public int GetPortrait()
-    {
-        return _instance._portrait;
-    }
-
-    public void SetPortrait(int num)
-    {
-        _instance._portrait = num;
-    }
-    
-
-
 }

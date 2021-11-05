@@ -32,9 +32,9 @@ public class MainManager : MonoBehaviour
     void Update()
     {
         // 检查头像
-        if (_user.GetPortrait() != portraitNum)
+        if (_user.Portrait != portraitNum)
         {
-            portraitNum = _user.GetPortrait();
+            portraitNum = _user.Portrait;
             ChangePortraitImg(portraitNum);
         }
     }
@@ -48,12 +48,12 @@ public class MainManager : MonoBehaviour
     {
         _user = UserUI.GetInstance();
         // 信息配置
-        name.text = _user.GetName();
-        level.text = "Lv." + _user.GetLevel();
-        coin.text = _user.GetCoin() > 1000000 ? _user.GetCoin() / 10000 + "万" : _user.GetCoin() + "";
-        pokeBall.text = _user.GetPokeBall() + "个";
+        name.text = _user.Name;
+        level.text = "Lv." + _user.Level;
+        coin.text = _user.Coin > 1000000 ? _user.Coin / 10000 + "万" : _user.Coin + "";
+        pokeBall.text = _user.PokeBall + "个";
         // 头像配置
-        portraitNum = _user.GetPortrait();
+        portraitNum = _user.Portrait;
         ChangePortraitImg(portraitNum);
     }
 
@@ -65,11 +65,11 @@ public class MainManager : MonoBehaviour
         // 测试部分，随后可删除
         _user = UserUI.SetFreshInstance("测试","测试");
         UserUI.CheckLogin();
-        name.text = _user.GetName();
-        level.text = "Lv." + _user.GetLevel();
-        coin.text = _user.GetCoin() > 1000000 ? _user.GetCoin() / 10000 + "万" : _user.GetCoin() + "";
-        pokeBall.text = _user.GetPokeBall() + "个";
-        portraitNum = _user.GetPortrait();
+        name.text = _user.Name;
+        level.text = "Lv." + _user.Level;
+        coin.text = _user.Coin > 1000000 ? _user.Coin / 10000 + "万" : _user.Coin + "";
+        pokeBall.text = _user.PokeBall + "个";
+        portraitNum = _user.Portrait;
         ChangePortraitImg(portraitNum);
     }
 

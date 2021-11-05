@@ -23,7 +23,7 @@ public class PortraitManager : BoardManager
     public void ChangePortrait(Image image)
     {
         string name = image.name.Replace("portrait", "");
-        user.SetPortrait(int.Parse(name));
+        user.Portrait = int.Parse(name);
         CloseBoard();
     }
 }

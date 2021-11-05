@@ -54,8 +54,8 @@ public class ShopManager : MonoBehaviour
 
     private void UserDataSync()
     {
-        pokeBall.text = _user.GetPokeBall() + "";
-        coin.text = _user.GetCoin() > 1000000 ? _user.GetCoin() / 10000 + "万" : _user.GetCoin() + "";
+        pokeBall.text = _user.PokeBall + "";
+        coin.text = _user.Coin > 1000000 ? _user.Coin / 10000 + "万" : _user.Coin + "";
     }
 
     private void SetGridMessage(string name, int id, int cost)

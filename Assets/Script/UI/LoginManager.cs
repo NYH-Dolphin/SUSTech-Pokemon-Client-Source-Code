@@ -8,63 +8,82 @@ using UnityEngine.UI;
 public class LoginManager : MonoBehaviour
 {
     public InputField account; // 账号栏
-    public InputField password;// 密码栏
-    public Toggle toggle;// 明文或密文勾选
+    public InputField password; // 密码栏
+    public Toggle toggle; // 明文或密文勾选
     public Text message; // 提示
 
 
-   
     // Start is called before the first frame update
     void Start()
     {
+        password.contentType = InputField.ContentType.Password;
     }
+
     // Update is called once per frame
     void Update()
     {
-        PasswordChange();
     }
 
-    
-    
-    void PasswordChange()
+
+    public void OnToggleChange()
     {
-        password.contentType = toggle.isOn? InputField.ContentType.Standard : InputField.ContentType.Password;
+        password.contentType = toggle.isOn ? InputField.ContentType.Standard : InputField.ContentType.Password;
         password.ForceLabelUpdate();
+    }
+
+
+    public void OnLogin()
+    {
+        // 开始协程
+        StartCoroutine("Login");
     }
 
 
     /**
      * 用于开始游戏 Button
-     */
-    public void Login()
+     */ 
+    IEnumerator Login()
     {
         UserUI.SetFreshInstance(account.text, password.text);
-        int checkSum = UserUI.CheckLogin();
-        switch (checkSum)
+        
+        if (String.IsNullOrEmpty(account.text))
         {
-            case 0:
-                message.text = "";
-                StartOP();
-                break;
-            case 1:
-                message.text = "";
-                StartGame();
-                break;
-            case 2:
-                message.text = "您尚未输入账号";
-                break;
-            case 3:
-                message.text = "您尚未输入密码";
-                break;
-            case 4:
-                message.text = "您输入的账号和密码有误";
-                break;
-            case 5:
-                message.text = "用户名已被注册";
-                break;
+            message.text = "您尚未输入账号";
+        }else if (String.IsNullOrEmpty(password.text))
+        {
+            message.text = "您尚未输入密码";
+        }
+        else
+        {
+            WWWForm form = new WWWForm();
+            form.AddField("account", account.text);
+            form.AddField("password", password.text);
+            string url = BackEndConfig.GetUrl() + "/user/login";
+            HttpRequest request = new HttpRequest();
+            StartCoroutine(request.Post(url, form));
+            while (!request.isComplete)
+            {
+                yield return null;
+            }
+
+            int statusCode = int.Parse(request.value["code"].ToString());
+            switch (statusCode)
+            {
+                case 10000:
+                    message.text = "";
+                    UserUI user = UserUI.GetInstance();
+                    user.Account = account.text;
+                    user.Password = password.text;
+                    user.Token = request.value["data"]["token"].ToString();
+                    StartGame();
+                    break;
+                case 10001:
+                    message.text = "您输入的账号和密码有误";
+                    break;
+            }
         }
     }
-    
+
     void StartOP()
     {
         SceneManager.LoadScene("Op");
@@ -75,8 +94,4 @@ public class LoginManager : MonoBehaviour
     {
         SceneManager.LoadScene("Main");
     }
-
-
-
-
 }
