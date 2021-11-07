@@ -1,12 +1,38 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using LitJson;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public class UserUI
 {
+
+    private static UserUI _instance = new UserUI(); // 单例模式用户实例
+    /**
+     * 获取单例User
+     */
+    public static UserUI GetInstance()
+    {
+        return _instance;
+    }
+
+
+    /**
+     * [将后端传送回来的JsonData设置进去]
+     */
+    public static void SetInstance(JsonData userData)
+    {
+        _instance.Account = userData["data"]["user"]["account"].ToString();
+        _instance.Password = userData["data"]["user"]["password"].ToString();
+        _instance.Name = userData["data"]["user"]["name"].ToString();
+        _instance.Coin =  int.Parse(userData["data"]["user"]["coin"].ToString());
+        _instance.PokeBall = int.Parse(userData["data"]["user"]["pokemonBall"].ToString());
+        _instance.Level = int.Parse(userData["data"]["user"]["level"].ToString());
+        _instance.Portrait = int.Parse(userData["data"]["user"]["portrait"].ToString());
+        _instance.Token = userData["data"]["token"].ToString();
+    }
 
     private string _account; // 账户
     public string Account
@@ -68,73 +94,7 @@ public class UserUI
         get => _portrait;
         set => _portrait = value;
     }
-
-
-    private static UserUI _instance; // 单例模式用户实例
-
-    private UserUI(string uName, string uPassword)
-    {
-        _name = uName;
-        _password = uPassword;
-    }
-
     
-    
-    public void CheckLogin(string account, String password)
-    {
-        // if (account.Equals(""))
-        // {
-        //     // return 2;
-        // }
-        //
-        // if (password.Equals(""))
-        // {
-        //     // return 3;
-        // }
-       
-
-
-
-        // return 0;
-    }
-    
-    
-    
-
-    /**
-     * 重新配置新的User
-     */
-    public static UserUI SetFreshInstance(string name, string password)
-    {
-        _instance = new UserUI(name, password);
-        return _instance;
-    }
-
-    /**
-     * 获取单例User
-     */
-    public static UserUI GetInstance()
-    {
-        return _instance;
-    }
-
-
-    /**
-     * 【未实现】
-     * 0 - 首次登录
-     * 1 - 非首次登录成功
-     * 2 - 缺失账号
-     * 3 - 缺失密码
-     * 4 - 账号与密码不符合
-     * 5 - 账号已注册
-     */
-    public static int CheckLogin()
-    {
-        // 从数据库获取内容
-        GetPersonData();
-        return 0;
-    }
-
 
     /**
      * 【未实现】

@@ -6,12 +6,13 @@ using UnityEngine.UI;
 public class PortraitManager : BoardManager
 {
     
-    public UserUI user;
+    private UserUI _user;
+    public Image portrait; // 头像
     // Start is called before the first frame update
     new void Start()
     {
         base.Start();
-        user = UserUI.GetInstance();
+        _user = UserUI.GetInstance();
     }
 
     // Update is called once per frame
@@ -20,10 +21,17 @@ public class PortraitManager : BoardManager
         
     }
 
+    
+    /*
+     * [点击头像框按钮改变头像]
+     */
     public void ChangePortrait(Image image)
     {
-        string name = image.name.Replace("portrait", "");
-        user.Portrait = int.Parse(name);
+        string index = image.name.Replace("portrait", "");
+        _user.Portrait = int.Parse(index);
+        string path = "User/Portrait/p" + _user.Portrait;
+        Sprite sprite = Resources.Load(path,typeof(Sprite)) as Sprite;
+        portrait.sprite = sprite;
         CloseBoard();
     }
 }

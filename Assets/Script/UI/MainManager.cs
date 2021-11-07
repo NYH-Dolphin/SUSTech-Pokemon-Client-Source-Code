@@ -19,7 +19,7 @@ public class MainManager : MonoBehaviour
     private void Awake()
     {
         // 同步获取User的相关信息
-        UserDataSyncTemp();
+        UserDataSync();
     }
 
     void Start()
@@ -31,18 +31,12 @@ public class MainManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // 检查头像
-        if (_user.Portrait != portraitNum)
-        {
-            portraitNum = _user.Portrait;
-            ChangePortraitImg(portraitNum);
-        }
+
     }
 
 
     /**
      * 单例模式同步用户信息并显示在 UI 上
-     * 
      */
     void UserDataSync()
     {
@@ -56,23 +50,7 @@ public class MainManager : MonoBehaviour
         portraitNum = _user.Portrait;
         ChangePortraitImg(portraitNum);
     }
-
-    /**
-     * 测试部分暂用，后删除
-     */
-    void UserDataSyncTemp()
-    {
-        // 测试部分，随后可删除
-        _user = UserUI.SetFreshInstance("测试","测试");
-        UserUI.CheckLogin();
-        name.text = _user.Name;
-        level.text = "Lv." + _user.Level;
-        coin.text = _user.Coin > 1000000 ? _user.Coin / 10000 + "万" : _user.Coin + "";
-        pokeBall.text = _user.PokeBall + "个";
-        portraitNum = _user.Portrait;
-        ChangePortraitImg(portraitNum);
-    }
-
+    
     /**
      * 更换 Main 面板中的头像
      */

@@ -44,8 +44,6 @@ public class LoginManager : MonoBehaviour
      */ 
     IEnumerator Login()
     {
-        UserUI.SetFreshInstance(account.text, password.text);
-        
         if (String.IsNullOrEmpty(account.text))
         {
             message.text = "您尚未输入账号";
@@ -71,10 +69,7 @@ public class LoginManager : MonoBehaviour
             {
                 case 10000:
                     message.text = "";
-                    UserUI user = UserUI.GetInstance();
-                    user.Account = account.text;
-                    user.Password = password.text;
-                    user.Token = request.value["data"]["token"].ToString();
+                    UserUI.SetInstance(request.value);
                     StartGame();
                     break;
                 case 10001:
@@ -84,11 +79,7 @@ public class LoginManager : MonoBehaviour
         }
     }
 
-    void StartOP()
-    {
-        SceneManager.LoadScene("Op");
-    }
-
+   
 
     void StartGame()
     {
