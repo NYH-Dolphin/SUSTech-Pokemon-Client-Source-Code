@@ -1,18 +1,20 @@
 ﻿using UnityEngine;
 
-public class BoardManager:MonoBehaviour
+public class BoardManager : MonoBehaviour
 {
     public Canvas board; // 面板
-    public void Start()
+
+    public virtual void Start()
     {
         board.enabled = false;
     }
 
-    public void CloseBoard()
+    public virtual void CloseBoard()
     {
         board.enabled = false;
     }
-    public void OpenBoard()
+
+    public virtual void OpenBoard()
     {
         board.enabled = true;
     }
