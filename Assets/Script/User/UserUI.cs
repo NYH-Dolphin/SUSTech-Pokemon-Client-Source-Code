@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using LitJson;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -8,13 +9,14 @@ using UnityEngine.UI;
 
 public class UserUI
 {
-
     private static UserUI _instance = new UserUI(); // 单例模式用户实例
+
     /**
      * 获取单例User
      */
     public static UserUI GetInstance()
     {
+        TestSetInstance(); // 测试用
         return _instance;
     }
 
@@ -27,20 +29,39 @@ public class UserUI
         _instance.Account = userData["data"]["user"]["account"].ToString();
         _instance.Password = userData["data"]["user"]["password"].ToString();
         _instance.Name = userData["data"]["user"]["name"].ToString();
-        _instance.Coin =  int.Parse(userData["data"]["user"]["coin"].ToString());
+        _instance.Coin = int.Parse(userData["data"]["user"]["coin"].ToString());
         _instance.PokeBall = int.Parse(userData["data"]["user"]["pokemonBall"].ToString());
         _instance.Level = int.Parse(userData["data"]["user"]["level"].ToString());
         _instance.Portrait = int.Parse(userData["data"]["user"]["portrait"].ToString());
         _instance.Token = userData["data"]["token"].ToString();
+
+        // int[] pokemonList = { 1, 4, 7, 16, 35, 39 };
+        // _instance.Pokemon = pokemonList.ToList();
+        // _instance.PokemonDisplay1 = 4;
+        // _instance.PokemonDisplay2 = 7;
+        // _instance.PokemonDisplay3 = 39;
+    }
+
+    public static void TestSetInstance()
+    {
+        // 测试用
+        int[] pokemonList = { 1, 2, 3, 4, 5, 6, 7, 16, 25, 26, 27, 28, 35, 39, 54, 96, 97, 98 };
+        _instance.Pokemon = pokemonList.ToList();
+        _instance.PokemonDisplay1 = 4;
+        _instance.PokemonDisplay2 = 7;
+        _instance.PokemonDisplay3 = 39;
     }
 
     private string _account; // 账户
+
     public string Account
     {
         get => _account;
         set => _account = value;
     }
+
     private string _name; //名字
+
     public string Name
     {
         get => _name;
@@ -94,18 +115,37 @@ public class UserUI
         get => _portrait;
         set => _portrait = value;
     }
-    
 
-    /**
-     * 【未实现】
-     * 通过用户名和密码从数据库获取个人数据
-     */
-    private static void GetPersonData()
+    private List<int> _pokemon; // 拥有的宝可梦
+
+    public List<int> Pokemon
     {
-        _instance._level = 25;
-        _instance._coin = 29481275;
-        _instance._pokeBall = 120;
-        _instance._portrait = 1;
+        get => _pokemon;
+        set => _pokemon = value;
     }
-    
+
+    private int _pokemonDisplay1; // 展示的宝可梦1
+
+    public int PokemonDisplay1
+    {
+        get => _pokemonDisplay1;
+        set => _pokemonDisplay1 = value;
+    }
+
+
+    private int _pokemonDisplay2; // 展示的宝可梦2
+
+    public int PokemonDisplay2
+    {
+        get => _pokemonDisplay2;
+        set => _pokemonDisplay2 = value;
+    }
+
+    private int _pokemonDisplay3; // 展示的宝可梦3
+
+    public int PokemonDisplay3
+    {
+        get => _pokemonDisplay3;
+        set => _pokemonDisplay3 = value;
+    }
 }
