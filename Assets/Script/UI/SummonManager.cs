@@ -11,6 +11,9 @@ public class SummonManager : MonoBehaviour
 
     public Text coin;
 
+    public Text lackOfMessage; // 当精灵球的个数不够的时候，提示！
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,7 +47,11 @@ public class SummonManager : MonoBehaviour
         {
             UserUI.GetInstance().SummonNum = 1;
             UserUI.GetInstance().PokeBall = UserUI.GetInstance().PokeBall - 1;
-            OpenDrawCardScene();
+            // OpenDrawCardScene();
+        }
+        else
+        {
+            lackOfMessage.text = "精灵球个数不够哦~";
         }
     }
 
@@ -55,12 +62,11 @@ public class SummonManager : MonoBehaviour
         {
             UserUI.GetInstance().SummonNum = 10;
             UserUI.GetInstance().PokeBall = UserUI.GetInstance().PokeBall - 10;
-            OpenDrawCardScene();
+            // OpenDrawCardScene();
         }
-    }
-
-    public void OpenDrawCardScene()
-    {
-        SceneManager.LoadScene("DrawCard");
+        else
+        {
+            lackOfMessage.text = "精灵球个数不够哦~";
+        }
     }
 }
