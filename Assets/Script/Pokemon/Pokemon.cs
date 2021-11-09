@@ -3,83 +3,102 @@ using Script.Skill;
 
 namespace Script.Pokemon
 {
-    public abstract class Pokemon
+    public class Pokemon
     {
-        protected int ID; // 宝可梦ID
-        protected Genre Genre; //宝可梦种类
+        protected int id; // 宝可梦ID
+        protected Genre genre; //宝可梦种类
+        protected String name;
+        protected HashMap<SkillName, int> skillsSet; //宝可梦的所有技能 <技能名, 解锁等级>
 
-        protected HashMap<SkillName, int> SkillsSet; //宝可梦的所有技能 <技能名, 解锁等级>
+        protected int rarity; // 稀有度
 
-        protected int Rarity; // 稀有度
         // 基础属性
-        protected double Hp; // 基础生命
-        protected double Atk; // 基础攻击
-        protected double Def; // 基础防御
-        protected double SAtk; // 基础特攻
-        protected double SDef; // 基础特防
-        protected double Speed; // 基础速度
+        protected double hp; // 基础生命
+        protected double atk; // 基础攻击
+        protected double def; // 基础防御
+        protected double satk; // 基础特攻
+        protected double sdef; // 基础特防
+        protected double speed; // 基础速度
 
-        protected double CurrentHp; // 当前生命
-        protected int CurrentExp; // 当前经验
+        protected double currentHp; // 当前生命
+        protected int currentExp; // 当前经验
 
-        protected void InitBasicProperty(double hp, double atk, double def,
-            double sAtk, double sDef, double speed)
+        public int ID
         {
-            Hp = hp;
-            Atk = atk;
-            Def = def;
-            SAtk = sAtk;
-            SDef = sDef;
-            Speed = speed;
+            get => id;
+            set => id = value;
         }
 
-        public abstract string GetName(); // 获取宝可梦当前名字
-        public abstract void BasicSetting();
-
-        public int GetLevel() // 获取宝可梦当前等级
+        public Genre Genre
         {
-            return (int)Math.Pow(CurrentExp, 1.0 / 3);
+            get => genre;
+            set => genre = value;
         }
 
-        // 计算实际属性
-        public virtual double GetHp()
+        public string Name
         {
-            return Hp;
+            get => name;
+            set => name = value;
         }
 
-        public virtual double GetAtk()
+        public HashMap<SkillName, int> SkillsSet
         {
-            return Atk;
+            get => skillsSet;
+            set => skillsSet = value;
         }
 
-        public virtual double GetDef()
+        public int Rarity
         {
-            return Def;
+            get => rarity;
+            set => rarity = value;
         }
 
-        public virtual double GetSAtk()
+        public double Hp
         {
-            return SAtk;
+            get => hp;
+            set => hp = value;
         }
 
-        public virtual double GetSDef()
+        public double Atk
         {
-            return SDef;
+            get => atk;
+            set => atk = value;
         }
 
-        public virtual double GetSpeed()
+        public double Def
         {
-            return Speed;
+            get => def;
+            set => def = value;
         }
-        
-        public virtual int GetID()
+
+        public double Satk
         {
-            return ID;
+            get => satk;
+            set => satk = value;
         }
-        
-        public virtual int GetRarity()
+
+        public double Sdef
         {
-            return Rarity;
+            get => sdef;
+            set => sdef = value;
+        }
+
+        public double Speed
+        {
+            get => speed;
+            set => speed = value;
+        }
+
+        public double CurrentHp
+        {
+            get => currentHp;
+            set => currentHp = value;
+        }
+
+        public int CurrentExp
+        {
+            get => currentExp;
+            set => currentExp = value;
         }
     }
 }

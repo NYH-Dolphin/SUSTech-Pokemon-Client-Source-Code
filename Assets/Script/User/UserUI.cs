@@ -148,4 +148,15 @@ public class UserUI
         get => _pokemonDisplay3;
         set => _pokemonDisplay3 = value;
     }
+
+
+    
+    
+    private int _summonNum; // 当次选择的抽卡次数
+
+    public int SummonNum
+    {
+        get => _summonNum;
+        set => _summonNum = value;
+    }
 }

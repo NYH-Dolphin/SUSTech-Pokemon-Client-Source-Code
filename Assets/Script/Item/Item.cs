@@ -4,6 +4,36 @@ public class Item
     protected int id;
     protected string description;
     protected int cost;
+    protected string quality;
+    public string Name
+    {
+        get => name;
+        set => name = value;
+    }
+
+    public int ID
+    {
+        get => id;
+        set => id = value;
+    }
+
+    public string Description
+    {
+        get => description;
+        set => description = value;
+    }
+
+    public int Cost
+    {
+        get => cost;
+        set => cost = value;
+    }
+
+    public string Quality
+    {
+        get => quality;
+        set => quality = value;
+    }
 
     public int GetId()
     {
@@ -27,6 +57,12 @@ public class Item
         this.description = description;
     }
 
+    
+    public Item(string name, int id)
+    {
+        this.name = name;
+        this.id = id;
+    }
 
     public Item()
     {

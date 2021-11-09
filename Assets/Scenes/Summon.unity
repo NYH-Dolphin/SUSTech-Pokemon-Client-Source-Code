@@ -979,7 +979,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1336939380}
         m_TargetAssemblyTypeName: SummonManager, Assembly-CSharp
-        m_MethodName: OpenDrawCardScene
+        m_MethodName: OnSummonOneTime
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2207,7 +2207,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1336939381}
   - component: {fileID: 1336939380}
-  - component: {fileID: 1336939382}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2227,6 +2226,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9886029e46174142863c9e6f6893b6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pokeBall: {fileID: 1462078281}
+  coin: {fileID: 318224893}
 --- !u!4 &1336939381
 Transform:
   m_ObjectHideFlags: 0
@@ -2241,18 +2242,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1336939382
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1336939379}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da9ec64bde8f13748a6024c5cd9bfbac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1357303063
 GameObject:
   m_ObjectHideFlags: 0
@@ -2969,7 +2958,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1336939380}
         m_TargetAssemblyTypeName: SummonManager, Assembly-CSharp
-        m_MethodName: OpenDrawCardScene
+        m_MethodName: OnSummonTenTimes
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
