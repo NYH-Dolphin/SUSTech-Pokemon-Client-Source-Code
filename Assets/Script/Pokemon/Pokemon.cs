@@ -5,100 +5,109 @@ namespace Script.Pokemon
 {
     public class Pokemon
     {
-        protected int id; // 宝可梦ID
-        protected Genre genre; //宝可梦种类
-        protected String name;
-        protected HashMap<SkillName, int> skillsSet; //宝可梦的所有技能 <技能名, 解锁等级>
+        private int _id; // 宝可梦ID
+        private Genre _genre; //宝可梦种类
+        private String _name;
+        private HashMap<SkillName, int> _skillsSet; //宝可梦的所有技能 <技能名, 解锁等级>
 
-        protected int rarity; // 稀有度
+        private int _rarity; // 稀有度
 
         // 基础属性
-        protected double hp; // 基础生命
-        protected double atk; // 基础攻击
-        protected double def; // 基础防御
-        protected double satk; // 基础特攻
-        protected double sdef; // 基础特防
-        protected double speed; // 基础速度
+        private double _hp; // 基础生命
+        private double _atk; // 基础攻击
+        private double _def; // 基础防御
+        private double _satk; // 基础特攻
+        private double _sdef; // 基础特防
+        private double _speed; // 基础速度
 
-        protected double currentHp; // 当前生命
-        protected int currentExp; // 当前经验
+        private double _currentHp; // 当前生命
+        private int _currentExp; // 当前经验
+
+        public Pokemon(int id)
+        {
+            _id = id;
+        }
+
+        public Pokemon()
+        {
+        }
 
         public int ID
         {
-            get => id;
-            set => id = value;
+            get => _id;
+            set => _id = value;
         }
 
         public Genre Genre
         {
-            get => genre;
-            set => genre = value;
+            get => _genre;
+            set => _genre = value;
         }
 
         public string Name
         {
-            get => name;
-            set => name = value;
+            get => _name;
+            set => _name = value;
         }
 
         public HashMap<SkillName, int> SkillsSet
         {
-            get => skillsSet;
-            set => skillsSet = value;
+            get => _skillsSet;
+            set => _skillsSet = value;
         }
 
         public int Rarity
         {
-            get => rarity;
-            set => rarity = value;
+            get => _rarity;
+            set => _rarity = value;
         }
 
         public double Hp
         {
-            get => hp;
-            set => hp = value;
+            get => _hp;
+            set => _hp = value;
         }
 
         public double Atk
         {
-            get => atk;
-            set => atk = value;
+            get => _atk;
+            set => _atk = value;
         }
 
         public double Def
         {
-            get => def;
-            set => def = value;
+            get => _def;
+            set => _def = value;
         }
 
         public double Satk
         {
-            get => satk;
-            set => satk = value;
+            get => _satk;
+            set => _satk = value;
         }
 
         public double Sdef
         {
-            get => sdef;
-            set => sdef = value;
+            get => _sdef;
+            set => _sdef = value;
         }
 
         public double Speed
         {
-            get => speed;
-            set => speed = value;
+            get => _speed;
+            set => _speed = value;
         }
 
         public double CurrentHp
         {
-            get => currentHp;
-            set => currentHp = value;
+            get => _currentHp;
+            set => _currentHp = value;
         }
 
         public int CurrentExp
         {
-            get => currentExp;
-            set => currentExp = value;
+            get => _currentExp;
+            set => _currentExp = value;
         }
     }
 }

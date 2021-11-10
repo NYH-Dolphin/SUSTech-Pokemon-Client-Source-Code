@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class MainManager : MonoBehaviour
 {
-    private static UserUI _user;
+    private static User _user;
 
     public Text name;
     public Text level;
@@ -42,7 +42,7 @@ public class MainManager : MonoBehaviour
      */
     void UserDataSync()
     {
-        _user = UserUI.GetInstance();
+        _user = User.GetInstance();
         // 信息配置
         name.text = _user.Name;
         level.text = "Lv." + _user.Level;

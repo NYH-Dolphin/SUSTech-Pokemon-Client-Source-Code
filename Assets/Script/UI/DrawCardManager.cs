@@ -35,12 +35,12 @@ public class DrawCardManager : MonoBehaviour
 
     private bool pop = true; // 标识着刚开始弹出，从小弹出来！
 
-    private UserUI _user;
+    private User _user;
 
     // Start is called before the first frame update
     void Start()
     {
-        _user = UserUI.GetInstance();
+        _user = User.GetInstance();
         StartCoroutine("ToSummon"); // 开始抽卡
     }
 

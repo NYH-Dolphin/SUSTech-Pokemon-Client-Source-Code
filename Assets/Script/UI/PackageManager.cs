@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using LitJson;
+using Org.BouncyCastle.Crypto.Tls;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -17,10 +18,7 @@ public class PackageManager : MonoBehaviour
     public Toggle inMaterial;
     public Toggle inBook;
 
-    // 三类Items，用于传入PackageUI进行绑定
-    HashMap<Item, int> MedicineItems = new HashMap<Item, int>();
-    HashMap<Item, int> ExperienceItems = new HashMap<Item, int>();
-    HashMap<Item, int> MaterialItems = new HashMap<Item, int>();
+
 
     private void Awake()
     {
@@ -30,8 +28,6 @@ public class PackageManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // 测试用
-        PackageUI.InitializeTest(MedicineItems, MaterialItems, ExperienceItems);
         // 绑定
         PackageUI.BindGameObject(gridList, itemIntro);
         // 初始化
@@ -94,7 +90,7 @@ public class PackageManager : MonoBehaviour
     IEnumerator GetAllItems()
     {
         WWWForm form = new WWWForm();
-        form.AddField("token", UserUI.GetInstance().Token);
+        form.AddField("token", User.GetInstance().Token);
         string url = BackEndConfig.GetUrl() + "/knapsack/my";
         HttpRequest request = new HttpRequest();
         StartCoroutine(request.Post(url, form));
@@ -106,6 +102,12 @@ public class PackageManager : MonoBehaviour
         int statusCode = int.Parse(request.value["code"].ToString());
         if (statusCode == 10000)
         {
+            
+            // 三类Items，给User进行绑定
+            HashMap<Item, int> medicineItems = new HashMap<Item, int>();
+            HashMap<Item, int> experienceItems = new HashMap<Item, int>();
+            HashMap<Item, int> materialItems = new HashMap<Item, int>();
+            
             JsonData jsonData = request.value["data"];
             for (int i = 0; i < jsonData.Count; i++)
             {
@@ -116,16 +118,20 @@ public class PackageManager : MonoBehaviour
                 switch (jsonItem["type"].ToString())
                 {
                     case "experience":
-                        ExperienceItems.Add(item, number);
+                        experienceItems.Add(item, number);
                         break;
                     case "material":
-                        MaterialItems.Add(item, number);
+                        materialItems.Add(item, number);
                         break;
                     case "medicine":
-                        MedicineItems.Add(item, number);
+                        medicineItems.Add(item, number);
                         break;
                 }
             }
+            
+            User.GetInstance().Package.MedicineItems = medicineItems;
+            User.GetInstance().Package.ExperienceItems = experienceItems;
+            User.GetInstance().Package.MaterialItems = materialItems;
         }
     }
 }

@@ -18,14 +18,14 @@ public class ConfirmManager : BoardManager
     // Update is called once per frame
     void Update()
     {
-        num.text = UserUI.GetInstance().SummonNum.ToString();
+        num.text = User.GetInstance().SummonNum.ToString();
     }
 
 
     // 只有拥有足够的pokeball才可以准备抽卡
     public void OpenBoard(int limit)
     {
-        if (UserUI.GetInstance().PokeBall >= limit)
+        if (User.GetInstance().PokeBall >= limit)
         {
             base.OpenBoard();
         }

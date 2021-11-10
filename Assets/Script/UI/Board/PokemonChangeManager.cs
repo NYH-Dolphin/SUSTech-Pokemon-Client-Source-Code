@@ -14,7 +14,6 @@ public class PokemonChangeManager : BoardManager
     private string _displayBoard; // 记录要更换的是哪个宝可梦
     public Image pokemon1; // 展示宝可梦1
     public Image pokemon2; // 展示宝可梦2
-
     public Image pokemon3; // 展示宝可梦3
 
     // Start is called before the first frame update
@@ -26,14 +25,14 @@ public class PokemonChangeManager : BoardManager
 
     public void Initial()
     {
-        UserUI user = UserUI.GetInstance();
+        User user = User.GetInstance();
         List<GameObject> pokemonBtns = new List<GameObject>();
-        for (int i = 0; i < user.Pokemon.Count; i++)
+        for (int i = 0; i < user.Pokemons.Count; i++)
         {
             GameObject pokemonBtnPrefab = Resources.Load("Item/Prefab/pokemon_btn") as GameObject;
             GameObject pokemonBtn = Instantiate(pokemonBtnPrefab);
             pokemonBtns.Add(pokemonBtn);
-            String spritePath = "Pokemon/Portrait/" + user.Pokemon[i];
+            String spritePath = "Pokemon/Portrait/" + user.Pokemons[i].ID;
             Sprite sprite = Resources.Load(spritePath, typeof(Sprite)) as Sprite;
             Image portraitImg = pokemonBtn.transform.GetChild(0).GetComponent<Image>();
             portraitImg.sprite = sprite;
@@ -60,7 +59,7 @@ public class PokemonChangeManager : BoardManager
     public void OnClickGridBtn(Image img)
     {
         int num = int.Parse(img.sprite.name);
-        UserUI user = UserUI.GetInstance();
+        User user = User.GetInstance();
         switch (_displayBoard)
         {
             case "pokemon1":

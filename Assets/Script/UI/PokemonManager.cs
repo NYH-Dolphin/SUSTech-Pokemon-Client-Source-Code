@@ -55,8 +55,13 @@ public class PokemonManager : MonoBehaviour
         EnableCanvas(2);
     }
 
-    public void TalentCanvas()
+    public void Skill_Canvas()
     {
         EnableCanvas(3);
+    }
+
+    public void TalentCanvas()
+    {
+        EnableCanvas(4);
     }
 }

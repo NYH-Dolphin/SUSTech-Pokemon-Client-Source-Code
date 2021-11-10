@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -69,7 +68,7 @@ public class LoginManager : MonoBehaviour
             {
                 case 10000:
                     message.text = "";
-                    UserUI.SetInstance(request.value);
+                    User.SetInstance(request.value);
                     StartGame();
                     break;
                 case 10001:

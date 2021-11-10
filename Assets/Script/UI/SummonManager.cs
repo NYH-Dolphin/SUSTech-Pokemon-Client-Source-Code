@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class SummonManager : MonoBehaviour
 {
-    private static UserUI _user;
+    private static User _user;
     public Text pokeBall;
 
     public Text coin;
@@ -27,7 +27,7 @@ public class SummonManager : MonoBehaviour
 
     void UserDataSync()
     {
-        _user = UserUI.GetInstance();
+        _user = User.GetInstance();
         // 信息配置
         coin.text = _user.Coin > 1000000 ? _user.Coin / 10000 + "万" : _user.Coin + "";
         pokeBall.text = _user.PokeBall + "个";
@@ -43,10 +43,10 @@ public class SummonManager : MonoBehaviour
     // 单抽
     public void OnSummonOneTime()
     {
-        if (UserUI.GetInstance().PokeBall > 1)
+        if (User.GetInstance().PokeBall > 1)
         {
-            UserUI.GetInstance().SummonNum = 1;
-            UserUI.GetInstance().PokeBall = UserUI.GetInstance().PokeBall - 1;
+            User.GetInstance().SummonNum = 1;
+            User.GetInstance().PokeBall = User.GetInstance().PokeBall - 1;
             // OpenDrawCardScene();
         }
         else
@@ -58,10 +58,10 @@ public class SummonManager : MonoBehaviour
     // 十连抽
     public void OnSummonTenTimes()
     {
-        if (UserUI.GetInstance().PokeBall > 10)
+        if (User.GetInstance().PokeBall > 10)
         {
-            UserUI.GetInstance().SummonNum = 10;
-            UserUI.GetInstance().PokeBall = UserUI.GetInstance().PokeBall - 10;
+            User.GetInstance().SummonNum = 10;
+            User.GetInstance().PokeBall = User.GetInstance().PokeBall - 10;
             // OpenDrawCardScene();
         }
         else

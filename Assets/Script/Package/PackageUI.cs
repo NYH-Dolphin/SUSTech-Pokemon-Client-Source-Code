@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PackageUI : Package
+public class PackageUI
 {
     private static GameObject gridList; // gridList传入绑定
     private static GameObject itemIntro; // itemIntro传入绑定
@@ -13,6 +13,7 @@ public class PackageUI : Package
     private static int itemNum; // 当前种类的道具一共有多少个
     private static int pageNum; // 第几页
     private static int toggleNum; // 查看的道具的种类toggle
+    
 
 
     /*
@@ -35,23 +36,20 @@ public class PackageUI : Package
         // 设置第几页和第几个toggle
         PackageUI.pageNum = pageNum;
         PackageUI.toggleNum = toggleNum;
+        User user = User.GetInstance();
 
         // 通过 toggleNum 找到具体用哪类道具的信息和数量
-        List<int> numList = new List<int>();
         List<Item> itemList = new List<Item>();
         switch (toggleNum)
         {
             case 1:
-                numList = MedicineItems.Values.ToList();
-                itemList = MedicineItems.Keys.ToList();
+                itemList = user.Package.MedicineItems.Keys.ToList();
                 break;
             case 2:
-                numList = MaterialItems.Values.ToList();
-                itemList = MaterialItems.Keys.ToList();
+                itemList = user.Package.MaterialItems.Keys.ToList();
                 break;
             case 3:
-                numList = ExperienceItems.Values.ToList();
-                itemList = ExperienceItems.Keys.ToList();
+                itemList = user.Package.ExperienceItems.Keys.ToList();
                 break;
         }
 
@@ -105,32 +103,33 @@ public class PackageUI : Package
      */
     public static GameObject SetItemIntro(GameObject grid)
     {
+        User user = User.GetInstance();
         int gridNum = int.Parse(grid.name.Replace("grid", ""));
         Item item = new Item("", 0, "");
         int num = 0; // item 的数量
         switch (toggleNum)
         {
             case 1:
-                if (MedicineItems.Keys.ToList().Count - 1 >= 9 * pageNum + gridNum - 1)
+                if (user.Package.MedicineItems.Keys.ToList().Count - 1 >= 9 * pageNum + gridNum - 1)
                 {
-                    item = MedicineItems.Keys.ToList()[9 * pageNum + gridNum - 1];
-                    num = MedicineItems.Values.ToList()[9 * pageNum + gridNum - 1];
+                    item = user.Package.MedicineItems.Keys.ToList()[9 * pageNum + gridNum - 1];
+                    num = user.Package.MedicineItems.Values.ToList()[9 * pageNum + gridNum - 1];
                 }
 
                 break;
             case 2:
-                if (MaterialItems.Keys.ToList().Count - 1 >= 9 * pageNum + gridNum - 1)
+                if (user.Package.MaterialItems.Keys.ToList().Count - 1 >= 9 * pageNum + gridNum - 1)
                 {
-                    item = MaterialItems.Keys.ToList()[9 * pageNum + gridNum - 1];
-                    num = MaterialItems.Values.ToList()[9 * pageNum + gridNum - 1];
+                    item = user.Package.MaterialItems.Keys.ToList()[9 * pageNum + gridNum - 1];
+                    num = user.Package.MaterialItems.Values.ToList()[9 * pageNum + gridNum - 1];
                 }
 
                 break;
             case 3:
-                if (ExperienceItems.Keys.ToList().Count - 1 >= 9 * pageNum + gridNum - 1)
+                if (user.Package.ExperienceItems.Keys.ToList().Count - 1 >= 9 * pageNum + gridNum - 1)
                 {
-                    item = ExperienceItems.Keys.ToList()[9 * pageNum + gridNum - 1];
-                    num = ExperienceItems.Values.ToList()[9 * pageNum + gridNum - 1];
+                    item = user.Package.ExperienceItems.Keys.ToList()[9 * pageNum + gridNum - 1];
+                    num = user.Package.ExperienceItems.Values.ToList()[9 * pageNum + gridNum - 1];
                 }
 
                 break;
@@ -148,48 +147,5 @@ public class PackageUI : Package
         return grid;
     }
 
-
-    /*
-     * [测试用数据]
-     */
-    public static void InitializeTest(HashMap<Item, int> medicine, HashMap<Item, int> material, HashMap<Item, int> experience)
-    {
-        MedicineItems = medicine;
-        MaterialItems = material;
-        ExperienceItems = experience;
-        
-        // MedicineItems.Add(new EnhanceItem("草系宝石", 1, "可能对草系宝可梦有很大的用处哦！"), 3);
-        // MedicineItems.Add(new EnhanceItem("测试2", 2, "soidhfsoidj"), 1);
-        // MedicineItems.Add(new EnhanceItem("测试3", 3, "soidhfsoidj"), 1);
-        // MedicineItems.Add(new EnhanceItem("测试4", 4, "soidhfsoidj"), 1);
-
-
-
-        // MaterialItems.Add(new MaterialItem("测试2", 2, "sdifuwf0upds"), 2);
-        // MaterialItems.Add(new MaterialItem("测试2", 2, "sdifuwf0upds"), 2);
-        // MaterialItems.Add(new MaterialItem("测试2", 2, "sdifuwf0upds"), 2);
-        // MaterialItems.Add(new MaterialItem("测试2", 2, "sdifuwf0upds"), 2);
-        // MaterialItems.Add(new MaterialItem("测试2", 2, "sdifuwf0upds"), 2);
-        // MaterialItems.Add(new MaterialItem("测试2", 2, "sdifuwf0upds"), 2);
-        // MaterialItems.Add(new MaterialItem("测试2", 2, "sdifuwf0upds"), 2);
-        // MaterialItems.Add(new MaterialItem("测试2", 2, "sdifuwf0upds"), 2);
-        // MaterialItems.Add(new MaterialItem("测试2", 2, "sdifuwf0upds"), 2);
-        // MaterialItems.Add(new MaterialItem("测试2", 2, "sdifuwf0upds"), 2);
-        // MaterialItems.Add(new MaterialItem("测试2", 2, "sdifuwf0upds"), 2);
-        // MaterialItems.Add(new MaterialItem("测试2", 2, "sdifuwf0upds"), 2);
-
-
-        // ExperienceItems.Add(new BookItem("测试3", 3, "weufwefhfoafoa"), 3);
-        // ExperienceItems.Add(new BookItem("测试3", 3, "weufwefhfoafoa"), 3);
-        // ExperienceItems.Add(new BookItem("测试3", 3, "weufwefhfoafoa"), 3);
-        // ExperienceItems.Add(new BookItem("测试3", 3, "weufwefhfoafoa"), 3);
-        // ExperienceItems.Add(new BookItem("测试3", 3, "weufwefhfoafoa"), 3);
-        // ExperienceItems.Add(new BookItem("测试3", 3, "weufwefhfoafoa"), 3);
-        // ExperienceItems.Add(new BookItem("测试3", 3, "weufwefhfoafoa"), 3);
-        // ExperienceItems.Add(new BookItem("测试3", 3, "weufwefhfoafoa"), 3);
-        // ExperienceItems.Add(new BookItem("测试3", 3, "weufwefhfoafoa"), 3);
-        // ExperienceItems.Add(new BookItem("测试3", 3, "weufwefhfoafoa"), 3);
-        // ExperienceItems.Add(new BookItem("测试3", 3, "weufwefhfoafoa"), 3);
-        // ExperienceItems.Add(new BookItem("测试3", 3, "weufwefhfoafoa"), 3);
-    }
+    
 }

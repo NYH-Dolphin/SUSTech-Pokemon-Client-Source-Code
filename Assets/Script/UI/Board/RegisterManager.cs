@@ -68,7 +68,7 @@ public class RegisterManager : BoardManager
             {
                 case 10000:
                     message.text = "";
-                    UserUI.SetInstance(request.value);
+                    User.SetInstance(request.value);
                     StartOP();
                     break;
                 case 50000:
