@@ -26,6 +26,31 @@ public class User
         return _instance;
     }
 
+    
+    
+    /**
+     * [测试用]
+     */
+    private bool testSet;
+    private static void TestSetInstance()
+    {
+        int[] pokemonList = { 1, 2, 3, 4, 5, 6, 7, 16, 25, 26, 27, 28, 35, 39, 54, 96, 97, 98 };
+        for (int i = 0; i < pokemonList.Length; i++)
+        {
+            _instance.Pokemons.Add(new Pokemon(pokemonList[i]));
+        }
+        _instance.PokemonDisplay1 = 4;
+        _instance.PokemonDisplay2 = 7;
+        _instance.PokemonDisplay3 = 39;
+        _instance.testSet = true;
+
+        _instance._adventurePokemon1 = new Pokemon(1);
+        _instance._adventurePokemon2 = new Pokemon(5);
+        _instance._adventurePokemon3 = new Pokemon(39);
+
+        _instance._adventureLevel = 2;
+    }
+    
 
     /**
      * [将后端传送回来的JsonData设置进去]
@@ -77,24 +102,7 @@ public class User
     }
 
 
-    private bool testSet;
-    private static void TestSetInstance()
-    {
-        // 测试用
-        int[] pokemonList = { 1, 2, 3, 4, 5, 6, 7, 16, 25, 26, 27, 28, 35, 39, 54, 96, 97, 98 };
-        for (int i = 0; i < pokemonList.Length; i++)
-        {
-            _instance.Pokemons.Add(new Pokemon(pokemonList[i]));
-        }
-        _instance.PokemonDisplay1 = 4;
-        _instance.PokemonDisplay2 = 7;
-        _instance.PokemonDisplay3 = 39;
-        _instance.testSet = true;
 
-        _instance._adventurePokemon1 = new Pokemon(1);
-        _instance._adventurePokemon2 = new Pokemon(5);
-        _instance._adventurePokemon3 = new Pokemon(39);
-    }
     
     private List<Pokemon> _pokemons = new List<Pokemon>(); // 拥有的宝可梦
     
@@ -212,13 +220,13 @@ public class User
 
 
     private Pokemon _adventurePokemon1;
-
     public Pokemon AdventurePokemon1
     {
         get => _adventurePokemon1;
         set => _adventurePokemon1 = value;
     }
 
+    private Pokemon _adventurePokemon2;
     public Pokemon AdventurePokemon2
     {
         get => _adventurePokemon2;
@@ -231,6 +239,15 @@ public class User
         set => _adventurePokemon3 = value;
     }
 
-    private Pokemon _adventurePokemon2;
+   
     private Pokemon _adventurePokemon3;
+
+
+    private int _adventureLevel; // 目前用户冒险到了第几关
+
+    public int AdventureLevel
+    {
+        get => _adventureLevel;
+        set => _adventureLevel = value;
+    }
 }
