@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
+using Script.Shop;
 
 public class MainManager : MonoBehaviour
 {
@@ -25,8 +26,10 @@ public class MainManager : MonoBehaviour
         // 同步获取User的相关信息
         UserDataSync();
 
-        StartCoroutine("GetAllItems");
-        StartCoroutine("GetAllPokemons");
+        StartCoroutine("GetAllUserItems");
+        StartCoroutine("GetAllUserPokemons");
+        if (!Shop.getInstance().FirstInitial)
+            StartCoroutine("GetAllShopItems");
     }
 
 
@@ -86,7 +89,7 @@ public class MainManager : MonoBehaviour
     /**
      * 搜索获得账号中所有的物品！
      */
-    IEnumerator GetAllItems()
+    IEnumerator GetAllUserItems()
     {
         WWWForm form = new WWWForm();
         form.AddField("token", User.GetInstance().Token);
@@ -108,7 +111,7 @@ public class MainManager : MonoBehaviour
     /**
      * 搜索获得账号中所有的宝可梦
      */
-    IEnumerator GetAllPokemons()
+    IEnumerator GetAllUserPokemons()
     {
         WWWForm form = new WWWForm();
         form.AddField("token", User.GetInstance().Token);
@@ -126,6 +129,27 @@ public class MainManager : MonoBehaviour
             User.SetPokemons(request.value["data"]);
         }
     }
+    
+    /**
+     * 搜索获得商店的所有东西
+     */
+    IEnumerator GetAllShopItems()
+    {
+        string url = BackEndConfig.GetUrl() + "/shop/show";
+        HttpRequest request = new HttpRequest();
+        StartCoroutine(request.Get(url));
+        while (!request.isComplete)
+        {
+            yield return null;
+        }
+
+        int statusCode = int.Parse(request.value["code"].ToString());
+        if (statusCode == 10000)
+        {
+            Shop.SetItems(request.value["data"]);
+        }
+    }
+    
 
 
     public void OpenShopScene()

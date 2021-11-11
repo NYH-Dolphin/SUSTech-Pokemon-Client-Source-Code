@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Script.Shop;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -45,11 +46,12 @@ public class ShopManager : MonoBehaviour
             // 实例化
             grids.Add(grid.gameObject);
         }
-
-        SetGridMessage("草系钻石", 1, 1000);
-        SetGridMessage("四叶草", 2, 2000);
-        SetGridMessage("绿色水晶", 3, 3000);
-        SetGridMessage("黄色珍珠", 4, 500);
+        
+        Shop shop = Shop.getInstance();
+        foreach (var item in shop.Items)
+        {
+            SetGridMessage(item);
+        }
     }
 
     private void UserDataSync()
@@ -58,10 +60,10 @@ public class ShopManager : MonoBehaviour
         coin.text = _user.Coin > 1000000 ? _user.Coin / 10000 + "万" : _user.Coin + "";
     }
 
-    private void SetGridMessage(string name, int id, int cost)
+    private void SetGridMessage(Item item)
     {
-        ItemUI item = new ItemUI(name, id, cost);
-        GameObject itemPrefab = item.CreateShopItemPrefab();
+        ItemUI itemUI = new ItemUI(item.Name, item.ID, item.Price);
+        GameObject itemPrefab = itemUI.CreateShopItemPrefab();
         itemPrefab.transform.SetParent(grids[occupy].transform, false);
         occupy++;
     }

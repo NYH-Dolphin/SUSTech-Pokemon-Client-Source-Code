@@ -1,67 +1,67 @@
 public class Item
 {
-    protected string name;
-    protected int id;
-    protected string description;
-    protected int cost;
-    protected string quality;
+    protected string _name;
+    protected int _id;
+    protected string _description;
+    protected int _price;
+    protected string _quality;
     public string Name
     {
-        get => name;
-        set => name = value;
+        get => _name;
+        set => _name = value;
     }
 
     public int ID
     {
-        get => id;
-        set => id = value;
+        get => _id;
+        set => _id = value;
     }
 
     public string Description
     {
-        get => description;
-        set => description = value;
+        get => _description;
+        set => _description = value;
     }
 
-    public int Cost
+    public int Price
     {
-        get => cost;
-        set => cost = value;
+        get => _price;
+        set => _price = value;
     }
 
     public string Quality
     {
-        get => quality;
-        set => quality = value;
+        get => _quality;
+        set => _quality = value;
     }
 
     public int GetId()
     {
-        return id;
+        return _id;
     }
 
     public string GetName()
     {
-        return name;
+        return _name;
     }
 
     public string GetDescription()
     {
-        return description;
+        return _description;
     }
     
     public Item(string name, int id, string description)
     {
-        this.name = name;
-        this.id = id;
-        this.description = description;
+        this._name = name;
+        this._id = id;
+        this._description = description;
     }
 
     
     public Item(string name, int id)
     {
-        this.name = name;
-        this.id = id;
+        this._name = name;
+        this._id = id;
     }
 
     public Item()

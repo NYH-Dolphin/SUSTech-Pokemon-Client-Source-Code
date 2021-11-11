@@ -10,11 +10,11 @@ public class ItemUI : Item
 {
     private string path; // item 图片地址
 
-    public ItemUI(string name, int id, int cost)
+    public ItemUI(string name, int id, int price)
     {
-        this.name = name;
-        this.id = id;
-        this.cost = cost;
+        this._name = name;
+        this._id = id;
+        this._price = price;
         path = "Item/Image/" + id;
     }
     
@@ -32,9 +32,9 @@ public class ItemUI : Item
         Image pImage = item.transform.GetChild(1).GetComponent<Image>();
         Button pPurchase = item.transform.GetChild(2).GetComponent<Button>();
         Text pCost = pPurchase.transform.GetChild(1).GetComponent<Text>();
-        pName.text = name;
+        pName.text = _name;
         pImage.sprite = Resources.Load(path, typeof(Sprite)) as Sprite;
-        pCost.text = cost + "";
+        pCost.text = _price + "";
         return item;
     }
 }
