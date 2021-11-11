@@ -7,7 +7,7 @@ public class OpManager : MonoBehaviour
 {
     public void PassOP()
     {
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("Intro");
     }
-
+    
 }

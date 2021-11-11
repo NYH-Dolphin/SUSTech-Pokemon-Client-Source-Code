@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections;
 
 public class MainManager : MonoBehaviour
 {
@@ -18,15 +19,18 @@ public class MainManager : MonoBehaviour
 
     // Start is called before the first frame update
     
-    private void Awake()
-    {
-        // 同步获取User的相关信息
-        UserDataSync();
-    }
 
     void Start()
     {
-        
+        // 同步获取User的相关信息
+        UserDataSync();
+        if (!_user.hasSetPackage)
+        {
+            StartCoroutine("GetAllItems");
+            _user.hasSetPackage = true;
+        }
+
+       
     }
 
     
@@ -81,6 +85,29 @@ public class MainManager : MonoBehaviour
         pokemon3.sprite = sprite3;
         pokemon3.SetNativeSize();
         pokemon3.GetComponent<RectTransform>().localScale = new Vector3(0.6f, 0.6f, 0.6f);
+    }
+    
+    
+    /**
+     * 搜索获得账号中所有的物品！
+     */
+    IEnumerator GetAllItems()
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("token", User.GetInstance().Token);
+        string url = BackEndConfig.GetUrl() + "/knapsack/my";
+        HttpRequest request = new HttpRequest();
+        StartCoroutine(request.Post(url, form));
+        while (!request.isComplete)
+        {
+            yield return null;
+        }
+
+        int statusCode = int.Parse(request.value["code"].ToString());
+        if (statusCode == 10000)
+        {
+            User.SetPackage(request.value);
+        }
     }
 
 

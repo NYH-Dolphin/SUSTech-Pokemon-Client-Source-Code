@@ -77,6 +77,29 @@ public class LoginManager : MonoBehaviour
             }
         }
     }
+    
+        
+    /**
+     * 搜索获得账号中所有的物品！
+     */
+    IEnumerator GetAllItems()
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("token", User.GetInstance().Token);
+        string url = BackEndConfig.GetUrl() + "/knapsack/my";
+        HttpRequest request = new HttpRequest();
+        StartCoroutine(request.Post(url, form));
+        while (!request.isComplete)
+        {
+            yield return null;
+        }
+
+        int statusCode = int.Parse(request.value["code"].ToString());
+        if (statusCode == 10000)
+        {
+            User.SetPackage(request.value);
+        }
+    }
 
    
 

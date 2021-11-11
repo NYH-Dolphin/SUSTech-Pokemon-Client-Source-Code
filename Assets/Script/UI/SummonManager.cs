@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class SummonManager : MonoBehaviour
 {
-    private static User _user;
     public Text pokeBall;
 
     public Text coin;
@@ -27,10 +26,9 @@ public class SummonManager : MonoBehaviour
 
     void UserDataSync()
     {
-        _user = User.GetInstance();
         // 信息配置
-        coin.text = _user.Coin > 1000000 ? _user.Coin / 10000 + "万" : _user.Coin + "";
-        pokeBall.text = _user.PokeBall + "个";
+        coin.text = User.GetInstance().Coin > 1000000 ? User.GetInstance().Coin / 10000 + "万" : User.GetInstance().Coin + "";
+        pokeBall.text = User.GetInstance().PokeBall + "个";
     }
 
 

@@ -22,7 +22,6 @@ public class PackageManager : MonoBehaviour
 
     private void Awake()
     {
-        StartCoroutine("GetAllItems");
     }
 
     // Start is called before the first frame update
@@ -83,55 +82,5 @@ public class PackageManager : MonoBehaviour
         currentGrid = PackageUI.SetItemIntro(grid);
     }
 
-
-    /**
-     * 搜索获得账号中所有的物品！
-     */
-    IEnumerator GetAllItems()
-    {
-        WWWForm form = new WWWForm();
-        form.AddField("token", User.GetInstance().Token);
-        string url = BackEndConfig.GetUrl() + "/knapsack/my";
-        HttpRequest request = new HttpRequest();
-        StartCoroutine(request.Post(url, form));
-        while (!request.isComplete)
-        {
-            yield return null;
-        }
-
-        int statusCode = int.Parse(request.value["code"].ToString());
-        if (statusCode == 10000)
-        {
-            
-            // 三类Items，给User进行绑定
-            HashMap<Item, int> medicineItems = new HashMap<Item, int>();
-            HashMap<Item, int> experienceItems = new HashMap<Item, int>();
-            HashMap<Item, int> materialItems = new HashMap<Item, int>();
-            
-            JsonData jsonData = request.value["data"];
-            for (int i = 0; i < jsonData.Count; i++)
-            {
-                JsonData jsonItem = jsonData[i]["item"];
-                Item item = new Item(jsonItem["name"].ToString(), int.Parse(jsonItem["id"].ToString()));
-                item.Description = jsonItem["description"] == null ? "暂时为空" : jsonItem["description"].ToString();
-                int number = int.Parse(jsonData[i]["num"].ToString());
-                switch (jsonItem["type"].ToString())
-                {
-                    case "experience":
-                        experienceItems.Add(item, number);
-                        break;
-                    case "material":
-                        materialItems.Add(item, number);
-                        break;
-                    case "medicine":
-                        medicineItems.Add(item, number);
-                        break;
-                }
-            }
-            
-            User.GetInstance().Package.MedicineItems = medicineItems;
-            User.GetInstance().Package.ExperienceItems = experienceItems;
-            User.GetInstance().Package.MaterialItems = materialItems;
-        }
-    }
+    
 }

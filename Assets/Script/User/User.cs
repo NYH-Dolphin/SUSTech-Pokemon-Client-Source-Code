@@ -18,7 +18,11 @@ public class User
  */
     public static User GetInstance()
     {
-        TestSetInstance(); // 测试用
+        // 测试用
+        if (!_instance.testSet)
+        {
+            TestSetInstance(); 
+        }
         return _instance;
     }
 
@@ -44,7 +48,37 @@ public class User
         // _instance.PokemonDisplay3 = 39;
     }
 
-    public static void TestSetInstance()
+
+    public bool hasSetPackage;
+    public static void SetPackage(JsonData packageData)
+    {
+        _instance.Package = new Package();
+        JsonData jsonData = packageData["data"];
+        for (int i = 0; i < jsonData.Count; i++)
+        {
+            JsonData jsonItem = jsonData[i]["item"];
+            Item item = new Item(jsonItem["name"].ToString(), int.Parse(jsonItem["id"].ToString()));
+            item.Description = jsonItem["description"] == null ? "暂时为空" : jsonItem["description"].ToString();
+            int number = int.Parse(jsonData[i]["num"].ToString());
+            Debug.Log(item.ID);
+            switch (jsonItem["type"].ToString())
+            {
+                case "experience":
+                    _instance.Package.ExperienceItems.Add(item, number);
+                    break;
+                case "material":
+                    _instance.Package.MaterialItems.Add(item, number);
+                    break;
+                case "medicine":
+                    _instance.Package.MedicineItems.Add(item, number);
+                    break;
+            }
+        }
+    }
+
+
+    private bool testSet;
+    private static void TestSetInstance()
     {
         // 测试用
         int[] pokemonList = { 1, 2, 3, 4, 5, 6, 7, 16, 25, 26, 27, 28, 35, 39, 54, 96, 97, 98 };
@@ -55,6 +89,11 @@ public class User
         _instance.PokemonDisplay1 = 4;
         _instance.PokemonDisplay2 = 7;
         _instance.PokemonDisplay3 = 39;
+        _instance.testSet = true;
+
+        _instance._adventurePokemon1 = new Pokemon(1);
+        _instance._adventurePokemon2 = new Pokemon(5);
+        _instance._adventurePokemon3 = new Pokemon(39);
     }
     
     private List<Pokemon> _pokemons = new List<Pokemon>(); // 拥有的宝可梦
@@ -161,9 +200,6 @@ public class User
         get => _pokemonDisplay3;
         set => _pokemonDisplay3 = value;
     }
-
-
-
     
     
     private int _summonNum; // 当次选择的抽卡次数
@@ -173,4 +209,28 @@ public class User
         get => _summonNum;
         set => _summonNum = value;
     }
+
+
+    private Pokemon _adventurePokemon1;
+
+    public Pokemon AdventurePokemon1
+    {
+        get => _adventurePokemon1;
+        set => _adventurePokemon1 = value;
+    }
+
+    public Pokemon AdventurePokemon2
+    {
+        get => _adventurePokemon2;
+        set => _adventurePokemon2 = value;
+    }
+
+    public Pokemon AdventurePokemon3
+    {
+        get => _adventurePokemon3;
+        set => _adventurePokemon3 = value;
+    }
+
+    private Pokemon _adventurePokemon2;
+    private Pokemon _adventurePokemon3;
 }
