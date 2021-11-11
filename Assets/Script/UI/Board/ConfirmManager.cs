@@ -18,7 +18,8 @@ public class ConfirmManager : BoardManager
     // Update is called once per frame
     void Update()
     {
-        num.text = User.GetInstance().SummonNum.ToString();
+        if(num != null)
+            num.text = User.GetInstance().SummonNum.ToString();
     }
 
 

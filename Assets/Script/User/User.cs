@@ -21,71 +21,68 @@ public class User
         // 测试用
         if (!_instance.testSet)
         {
-            TestSetInstance(); 
+            TestSetInstance();
         }
+
         return _instance;
     }
 
-    
-    
+
     /**
      * [测试用]
      */
     private bool testSet;
+
     private static void TestSetInstance()
     {
-        int[] pokemonList = { 1, 2, 3, 4, 5, 6, 7, 16, 25, 26, 27, 28, 35, 39, 54, 96, 97, 98 };
-        for (int i = 0; i < pokemonList.Length; i++)
-        {
-            _instance.Pokemons.Add(new Pokemon(pokemonList[i]));
-        }
-        _instance.PokemonDisplay1 = 4;
-        _instance.PokemonDisplay2 = 7;
-        _instance.PokemonDisplay3 = 39;
-        _instance.testSet = true;
+        // int[] pokemonList = { 1, 2, 3, 4, 5, 6, 7, 16, 25, 26, 27, 28, 35, 39, 54, 96, 97, 98 };
+        // for (int i = 0; i < pokemonList.Length; i++)
+        // {
+        //     _instance.Pokemons.Add(new Pokemon(pokemonList[i]));
+        // }
 
+        // _instance.PokemonDisplay1 = 4;
+        // _instance.PokemonDisplay2 = 7;
+        // _instance.PokemonDisplay3 = 39;
         _instance._adventurePokemon1 = new Pokemon(1);
         _instance._adventurePokemon2 = new Pokemon(5);
         _instance._adventurePokemon3 = new Pokemon(39);
 
         _instance._adventureLevel = 2;
+        _instance.testSet = true;
     }
-    
+
 
     /**
      * [将后端传送回来的JsonData设置进去]
      */
     public static void SetInstance(JsonData userData)
     {
-        _instance.Account = userData["data"]["user"]["account"].ToString();
-        _instance.Password = userData["data"]["user"]["password"].ToString();
-        _instance.Name = userData["data"]["user"]["name"].ToString();
-        _instance.Coin = int.Parse(userData["data"]["user"]["coin"].ToString());
-        _instance.PokeBall = int.Parse(userData["data"]["user"]["pokemonBall"].ToString());
-        _instance.Level = int.Parse(userData["data"]["user"]["level"].ToString());
-        _instance.Portrait = int.Parse(userData["data"]["user"]["portrait"].ToString());
+        _instance.Account = userData["data"]["setting"]["user"]["account"].ToString();
+        _instance.Password = userData["data"]["setting"]["user"]["password"].ToString();
+        _instance.Name = userData["data"]["setting"]["user"]["name"].ToString();
+        _instance.Coin = int.Parse(userData["data"]["setting"]["user"]["coin"].ToString());
+        _instance.PokeBall = int.Parse(userData["data"]["setting"]["user"]["pokemonBall"].ToString());
+        _instance.Level = int.Parse(userData["data"]["setting"]["user"]["level"].ToString());
+        _instance.Portrait = int.Parse(userData["data"]["setting"]["user"]["portrait"].ToString());
         _instance.Token = userData["data"]["token"].ToString();
-
-        // int[] pokemonList = { 1, 4, 7, 16, 35, 39 };
-        // _instance.Pokemon = pokemonList.ToList();
-        // _instance.PokemonDisplay1 = 4;
-        // _instance.PokemonDisplay2 = 7;
-        // _instance.PokemonDisplay3 = 39;
+        _instance.PokemonDisplay1 = int.Parse(userData["data"]["setting"]["pokemon_show1"].ToString());
+        _instance.PokemonDisplay2 = int.Parse(userData["data"]["setting"]["pokemon_show2"].ToString());
+        _instance.PokemonDisplay3 = int.Parse(userData["data"]["setting"]["pokemon_show3"].ToString());
     }
 
 
-    public bool hasSetPackage;
-    public static void SetPackage(JsonData packageData)
+    public bool HasSetPackage;
+
+    public static void SetPackage(JsonData jsonData)
     {
         _instance.Package = new Package();
-        JsonData jsonData = packageData["data"];
         for (int i = 0; i < jsonData.Count; i++)
         {
             JsonData jsonItem = jsonData[i]["item"];
             Item item = new Item(jsonItem["name"].ToString(), int.Parse(jsonItem["id"].ToString()));
             item.Description = jsonItem["description"] == null ? "暂时为空" : jsonItem["description"].ToString();
             int number = int.Parse(jsonData[i]["num"].ToString());
-            Debug.Log(item.ID);
             switch (jsonItem["type"].ToString())
             {
                 case "experience":
@@ -102,10 +99,39 @@ public class User
     }
 
 
+    public bool HasSetPokemons = false;
+    public static void SetPokemons(JsonData jsonData)
+    {
+        _instance.Pokemons = new List<Pokemon>();
+        for (int i = 0; i < jsonData.Count; i++)
+        {
+            JsonData jsonPokemon = jsonData[i]["pokemon"];
+            Pokemon pokemon = new Pokemon();
+            pokemon.ID = int.Parse(jsonPokemon["id"].ToString());
+            pokemon.Name = jsonPokemon["name"].ToString();
+            pokemon.Genre = jsonPokemon["genre"].ToString();
+            pokemon.Rarity = int.Parse(jsonPokemon["rarity"].ToString());
+            
+            pokemon.Level = int.Parse(jsonData[i]["level"].ToString());
+            pokemon.CurrentExp = int.Parse(jsonData[i]["experience"].ToString());
+            pokemon.Potential = int.Parse(jsonData[i]["potential"].ToString());
+            
+            JsonData jsonSkills = jsonData[i]["skills"];
+            for (int j = 0; j < jsonSkills.Count; j++)
+            {
+                Skill skill = new Skill(int.Parse(jsonSkills[j]["id"].ToString()),
+                    jsonSkills[j]["name"].ToString(),
+                    jsonSkills[j]["description"].ToString(),
+                    jsonSkills[j]["genre"].ToString());
+                pokemon.Skills.Add(skill);
+            }
+            _instance.Pokemons.Add(pokemon);
+        }
+    }
 
-    
+
     private List<Pokemon> _pokemons = new List<Pokemon>(); // 拥有的宝可梦
-    
+
     public List<Pokemon> Pokemons
     {
         get => _pokemons;
@@ -114,6 +140,7 @@ public class User
 
 
     private Package _package; // 背包
+
     public Package Package
     {
         get => _package;
@@ -208,8 +235,8 @@ public class User
         get => _pokemonDisplay3;
         set => _pokemonDisplay3 = value;
     }
-    
-    
+
+
     private int _summonNum; // 当次选择的抽卡次数
 
     public int SummonNum
@@ -220,6 +247,7 @@ public class User
 
 
     private Pokemon _adventurePokemon1;
+
     public Pokemon AdventurePokemon1
     {
         get => _adventurePokemon1;
@@ -227,6 +255,7 @@ public class User
     }
 
     private Pokemon _adventurePokemon2;
+
     public Pokemon AdventurePokemon2
     {
         get => _adventurePokemon2;
@@ -239,7 +268,7 @@ public class User
         set => _adventurePokemon3 = value;
     }
 
-   
+
     private Pokemon _adventurePokemon3;
 
 

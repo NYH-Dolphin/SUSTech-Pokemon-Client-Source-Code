@@ -18,26 +18,21 @@ public class MainManager : MonoBehaviour
     public Image pokemon3; // 展示宝可梦3
 
     // Start is called before the first frame update
-    
+
 
     void Start()
     {
         // 同步获取User的相关信息
         UserDataSync();
-        if (!_user.hasSetPackage)
-        {
-            StartCoroutine("GetAllItems");
-            _user.hasSetPackage = true;
-        }
 
-       
+        StartCoroutine("GetAllItems");
+        StartCoroutine("GetAllPokemons");
     }
 
-    
+
     // Update is called once per frame
     void Update()
     {
-
     }
 
 
@@ -57,14 +52,14 @@ public class MainManager : MonoBehaviour
         // 展示宝可梦配置
         ChangeDisplayPokemon(_user.PokemonDisplay1, _user.PokemonDisplay2, _user.PokemonDisplay3);
     }
-    
+
     /**
      * 更换 Main 面板中的头像
      */
     public void ChangePortraitImg(int num)
     {
         string path = "User/Portrait/p" + num;
-        Sprite sprite = Resources.Load(path,typeof(Sprite)) as Sprite;
+        Sprite sprite = Resources.Load(path, typeof(Sprite)) as Sprite;
         portrait.sprite = sprite;
     }
 
@@ -73,9 +68,9 @@ public class MainManager : MonoBehaviour
         string path1 = "Pokemon/Image/" + p1;
         string path2 = "Pokemon/Image/" + p2;
         string path3 = "Pokemon/Image/" + p3;
-        Sprite sprite1 = Resources.Load(path1,typeof(Sprite)) as Sprite;
-        Sprite sprite2 = Resources.Load(path2,typeof(Sprite)) as Sprite;
-        Sprite sprite3 = Resources.Load(path3,typeof(Sprite)) as Sprite;
+        Sprite sprite1 = Resources.Load(path1, typeof(Sprite)) as Sprite;
+        Sprite sprite2 = Resources.Load(path2, typeof(Sprite)) as Sprite;
+        Sprite sprite3 = Resources.Load(path3, typeof(Sprite)) as Sprite;
         pokemon1.sprite = sprite1;
         pokemon1.SetNativeSize();
         pokemon1.GetComponent<RectTransform>().localScale = new Vector3(0.6f, 0.6f, 0.6f);
@@ -86,8 +81,8 @@ public class MainManager : MonoBehaviour
         pokemon3.SetNativeSize();
         pokemon3.GetComponent<RectTransform>().localScale = new Vector3(0.6f, 0.6f, 0.6f);
     }
-    
-    
+
+
     /**
      * 搜索获得账号中所有的物品！
      */
@@ -106,7 +101,29 @@ public class MainManager : MonoBehaviour
         int statusCode = int.Parse(request.value["code"].ToString());
         if (statusCode == 10000)
         {
-            User.SetPackage(request.value);
+            User.SetPackage(request.value["data"]);
+        }
+    }
+
+    /**
+     * 搜索获得账号中所有的宝可梦
+     */
+    IEnumerator GetAllPokemons()
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("token", User.GetInstance().Token);
+        string url = BackEndConfig.GetUrl() + "/userPokemon/my";
+        HttpRequest request = new HttpRequest();
+        StartCoroutine(request.Post(url, form));
+        while (!request.isComplete)
+        {
+            yield return null;
+        }
+
+        int statusCode = int.Parse(request.value["code"].ToString());
+        if (statusCode == 10000)
+        {
+            User.SetPokemons(request.value["data"]);
         }
     }
 

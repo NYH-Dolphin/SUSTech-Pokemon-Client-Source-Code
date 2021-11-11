@@ -17,27 +17,33 @@ public class PokemonAdventureManager : BoardManager
     void Start()
     {
         base.Start();
-        Initial();
     }
-    
+
 
     // 传入Index，表示是从第几个Board中打开的
     public void OpenBoard(int num)
     {
         openNum = num;
         board.enabled = true;
+        InitialBtn();
         DisabledBtn();
     }
-    
+
     // 在关闭面板的时候将pokemonLayout内的btnPrefeb全部扔掉
     public override void CloseBoard()
     {
+        int num = pokemonLayout.transform.childCount;
+        for (int i = 0; i < num; i++)
+        {
+            Destroy(pokemonLayout.transform.GetChild(i).gameObject);
+        }
         board.enabled = false;
     }
+
     /**
      * [初始化所有的 Btn]
      */
-    public void Initial()
+    public void InitialBtn()
     {
         User user = User.GetInstance();
         List<GameObject> pokemonBtns = new List<GameObject>();
@@ -51,7 +57,7 @@ public class PokemonAdventureManager : BoardManager
             Sprite sprite = Resources.Load(spritePath, typeof(Sprite)) as Sprite;
             Image portraitImg = pokemonBtn.transform.GetChild(0).GetComponent<Image>();
             portraitImg.sprite = sprite;
-            
+
             // 设置回调函数
             pokemonBtn.GetComponent<Button>().onClick.AddListener(() => OnClickGridBtn(portraitImg));
         }
@@ -119,7 +125,6 @@ public class PokemonAdventureManager : BoardManager
                 btn.GetComponent<Button>().interactable = false;
             else
                 btn.GetComponent<Button>().interactable = true;
-            
         }
     }
 

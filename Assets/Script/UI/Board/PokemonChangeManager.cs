@@ -20,10 +20,10 @@ public class PokemonChangeManager : BoardManager
     void Start()
     {
         base.Start();
-        Initial();
     }
 
-    public void Initial()
+    // 将User所有的宝可梦显示出来
+    public void InitialBtn()
     {
         User user = User.GetInstance();
         List<GameObject> pokemonBtns = new List<GameObject>();
@@ -46,12 +46,24 @@ public class PokemonChangeManager : BoardManager
         }
     }
 
-
     // 打开的时候，记录点开的是哪个btn的展示面板
     public void OpenBoardWithRecord(GameObject btn)
     {
+        InitialBtn();
         _displayBoard = btn.name;
         board.enabled = true;
+    }
+
+    // 关闭面板的时候，将pokemonLayout所有的btn删除
+    public override void CloseBoard()
+    {
+        int num = pokemonLayout.transform.childCount;
+        for(int i = 0; i < num; i++)
+        {
+            Destroy(pokemonLayout.transform.GetChild(i).gameObject);
+        }
+
+        base.CloseBoard();
     }
 
 
@@ -75,11 +87,11 @@ public class PokemonChangeManager : BoardManager
                 ChangeDisplayPokemon(pokemon3, num);
                 break;
         }
-        
-        base.CloseBoard();
+
+        CloseBoard();
     }
 
-    
+
     public void ChangeDisplayPokemon(Image pokemon, int num)
     {
         string path = "Pokemon/Image/" + num;

@@ -1,14 +1,17 @@
 using System;
+using System.Collections.Generic;
 using Script.Skill;
+using UnityEngine;
 
 namespace Script.Pokemon
 {
     public class Pokemon
     {
         private int _id; // 宝可梦ID
-        private Genre _genre; //宝可梦种类
+        private string _genre; //宝可梦种类
         private String _name;
-        private HashMap<SkillName, int> _skillsSet; //宝可梦的所有技能 <技能名, 解锁等级>
+        private List<Skill> _skills = new List<Skill>(); // 宝可梦的技能
+
 
         private int _rarity; // 稀有度
 
@@ -22,6 +25,16 @@ namespace Script.Pokemon
 
         private double _currentHp; // 当前生命
         private int _currentExp; // 当前经验
+        private int _level; // 当前等级
+        private int _potential; // 当前是几命
+
+
+
+        public int Potential
+        {
+            get => _potential;
+            set => _potential = value;
+        }
 
         public Pokemon(int id)
         {
@@ -32,13 +45,30 @@ namespace Script.Pokemon
         {
         }
 
+        
+        
+        
+        public int Level
+        {
+            get => _level;
+            set => _level = value;
+        }
+
+
+
+        public List<Skill> Skills
+        {
+            get => _skills;
+            set => _skills = value;
+        }
+
         public int ID
         {
             get => _id;
             set => _id = value;
         }
 
-        public Genre Genre
+        public string Genre
         {
             get => _genre;
             set => _genre = value;
@@ -50,11 +80,6 @@ namespace Script.Pokemon
             set => _name = value;
         }
 
-        public HashMap<SkillName, int> SkillsSet
-        {
-            get => _skillsSet;
-            set => _skillsSet = value;
-        }
 
         public int Rarity
         {
