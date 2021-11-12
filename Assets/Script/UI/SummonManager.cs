@@ -41,11 +41,9 @@ public class SummonManager : MonoBehaviour
     // 单抽
     public void OnSummonOneTime()
     {
-        if (User.GetInstance().PokeBall > 1)
+        if (User.GetInstance().PokeBall >= 1)
         {
             User.GetInstance().SummonNum = 1;
-            User.GetInstance().PokeBall = User.GetInstance().PokeBall - 1;
-            // OpenDrawCardScene();
         }
         else
         {
@@ -56,11 +54,9 @@ public class SummonManager : MonoBehaviour
     // 十连抽
     public void OnSummonTenTimes()
     {
-        if (User.GetInstance().PokeBall > 10)
+        if (User.GetInstance().PokeBall >= 10)
         {
             User.GetInstance().SummonNum = 10;
-            User.GetInstance().PokeBall = User.GetInstance().PokeBall - 10;
-            // OpenDrawCardScene();
         }
         else
         {

@@ -96,8 +96,7 @@ public class PokemonAdventureManager : BoardManager
                 user.AdventurePokemon3 = specificPokemon;
                 break;
         }
-
-        base.CloseBoard();
+        CloseBoard();
     }
 
     private void ChangeDisplayPokemon(Image pokemon, int num)

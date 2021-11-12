@@ -39,6 +39,7 @@ public class ConfirmManager : BoardManager
 
     public void OnClickConfirm()
     {
+        User.GetInstance().PokeBall -= User.GetInstance().SummonNum;
         OpenDrawCardScene();
     }
 

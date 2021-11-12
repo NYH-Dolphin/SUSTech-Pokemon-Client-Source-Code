@@ -44,9 +44,7 @@ public class User
         // _instance.PokemonDisplay1 = 4;
         // _instance.PokemonDisplay2 = 7;
         // _instance.PokemonDisplay3 = 39;
-        _instance._adventurePokemon1 = new Pokemon(1);
-        _instance._adventurePokemon2 = new Pokemon(5);
-        _instance._adventurePokemon3 = new Pokemon(39);
+
 
         _instance._adventureLevel = 2;
         _instance.testSet = true;
@@ -69,6 +67,12 @@ public class User
         _instance.PokemonDisplay1 = int.Parse(userData["data"]["setting"]["pokemon_show1"].ToString());
         _instance.PokemonDisplay2 = int.Parse(userData["data"]["setting"]["pokemon_show2"].ToString());
         _instance.PokemonDisplay3 = int.Parse(userData["data"]["setting"]["pokemon_show3"].ToString());
+        int adventure1 = int.Parse(userData["data"]["setting"]["pokemon_battle1"].ToString());
+        int adventure2 = int.Parse(userData["data"]["setting"]["pokemon_battle2"].ToString());
+        int adventure3 = int.Parse(userData["data"]["setting"]["pokemon_battle3"].ToString());
+        _instance.AdventurePokemon1 = new Pokemon(adventure1);
+        _instance.AdventurePokemon2 = new Pokemon(adventure2);
+        _instance.AdventurePokemon3 = new Pokemon(adventure3);
     }
 
 
@@ -100,6 +104,7 @@ public class User
 
 
     public bool HasSetPokemons = false;
+
     public static void SetPokemons(JsonData jsonData)
     {
         _instance.Pokemons = new List<Pokemon>();
@@ -111,11 +116,11 @@ public class User
             pokemon.Name = jsonPokemon["name"].ToString();
             pokemon.Genre = jsonPokemon["genre"].ToString();
             pokemon.Rarity = int.Parse(jsonPokemon["rarity"].ToString());
-            
+
             pokemon.Level = int.Parse(jsonData[i]["level"].ToString());
             pokemon.CurrentExp = int.Parse(jsonData[i]["experience"].ToString());
             pokemon.Potential = int.Parse(jsonData[i]["potential"].ToString());
-            
+
             JsonData jsonSkills = jsonData[i]["skills"];
             for (int j = 0; j < jsonSkills.Count; j++)
             {
@@ -125,6 +130,16 @@ public class User
                     jsonSkills[j]["genre"].ToString());
                 pokemon.Skills.Add(skill);
             }
+
+            if (_instance.AdventurePokemon1.ID == pokemon.ID)
+                _instance.AdventurePokemon1 = pokemon;
+           
+            if (_instance.AdventurePokemon2.ID == pokemon.ID)
+                _instance.AdventurePokemon2 = pokemon;
+            
+            if (_instance.AdventurePokemon3.ID == pokemon.ID)
+                _instance.AdventurePokemon3 = pokemon;
+            
             _instance.Pokemons.Add(pokemon);
         }
     }
