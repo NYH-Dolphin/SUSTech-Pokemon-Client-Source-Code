@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 9523095}
   - component: {fileID: 9523096}
   m_Layer: 5
-  m_Name: grid1
+  m_Name: grid0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -206,7 +206,19 @@ MonoBehaviour:
   m_Group: {fileID: 88587770}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 560358742}
+        m_TargetAssemblyTypeName: PokemonManager, Assembly-CSharp
+        m_MethodName: OnClickGridToggle
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 9523096}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Toggle, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
 --- !u!1 &20695453
 GameObject:
@@ -1054,7 +1066,7 @@ GameObject:
   - component: {fileID: 115186057}
   - component: {fileID: 115186058}
   m_Layer: 5
-  m_Name: grid3
+  m_Name: grid2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1126,7 +1138,19 @@ MonoBehaviour:
   m_Group: {fileID: 88587770}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 560358742}
+        m_TargetAssemblyTypeName: PokemonManager, Assembly-CSharp
+        m_MethodName: OnClickGridToggle
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 115186058}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Toggle, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &133467005
 GameObject:
@@ -1733,7 +1757,7 @@ GameObject:
   - component: {fileID: 309898433}
   - component: {fileID: 309898434}
   m_Layer: 5
-  m_Name: grid6
+  m_Name: grid5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1805,7 +1829,19 @@ MonoBehaviour:
   m_Group: {fileID: 88587770}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 560358742}
+        m_TargetAssemblyTypeName: PokemonManager, Assembly-CSharp
+        m_MethodName: OnClickGridToggle
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 309898434}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Toggle, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &338831952
 GameObject:
@@ -2402,6 +2438,7 @@ GameObject:
   m_Component:
   - component: {fileID: 560358741}
   - component: {fileID: 560358742}
+  - component: {fileID: 560358743}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2451,6 +2488,26 @@ MonoBehaviour:
   - {fileID: 1953781691}
   - {fileID: 757929528}
   - {fileID: 977708983}
+  pokemonNameAndLevel: {fileID: 1242765639}
+--- !u!114 &560358743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560358740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03892a6560a517b4d82ec033e118da56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pokemonImage: {fileID: 437919523}
+  starList:
+  - {fileID: 657208519}
+  - {fileID: 1348567757}
+  - {fileID: 1622323121}
+  - {fileID: 1048896239}
+  - {fileID: 1272705661}
 --- !u!1 &565606001
 GameObject:
   m_ObjectHideFlags: 0
@@ -3207,7 +3264,7 @@ GameObject:
   - component: {fileID: 757929527}
   - component: {fileID: 757929528}
   m_Layer: 5
-  m_Name: grid8
+  m_Name: grid7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3279,7 +3336,19 @@ MonoBehaviour:
   m_Group: {fileID: 88587770}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 560358742}
+        m_TargetAssemblyTypeName: PokemonManager, Assembly-CSharp
+        m_MethodName: OnClickGridToggle
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 757929528}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Toggle, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &847946794
 GameObject:
@@ -3624,7 +3693,7 @@ GameObject:
   - component: {fileID: 935608874}
   - component: {fileID: 935608875}
   m_Layer: 5
-  m_Name: grid2
+  m_Name: grid1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3696,7 +3765,19 @@ MonoBehaviour:
   m_Group: {fileID: 88587770}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 560358742}
+        m_TargetAssemblyTypeName: PokemonManager, Assembly-CSharp
+        m_MethodName: OnClickGridToggle
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 935608875}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Toggle, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &946582876
 GameObject:
@@ -3784,7 +3865,7 @@ GameObject:
   - component: {fileID: 977708982}
   - component: {fileID: 977708983}
   m_Layer: 5
-  m_Name: grid9
+  m_Name: grid8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3856,7 +3937,19 @@ MonoBehaviour:
   m_Group: {fileID: 88587770}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 560358742}
+        m_TargetAssemblyTypeName: PokemonManager, Assembly-CSharp
+        m_MethodName: OnClickGridToggle
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 977708983}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Toggle, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &1015227598
 GameObject:
@@ -5358,7 +5451,7 @@ GameObject:
   - component: {fileID: 1346432003}
   - component: {fileID: 1346432004}
   m_Layer: 5
-  m_Name: grid5
+  m_Name: grid4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5430,7 +5523,19 @@ MonoBehaviour:
   m_Group: {fileID: 88587770}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 560358742}
+        m_TargetAssemblyTypeName: PokemonManager, Assembly-CSharp
+        m_MethodName: OnClickGridToggle
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1346432004}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Toggle, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &1348567755
 GameObject:
@@ -8246,7 +8351,7 @@ GameObject:
   - component: {fileID: 1947875858}
   - component: {fileID: 1947875859}
   m_Layer: 5
-  m_Name: grid4
+  m_Name: grid3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8318,7 +8423,19 @@ MonoBehaviour:
   m_Group: {fileID: 88587770}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 560358742}
+        m_TargetAssemblyTypeName: PokemonManager, Assembly-CSharp
+        m_MethodName: OnClickGridToggle
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1947875859}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Toggle, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &1953781689
 GameObject:
@@ -8331,7 +8448,7 @@ GameObject:
   - component: {fileID: 1953781690}
   - component: {fileID: 1953781691}
   m_Layer: 5
-  m_Name: grid7
+  m_Name: grid6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8403,7 +8520,19 @@ MonoBehaviour:
   m_Group: {fileID: 88587770}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 560358742}
+        m_TargetAssemblyTypeName: PokemonManager, Assembly-CSharp
+        m_MethodName: OnClickGridToggle
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1953781691}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Toggle, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &1959157670
 GameObject:

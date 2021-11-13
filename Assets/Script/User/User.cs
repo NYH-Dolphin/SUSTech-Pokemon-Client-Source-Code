@@ -294,4 +294,13 @@ public class User
         get => _adventureLevel;
         set => _adventureLevel = value;
     }
+
+
+    private int _pokemonShowNum; // 在 Pokemon Scene 中表示目前显示的是哪只宝可梦
+
+    public int PokemonShowNum
+    {
+        get => _pokemonShowNum;
+        set => _pokemonShowNum = value;
+    }
 }
