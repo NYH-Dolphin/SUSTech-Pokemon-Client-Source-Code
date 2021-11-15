@@ -127,7 +127,10 @@ public class User
                 Skill skill = new Skill(int.Parse(jsonSkills[j]["id"].ToString()),
                     jsonSkills[j]["name"].ToString(),
                     jsonSkills[j]["description"].ToString(),
-                    jsonSkills[j]["genre"].ToString());
+                    jsonSkills[j]["genre"].ToString(),
+                    int.Parse(jsonSkills[j]["pp"].ToString()),
+                    int.Parse(jsonSkills[j]["hit"].ToString()),
+                    int.Parse(jsonSkills[j]["power"].ToString()));
                 pokemon.Skills.Add(skill);
             }
 

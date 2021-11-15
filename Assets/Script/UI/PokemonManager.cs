@@ -10,6 +10,7 @@ public class PokemonManager : MonoBehaviour
 {
     public List<Canvas> CanvasList;
     public List<Toggle> GridList;
+    public Canvas PokemonAllSkillCanvas;
     public Text pokemonNameAndLevel;
     private int pageNum;
 
@@ -17,6 +18,7 @@ public class PokemonManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PokemonAllSkillCanvas.enabled = false;
         // 先把第0个Canvas设置显示
         EnableCanvas(0);
         UserDataSync();
