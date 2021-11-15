@@ -27,12 +27,12 @@ public class PokemonChangeManager : BoardManager
     {
         User user = User.GetInstance();
         List<GameObject> pokemonBtns = new List<GameObject>();
-        for (int i = 0; i < user.Pokemons.Count; i++)
+        for (int i = 0; i < user.AllPokemons.Count; i++)
         {
             GameObject pokemonBtnPrefab = Resources.Load("Item/Prefab/pokemon_btn") as GameObject;
             GameObject pokemonBtn = Instantiate(pokemonBtnPrefab);
             pokemonBtns.Add(pokemonBtn);
-            String spritePath = "Pokemon/Portrait/" + user.Pokemons[i].ID;
+            String spritePath = "Pokemon/Portrait/" + user.AllPokemons[i].ID;
             Sprite sprite = Resources.Load(spritePath, typeof(Sprite)) as Sprite;
             Image portraitImg = pokemonBtn.transform.GetChild(0).GetComponent<Image>();
             portraitImg.sprite = sprite;

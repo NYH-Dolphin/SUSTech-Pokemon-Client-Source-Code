@@ -11,9 +11,8 @@ namespace Script.Pokemon
         private string _genre; //宝可梦种类
         private String _name;
         private List<Skill> _skills = new List<Skill>(); // 宝可梦的技能
-
-
         private int _rarity; // 稀有度
+        private bool _isDeprecated; // 是否弃用
 
         // 基础属性
         private double _hp; // 基础生命
@@ -28,6 +27,30 @@ namespace Script.Pokemon
         private int _level; // 当前等级
         private int _potential; // 当前是几命
 
+        private static HashMap<string, int> _genreMap = new HashMap<string, int>();
+
+        public bool IsDeprecated
+        {
+            get => _isDeprecated;
+            set => _isDeprecated = value;
+        }
+
+        public HashMap<string, int> GetGenreMap()
+        {
+            if (_genreMap.Count == 0)
+            {
+                _genreMap.Add("normal", 5);
+                _genreMap.Add("grass", 11);
+                _genreMap.Add("poison", 12);
+                _genreMap.Add("electricity", 18);
+                _genreMap.Add("fire", 16);
+                _genreMap.Add("water", 1);
+                _genreMap.Add("ground", 14);
+                _genreMap.Add("ice", 17);
+                _genreMap.Add("flying", 7);
+            }
+            return _genreMap;
+        }
 
 
         public int Potential
@@ -45,15 +68,12 @@ namespace Script.Pokemon
         {
         }
 
-        
-        
-        
+
         public int Level
         {
             get => _level;
             set => _level = value;
         }
-
 
 
         public List<Skill> Skills

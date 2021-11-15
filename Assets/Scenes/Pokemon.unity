@@ -968,7 +968,7 @@ GameObject:
   - component: {fileID: 105439668}
   - component: {fileID: 105439667}
   m_Layer: 5
-  m_Name: Talent_Canvas
+  m_Name: Potential_Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1047,6 +1047,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1861807886}
+  - {fileID: 1068953237}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2439,6 +2440,7 @@ GameObject:
   - component: {fileID: 560358741}
   - component: {fileID: 560358742}
   - component: {fileID: 560358743}
+  - component: {fileID: 560358744}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2508,6 +2510,27 @@ MonoBehaviour:
   - {fileID: 1622323121}
   - {fileID: 1048896239}
   - {fileID: 1272705661}
+  pokemonGenre: {fileID: 1264782180}
+--- !u!114 &560358744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560358740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccf9248afbc647c4ab98581f5996d4a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  potentialNum: {fileID: 1068953238}
+  potentialImg:
+  - {fileID: 1096342077}
+  - {fileID: 931163527}
+  - {fileID: 1044270457}
+  - {fileID: 1592692874}
+  - {fileID: 1398630301}
+  - {fileID: 1413796655}
 --- !u!1 &565606001
 GameObject:
   m_ObjectHideFlags: 0
@@ -2874,7 +2897,7 @@ GameObject:
   - component: {fileID: 666394882}
   - component: {fileID: 666394881}
   m_Layer: 5
-  m_Name: talent_toggle
+  m_Name: potential_toggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2950,7 +2973,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 560358742}
         m_TargetAssemblyTypeName: PokemonManager, Assembly-CSharp
-        m_MethodName: TalentCanvas
+        m_MethodName: PotentialCanvas
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3619,7 +3642,7 @@ GameObject:
   - component: {fileID: 931163528}
   - component: {fileID: 931163527}
   m_Layer: 5
-  m_Name: talent2
+  m_Name: potential2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4113,7 +4136,7 @@ GameObject:
   - component: {fileID: 1044270458}
   - component: {fileID: 1044270457}
   m_Layer: 5
-  m_Name: talent3
+  m_Name: potential3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4328,6 +4351,85 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1053364804}
   m_CullTransparentMesh: 1
+--- !u!1 &1068953236
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1068953237}
+  - component: {fileID: 1068953239}
+  - component: {fileID: 1068953238}
+  m_Layer: 5
+  m_Name: potential_num
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1068953237
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068953236}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 105439670}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 122.73, y: -9.26}
+  m_SizeDelta: {x: 124.88, y: 67.72}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1068953238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068953236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.6886792, g: 0.1195443, b: 0.19772208, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 43a13dd7f6f4baa4bb16e1c9611c9169, type: 3}
+    m_FontSize: 50
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 50
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 28
+--- !u!222 &1068953239
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068953236}
+  m_CullTransparentMesh: 1
 --- !u!1 &1096342075
 GameObject:
   m_ObjectHideFlags: 0
@@ -4340,7 +4442,7 @@ GameObject:
   - component: {fileID: 1096342078}
   - component: {fileID: 1096342077}
   m_Layer: 5
-  m_Name: talent1
+  m_Name: potential1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4871,7 +4973,7 @@ GameObject:
   - component: {fileID: 1264782181}
   - component: {fileID: 1264782180}
   m_Layer: 5
-  m_Name: property
+  m_Name: genre
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5987,7 +6089,7 @@ GameObject:
   - component: {fileID: 1398630302}
   - component: {fileID: 1398630301}
   m_Layer: 5
-  m_Name: talent5
+  m_Name: potential5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6128,7 +6230,7 @@ GameObject:
   - component: {fileID: 1413796656}
   - component: {fileID: 1413796655}
   m_Layer: 5
-  m_Name: talent6
+  m_Name: potential6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6778,7 +6880,7 @@ GameObject:
   - component: {fileID: 1592692875}
   - component: {fileID: 1592692874}
   m_Layer: 5
-  m_Name: talent4
+  m_Name: potential4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8117,7 +8219,7 @@ GameObject:
   - component: {fileID: 1861807888}
   - component: {fileID: 1861807887}
   m_Layer: 5
-  m_Name: talent_board
+  m_Name: potential_board
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

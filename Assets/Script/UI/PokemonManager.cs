@@ -17,12 +17,10 @@ public class PokemonManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // 先把第0个Canvas设置显示
+        EnableCanvas(0);
         UserDataSync();
         PokemonDataSync();
-        // 先把第0个Canvas设置显示
-        CanvasList[0].enabled = true;
-        for (int i = 1; i < CanvasList.Count; i++)
-            CanvasList[i].enabled = false;
     }
 
     // Update is called once per frame
@@ -103,12 +101,12 @@ public class PokemonManager : MonoBehaviour
     }
 
 
-    // 切换某个Canvas到enable状态
+    // 切换某个Canvas显示的状态
     private void EnableCanvas(int num)
     {
         for (int i = 0; i < CanvasList.Count; i++)
         {
-            CanvasList[i].enabled = (i == num);
+            CanvasList[i].GetComponent<Canvas>().sortingOrder = i == num ? 1 : -1;
         }
     }
 
@@ -132,7 +130,7 @@ public class PokemonManager : MonoBehaviour
         EnableCanvas(3);
     }
 
-    public void TalentCanvas()
+    public void PotentialCanvas()
     {
         EnableCanvas(4);
     }

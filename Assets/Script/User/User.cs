@@ -116,11 +116,11 @@ public class User
             pokemon.Name = jsonPokemon["name"].ToString();
             pokemon.Genre = jsonPokemon["genre"].ToString();
             pokemon.Rarity = int.Parse(jsonPokemon["rarity"].ToString());
-
+            pokemon.IsDeprecated = jsonData[i]["isDeprecated"].ToString().Equals("True");
             pokemon.Level = int.Parse(jsonData[i]["level"].ToString());
             pokemon.CurrentExp = int.Parse(jsonData[i]["experience"].ToString());
             pokemon.Potential = int.Parse(jsonData[i]["potential"].ToString());
-
+            
             JsonData jsonSkills = jsonData[i]["skills"];
             for (int j = 0; j < jsonSkills.Count; j++)
             {
@@ -139,13 +139,17 @@ public class User
             
             if (_instance.AdventurePokemon3.ID == pokemon.ID)
                 _instance.AdventurePokemon3 = pokemon;
+
+            _instance.AllPokemons.Add(pokemon);
+            if (!pokemon.IsDeprecated)
+                _instance.Pokemons.Add(pokemon);
             
-            _instance.Pokemons.Add(pokemon);
+           
         }
     }
 
 
-    private List<Pokemon> _pokemons = new List<Pokemon>(); // 拥有的宝可梦
+    private List<Pokemon> _pokemons = new List<Pokemon>(); // 拥有的宝可梦(不包括弃用)
 
     public List<Pokemon> Pokemons
     {
@@ -153,6 +157,13 @@ public class User
         set => _pokemons = value;
     }
 
+    private List<Pokemon> _allPokemons = new List<Pokemon>(); // 所有的宝可梦（包括弃用）
+    
+    public List<Pokemon> AllPokemons
+    {
+        get => _allPokemons;
+        set => _allPokemons = value;
+    }
 
     private Package _package; // 背包
 
