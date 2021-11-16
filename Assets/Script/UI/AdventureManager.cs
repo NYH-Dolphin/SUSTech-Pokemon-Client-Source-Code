@@ -49,7 +49,7 @@ public class AdventureManager : MonoBehaviour
             if (i + 1 < user.AdventureLevel)
             {
                 imgPath = "Other/done_btn";
-                btn.enabled = false;
+                btn.enabled = true;
             }
             else if (i + 1 == user.AdventureLevel)
             {

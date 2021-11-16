@@ -27,37 +27,10 @@ public class User
  */
     public static User GetInstance()
     {
-        // 测试用
-        if (!_instance.testSet)
-        {
-            TestSetInstance();
-        }
-
         return _instance;
     }
 
-
-    /**
-     * [测试用]
-     */
-    private bool testSet;
-
-    private static void TestSetInstance()
-    {
-        // int[] pokemonList = { 1, 2, 3, 4, 5, 6, 7, 16, 25, 26, 27, 28, 35, 39, 54, 96, 97, 98 };
-        // for (int i = 0; i < pokemonList.Length; i++)
-        // {
-        //     _instance.Pokemons.Add(new Pokemon(pokemonList[i]));
-        // }
-
-        // _instance.PokemonDisplay1 = 4;
-        // _instance.PokemonDisplay2 = 7;
-        // _instance.PokemonDisplay3 = 39;
-
-
-        _instance._adventureLevel = 2;
-        _instance.testSet = true;
-    }
+    
 
 
     /**
@@ -72,6 +45,7 @@ public class User
         _instance.PokeBall = int.Parse(userData["data"]["setting"]["user"]["pokemonBall"].ToString());
         _instance.Level = int.Parse(userData["data"]["setting"]["user"]["level"].ToString());
         _instance.Portrait = int.Parse(userData["data"]["setting"]["user"]["portrait"].ToString());
+        _instance.AdventureLevel = int.Parse(userData["data"]["setting"]["user"]["adventure"].ToString());
         _instance.Token = userData["data"]["token"].ToString();
         _instance.PokemonDisplay1 = int.Parse(userData["data"]["setting"]["pokemon_show1"].ToString());
         _instance.PokemonDisplay2 = int.Parse(userData["data"]["setting"]["pokemon_show2"].ToString());
