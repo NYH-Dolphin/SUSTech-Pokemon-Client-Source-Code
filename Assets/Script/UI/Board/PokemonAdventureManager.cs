@@ -70,12 +70,12 @@ public class PokemonAdventureManager : BoardManager
 
     private void OnClickGridBtn(Image img)
     {
-        int num = int.Parse(img.sprite.name);
+        int pokemonId = int.Parse(img.sprite.name);
         User user = User.GetInstance();
         Pokemon specificPokemon = new Pokemon();
         foreach (var pokemon in user.Pokemons)
         {
-            if (pokemon.ID == num)
+            if (pokemon.ID == pokemonId)
             {
                 specificPokemon = pokemon;
             }
@@ -84,19 +84,40 @@ public class PokemonAdventureManager : BoardManager
         switch (openNum)
         {
             case 1:
-                ChangeDisplayPokemon(adventurePokemon1, num);
+                ChangeDisplayPokemon(adventurePokemon1, pokemonId);
                 user.AdventurePokemon1 = specificPokemon;
                 break;
             case 2:
-                ChangeDisplayPokemon(adventurePokemon2, num);
+                ChangeDisplayPokemon(adventurePokemon2, pokemonId);
                 user.AdventurePokemon2 = specificPokemon;
                 break;
             case 3:
-                ChangeDisplayPokemon(adventurePokemon3, num);
+                ChangeDisplayPokemon(adventurePokemon3, pokemonId);
                 user.AdventurePokemon3 = specificPokemon;
                 break;
         }
+        StartCoroutine(SetUserAdventurePokemon(openNum, pokemonId));
         CloseBoard();
+    }
+
+    IEnumerator SetUserAdventurePokemon(int seq, int pokemonId)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("token", User.GetInstance().Token);
+        form.AddField("seq", seq);
+        form.AddField("pokemon", pokemonId);
+        string url = BackEndConfig.GetUrl() + "/userSetting/changeBattle";
+        HttpRequest request = new HttpRequest();
+        StartCoroutine(request.Post(url, form));
+        while (!request.isComplete)
+        {
+            yield return null;
+        }
+        int statusCode = int.Parse(request.value["code"].ToString());
+        if (statusCode == 10000)
+        {
+            
+        }
     }
 
     private void ChangeDisplayPokemon(Image pokemon, int num)
