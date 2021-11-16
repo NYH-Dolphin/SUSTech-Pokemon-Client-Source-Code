@@ -25,8 +25,8 @@ public class LevelManager : MonoBehaviour
     private void UserDataSync()
     {
         User user = User.GetInstance();
-        UserInfo.text = "小小的大肥1111";
-        string path = "User/Portrait/p" + 2;
+        UserInfo.text = user.Name;
+        string path = "User/Portrait/p" + user.Portrait;
         Sprite sprite = Resources.Load(path, typeof(Sprite)) as Sprite;
         Portrait.sprite = sprite;
     }

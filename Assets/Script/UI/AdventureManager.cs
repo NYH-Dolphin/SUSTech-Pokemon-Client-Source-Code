@@ -6,12 +6,14 @@ using UnityEngine.UI;
 
 public class AdventureManager : MonoBehaviour
 {
+    public Button confirmBtn; // confirm 窗口的确认btn
     public Image adventurePokemon1;
     public Image adventurePokemon2;
     public Image adventurePokemon3;
 
     public List<Button> gameLevelBtn;
 
+    private int curLevelNum;
 
     // Start is called before the first frame update
     void Start()
@@ -70,4 +72,50 @@ public class AdventureManager : MonoBehaviour
     {
         SceneManager.LoadScene("Main");
     }
+
+
+    public void OnSetOpenLevelNum(int num)
+    {
+        curLevelNum = num;
+    }
+
+
+
+    public void OnOpenLevel()
+    {
+        switch (curLevelNum)
+        {
+            case 1:
+                SceneManager.LoadScene("L1_FrontDoor");
+                break;
+            case 2:
+                SceneManager.LoadScene("L2_Bridge");
+                break;
+            case 3:
+                SceneManager.LoadScene("L3_Classroom");
+                break;
+            case 4:
+                SceneManager.LoadScene("L4_Lake");
+                break;
+            case 5:
+                SceneManager.LoadScene("L5_Dorm");
+                break;
+            case 6:
+                SceneManager.LoadScene("L6_GongXueYuan");
+                break;
+            case 7:
+                SceneManager.LoadScene("L7_LycheeHill");
+                break;
+            case 8:
+                SceneManager.LoadScene("L8_XinYuan");
+                break;
+            case 9:
+                SceneManager.LoadScene("L9_Gym");
+                break;
+        }
+        
+    }
+
+
+
 }
