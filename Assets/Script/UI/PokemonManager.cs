@@ -11,6 +11,8 @@ public class PokemonManager : MonoBehaviour
     public List<Canvas> CanvasList;
     public List<Toggle> GridList;
     public Canvas PokemonAllSkillCanvas;
+    public Canvas MessageCanvas;
+    public Canvas UpgradeMessageCanvas;
     public Text pokemonNameAndLevel;
     private int pageNum;
 
@@ -18,7 +20,10 @@ public class PokemonManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        User.GetInstance().PokemonShowNum = 0;
         PokemonAllSkillCanvas.enabled = false;
+        MessageCanvas.enabled = false;
+        UpgradeMessageCanvas.enabled = false;
         // 先把第0个Canvas设置显示
         EnableCanvas(0);
         UserDataSync();
@@ -36,6 +41,7 @@ public class PokemonManager : MonoBehaviour
         if (pageNum < User.GetInstance().Pokemons.Count / 9)
             pageNum++;
         GridList[0].isOn = true;
+        User.GetInstance().PokemonShowNum = 9 * pageNum;
         UserDataSync();
         PokemonDataSync();
     }
@@ -44,15 +50,15 @@ public class PokemonManager : MonoBehaviour
     {
         pageNum = pageNum > 0 ? pageNum - 1 : pageNum;
         GridList[0].isOn = true;
+        User.GetInstance().PokemonShowNum = 9 * pageNum;
         UserDataSync();
         PokemonDataSync();
     }
 
-    private void UserDataSync()
+    public void UserDataSync()
     {
         int index = 9 * pageNum;
         User user = User.GetInstance();
-        user.PokemonShowNum = index;
         foreach (Toggle grid in GridList)
         {
             Image pokemonImg = grid.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>();
@@ -75,7 +81,7 @@ public class PokemonManager : MonoBehaviour
     }
 
 
-    private void PokemonDataSync()
+    public void PokemonDataSync()
     {
         User user = User.GetInstance();
         int index = user.PokemonShowNum;

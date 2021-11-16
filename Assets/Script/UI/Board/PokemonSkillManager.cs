@@ -33,7 +33,7 @@ public class PokemonSkillManager : MonoBehaviour
     }
 
 
-    private void PokemonDataSync()
+    public void PokemonDataSync()
     {
         User user = User.GetInstance();
         int index = user.PokemonShowNum;
@@ -138,7 +138,7 @@ public class PokemonSkillManager : MonoBehaviour
                 skillBtns.Add(skillBtn);
                 skillBtn.GetComponent<Button>().onClick
                     .AddListener(() => OnChangePokemonSkills(pokemon, skill, btnPos));
-                
+
                 // 如果已经选中该技能，那么禁止
                 skillBtn.GetComponent<Button>().interactable = true;
                 for (int i = 0; i < pokemon.Skills.Count; i++)
@@ -177,5 +177,33 @@ public class PokemonSkillManager : MonoBehaviour
         }
         PokemonDataSync();
         OnClickCrossBtn();
+        StartCoroutine(UploadPokemonSkills(pokemon, skill, btnPos));
     }
+
+    /**
+     * [向后端传递改变PokemonSkill]
+     */
+    IEnumerator UploadPokemonSkills(Pokemon pokemon, Skill skill, int btnPos)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("token", User.GetInstance().Token);
+        form.AddField("pokemon", pokemon.ID);
+        form.AddField("seq", btnPos + 1);
+        form.AddField("skill", skill.ID);
+        string url = BackEndConfig.GetUrl() + "/userPokemon/changeSkill";
+        HttpRequest request = new HttpRequest();
+        StartCoroutine(request.Post(url, form));
+        while (!request.isComplete)
+        {
+            yield return null;
+        }
+
+        int statusCode = int.Parse(request.value["code"].ToString());
+        if (statusCode == 10000)
+        {
+        }
+    }
+    
+    
+    
 }
