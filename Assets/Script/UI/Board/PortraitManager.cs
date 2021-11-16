@@ -32,6 +32,31 @@ public class PortraitManager : BoardManager
         string path = "User/Portrait/p" + _user.Portrait;
         Sprite sprite = Resources.Load(path,typeof(Sprite)) as Sprite;
         portrait.sprite = sprite;
+        StartCoroutine(SetUserPortrait());
         CloseBoard();
+    }
+
+
+    /*
+     * [更改头像到数据库]
+     */
+    IEnumerator SetUserPortrait()
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("token", User.GetInstance().Token);
+        form.AddField("portrait", User.GetInstance().Portrait);
+        Debug.Log(User.GetInstance().Portrait);
+        string url = BackEndConfig.GetUrl() + "/user/changePortrait";
+        HttpRequest request = new HttpRequest();
+        StartCoroutine(request.Post(url, form));
+        while (!request.isComplete)
+        {
+            yield return null;
+        }
+        int statusCode = int.Parse(request.value["code"].ToString());
+        if (statusCode == 10000)
+        {
+            
+        }
     }
 }

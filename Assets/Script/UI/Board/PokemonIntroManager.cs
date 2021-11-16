@@ -8,7 +8,8 @@ public class PokemonIntroManager : MonoBehaviour
 {
     public Image pokemonImage;
     public List<Image> starList;
-
+    public Image pokemonGenre; 
+    
     private int curPokemonShowNum = 0;
     private string starPath = "Other/star"; // 稀有度表示星星的地址
     private string blankPath = "Other/blank"; // 空图片地址（稀有度中为Null的部分）
@@ -34,11 +35,16 @@ public class PokemonIntroManager : MonoBehaviour
         int index = user.PokemonShowNum;
         curPokemonShowNum = index;
         Pokemon pokemon = user.Pokemons[index];
-        string spritePath = "Pokemon/Image/" + pokemon.ID;
-        Sprite sprite = Resources.Load(spritePath, typeof(Sprite)) as Sprite;
-        pokemonImage.sprite = sprite;
+        string pokemonPath = "Pokemon/Image/" + pokemon.ID;
+        Sprite spritePokemon = Resources.Load(pokemonPath, typeof(Sprite)) as Sprite;
+        pokemonImage.sprite = spritePokemon;
         pokemonImage.SetNativeSize();
         pokemonImage.GetComponent<RectTransform>().localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        
+        string genrePath = "Pokemon/Properties/" + pokemon.GetGenreMap().Get(pokemon.Genre);
+        Sprite spriteGenre = Resources.Load(genrePath, typeof(Sprite)) as Sprite;
+        pokemonGenre.sprite = spriteGenre;
+        
         int rarity = pokemon.Rarity;
         for (int i = 0; i < starList.Count; i++)
         {

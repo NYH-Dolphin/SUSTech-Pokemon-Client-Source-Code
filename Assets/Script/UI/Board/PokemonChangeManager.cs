@@ -27,12 +27,12 @@ public class PokemonChangeManager : BoardManager
     {
         User user = User.GetInstance();
         List<GameObject> pokemonBtns = new List<GameObject>();
-        for (int i = 0; i < user.Pokemons.Count; i++)
+        for (int i = 0; i < user.AllPokemons.Count; i++)
         {
             GameObject pokemonBtnPrefab = Resources.Load("Item/Prefab/pokemon_btn") as GameObject;
             GameObject pokemonBtn = Instantiate(pokemonBtnPrefab);
             pokemonBtns.Add(pokemonBtn);
-            String spritePath = "Pokemon/Portrait/" + user.Pokemons[i].ID;
+            String spritePath = "Pokemon/Portrait/" + user.AllPokemons[i].ID;
             Sprite sprite = Resources.Load(spritePath, typeof(Sprite)) as Sprite;
             Image portraitImg = pokemonBtn.transform.GetChild(0).GetComponent<Image>();
             portraitImg.sprite = sprite;
@@ -70,27 +70,50 @@ public class PokemonChangeManager : BoardManager
     // 更换指定面板上的展示宝可梦
     public void OnClickGridBtn(Image img)
     {
-        int num = int.Parse(img.sprite.name);
+        int pokemonId = int.Parse(img.sprite.name);
         User user = User.GetInstance();
         switch (_displayBoard)
         {
             case "pokemon1":
-                user.PokemonDisplay1 = num;
-                ChangeDisplayPokemon(pokemon1, num);
+                user.PokemonDisplay1 = pokemonId;
+                ChangeDisplayPokemon(pokemon1, pokemonId);
+                StartCoroutine(SetUserPokemonShow(1, pokemonId));
                 break;
             case "pokemon2":
-                user.PokemonDisplay2 = num;
-                ChangeDisplayPokemon(pokemon2, num);
+                user.PokemonDisplay2 = pokemonId;
+                ChangeDisplayPokemon(pokemon2, pokemonId);
+                StartCoroutine(SetUserPokemonShow(2, pokemonId));
                 break;
             case "pokemon3":
-                user.PokemonDisplay3 = num;
-                ChangeDisplayPokemon(pokemon3, num);
+                user.PokemonDisplay3 = pokemonId;
+                ChangeDisplayPokemon(pokemon3, pokemonId);
+                StartCoroutine(SetUserPokemonShow(3, pokemonId));
                 break;
         }
 
         CloseBoard();
     }
 
+
+    IEnumerator SetUserPokemonShow(int seq, int pokemonId)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("token", User.GetInstance().Token);
+        form.AddField("seq", seq);
+        form.AddField("pokemon", pokemonId);
+        string url = BackEndConfig.GetUrl() + "/userSetting/changeShow";
+        HttpRequest request = new HttpRequest();
+        StartCoroutine(request.Post(url, form));
+        while (!request.isComplete)
+        {
+            yield return null;
+        }
+        int statusCode = int.Parse(request.value["code"].ToString());
+        if (statusCode == 10000)
+        {
+            
+        }
+    }
 
     public void ChangeDisplayPokemon(Image pokemon, int num)
     {

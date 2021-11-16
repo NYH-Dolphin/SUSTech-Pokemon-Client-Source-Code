@@ -9,11 +9,27 @@ namespace Script.Pokemon
     {
         private int _id; // 宝可梦ID
         private string _genre; //宝可梦种类
+        private int _nextId; // 下一阶段宝可梦的ID
         private String _name;
         private List<Skill> _skills = new List<Skill>(); // 宝可梦的技能
-
-
         private int _rarity; // 稀有度
+        private bool _isDeprecated; // 是否弃用
+        private string _growType; // 经验成长类型
+        private int _nextLevel; // 下一等级
+
+        public int NextLevel
+        {
+            get => _nextLevel;
+            set => _nextLevel = value;
+        }
+
+        // 进化材料
+        private HashMap<int, int> _evolveMap = new HashMap<int, int>();
+        public HashMap<int, int> EvolveMap
+        {
+            get => _evolveMap;
+            set => _evolveMap = value;
+        }
 
         // 基础属性
         private double _hp; // 基础生命
@@ -28,6 +44,36 @@ namespace Script.Pokemon
         private int _level; // 当前等级
         private int _potential; // 当前是几命
 
+        private static HashMap<string, int> _genreMap = new HashMap<string, int>();
+
+        public int NextID
+        {
+            get => _nextId;
+            set => _nextId = value;
+        }
+
+        public bool IsDeprecated
+        {
+            get => _isDeprecated;
+            set => _isDeprecated = value;
+        }
+
+        public HashMap<string, int> GetGenreMap()
+        {
+            if (_genreMap.Count == 0)
+            {
+                _genreMap.Add("normal", 5);
+                _genreMap.Add("grass", 11);
+                _genreMap.Add("poison", 12);
+                _genreMap.Add("electricity", 18);
+                _genreMap.Add("fire", 16);
+                _genreMap.Add("water", 1);
+                _genreMap.Add("ground", 14);
+                _genreMap.Add("ice", 17);
+                _genreMap.Add("flying", 7);
+            }
+            return _genreMap;
+        }
 
 
         public int Potential
@@ -45,15 +91,12 @@ namespace Script.Pokemon
         {
         }
 
-        
-        
-        
+
         public int Level
         {
             get => _level;
             set => _level = value;
         }
-
 
 
         public List<Skill> Skills
@@ -133,6 +176,12 @@ namespace Script.Pokemon
         {
             get => _currentExp;
             set => _currentExp = value;
+        }
+
+        public string GrowType
+        {
+            get => _growType;
+            set => _growType = value;
         }
     }
 }

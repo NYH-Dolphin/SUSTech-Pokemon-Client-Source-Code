@@ -11,6 +11,15 @@ using UnityEngine.UI;
 
 public class User
 {
+    private bool _hasChangedMessage = false;
+
+    public bool HasChangedMesage
+    {
+        get => _hasChangedMessage;
+        set => _hasChangedMessage = value;
+    }
+
+
     private static User _instance = new User(); // 单例模式用户实例
 
     /**
@@ -74,10 +83,7 @@ public class User
         _instance.AdventurePokemon2 = new Pokemon(adventure2);
         _instance.AdventurePokemon3 = new Pokemon(adventure3);
     }
-
-
-    public bool HasSetPackage;
-
+    
     public static void SetPackage(JsonData jsonData)
     {
         _instance.Package = new Package();
@@ -102,12 +108,11 @@ public class User
         }
     }
 
-
-    public bool HasSetPokemons = false;
-
     public static void SetPokemons(JsonData jsonData)
     {
         _instance.Pokemons = new List<Pokemon>();
+        _instance.AllPokemons = new List<Pokemon>();
+
         for (int i = 0; i < jsonData.Count; i++)
         {
             JsonData jsonPokemon = jsonData[i]["pokemon"];
@@ -115,37 +120,59 @@ public class User
             pokemon.ID = int.Parse(jsonPokemon["id"].ToString());
             pokemon.Name = jsonPokemon["name"].ToString();
             pokemon.Genre = jsonPokemon["genre"].ToString();
+            pokemon.NextID = int.Parse(jsonPokemon["nextId"].ToString());
+            pokemon.NextLevel = int.Parse(jsonPokemon["nextLevel"].ToString());
             pokemon.Rarity = int.Parse(jsonPokemon["rarity"].ToString());
-
+            pokemon.GrowType = jsonPokemon["growType"].ToString();
+            pokemon.IsDeprecated = jsonData[i]["isDeprecated"].ToString().Equals("True");
             pokemon.Level = int.Parse(jsonData[i]["level"].ToString());
             pokemon.CurrentExp = int.Parse(jsonData[i]["experience"].ToString());
             pokemon.Potential = int.Parse(jsonData[i]["potential"].ToString());
-
+            
             JsonData jsonSkills = jsonData[i]["skills"];
             for (int j = 0; j < jsonSkills.Count; j++)
             {
                 Skill skill = new Skill(int.Parse(jsonSkills[j]["id"].ToString()),
                     jsonSkills[j]["name"].ToString(),
                     jsonSkills[j]["description"].ToString(),
-                    jsonSkills[j]["genre"].ToString());
+                    jsonSkills[j]["genre"].ToString(),
+                    int.Parse(jsonSkills[j]["pp"].ToString()),
+                    int.Parse(jsonSkills[j]["hit"].ToString()),
+                    int.Parse(jsonSkills[j]["power"].ToString()));
                 pokemon.Skills.Add(skill);
             }
 
+            try
+            {
+                JsonData jsonEvolve = jsonData[i]["evolve"];
+                foreach (string id in jsonEvolve.Keys)
+                {
+                    pokemon.EvolveMap.Add(int.Parse(id), int.Parse(jsonEvolve[id].ToString()));
+                }
+            }
+            catch
+            {
+                pokemon.EvolveMap.Add(0, 0);
+            }
+
+
             if (_instance.AdventurePokemon1.ID == pokemon.ID)
                 _instance.AdventurePokemon1 = pokemon;
-           
+
             if (_instance.AdventurePokemon2.ID == pokemon.ID)
                 _instance.AdventurePokemon2 = pokemon;
-            
+
             if (_instance.AdventurePokemon3.ID == pokemon.ID)
                 _instance.AdventurePokemon3 = pokemon;
-            
-            _instance.Pokemons.Add(pokemon);
+
+            _instance.AllPokemons.Add(pokemon);
+            if (!pokemon.IsDeprecated)
+                _instance.Pokemons.Add(pokemon);
         }
     }
 
 
-    private List<Pokemon> _pokemons = new List<Pokemon>(); // 拥有的宝可梦
+    private List<Pokemon> _pokemons = new List<Pokemon>(); // 拥有的宝可梦(不包括弃用)
 
     public List<Pokemon> Pokemons
     {
@@ -153,6 +180,13 @@ public class User
         set => _pokemons = value;
     }
 
+    private List<Pokemon> _allPokemons = new List<Pokemon>(); // 所有的宝可梦（包括弃用）
+
+    public List<Pokemon> AllPokemons
+    {
+        get => _allPokemons;
+        set => _allPokemons = value;
+    }
 
     private Package _package; // 背包
 
