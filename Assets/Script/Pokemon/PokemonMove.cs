@@ -48,7 +48,6 @@ public class PokemonMove : MonoBehaviour
                 MoveHorizontally(14f);
                 break;
             case "Stop":
-                Stop();
                 break;
         }
     }
@@ -69,7 +68,7 @@ public class PokemonMove : MonoBehaviour
                 if (transform.position.x - originalPos.x >= 0 && transform.position.x - originalPos.x <= distance)
                 {
                     anima.SetBool(IsLeft, false);
-                    transform.Translate(new Vector3(1, originalPos.y, 0) * Time.deltaTime * speed);
+                    transform.Translate(new Vector3(1, 0, 0) * Time.deltaTime * speed);
                 }
                 else if (transform.position.x - originalPos.x > distance)
                 {
@@ -82,7 +81,7 @@ public class PokemonMove : MonoBehaviour
                 if (transform.position.x - originalPos.x >= 0 && transform.position.x - originalPos.x <= distance)
                 {
                     anima.SetBool(IsLeft, true);
-                    transform.Translate(new Vector3(-1, originalPos.y, 0) * Time.deltaTime * speed);
+                    transform.Translate(new Vector3(-1, 0, 0) * Time.deltaTime * speed);
                 }
                 else if (transform.position.x - originalPos.x <= 0)
                 {
@@ -93,10 +92,5 @@ public class PokemonMove : MonoBehaviour
                 break;
         }
     }
-
-
-    void Stop()
-    {
-        Debug.Log("Hello");
-    }
+    
 }

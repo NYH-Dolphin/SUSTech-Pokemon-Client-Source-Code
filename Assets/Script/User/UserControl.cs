@@ -1,7 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Fungus;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Collision = UnityEngine.Collision;
 
 public class UserControl : MonoBehaviour
 {
@@ -39,7 +42,7 @@ public class UserControl : MonoBehaviour
             anima.SetBool(Down, false);
             anima.SetFloat(Speed, speed);
         }
-        
+
         if (Input.GetKey(KeyCode.A))
         {
             direction = 1;
@@ -49,8 +52,8 @@ public class UserControl : MonoBehaviour
             anima.SetBool(Down, false);
             anima.SetFloat(Speed, speed);
         }
-       
-       if (Input.GetKey(KeyCode.W))
+
+        if (Input.GetKey(KeyCode.W))
         {
             direction = 2;
             anima.SetBool(Left, false);
@@ -59,7 +62,7 @@ public class UserControl : MonoBehaviour
             anima.SetBool(Down, false);
             anima.SetFloat(Speed, speed);
         }
-        
+
         if (Input.GetKey(KeyCode.S))
         {
             direction = 3;
@@ -69,7 +72,7 @@ public class UserControl : MonoBehaviour
             anima.SetBool(Down, true);
             anima.SetFloat(Speed, speed);
         }
-        
+
         if (!Input.anyKey)
         {
             switch (direction)
@@ -107,7 +110,9 @@ public class UserControl : MonoBehaviour
                     break;
                 }
             }
+
             anima.SetFloat(Speed, 0.0f);
         }
     }
+    
 }
