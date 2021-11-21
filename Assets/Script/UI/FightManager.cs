@@ -69,6 +69,8 @@ public class FightManager : MonoBehaviour
 
     private IWebSocket _socket;
 
+    private List<string> fightMessageList = new List<string>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -128,7 +130,6 @@ public class FightManager : MonoBehaviour
         _socket.OnClose += SocketOnClose;
         _socket.OnError += SocketOnError;
         _socket.ConnectAsync();
-        FightMessage.text = "Connecting";
     }
 
     // 同步用户信息
@@ -183,6 +184,7 @@ public class FightManager : MonoBehaviour
                 SelectMode(FightCode.PVE); // 选择 PVE 模式
                 break;
             case "INITIALIZATION": // 设置信息
+                FightMessage.text = "准备开始！";
                 StateMessage.text = "初始化信息";
                 Initial(jsonData); // 配置初始信息
                 InitSetCurPokemon(); // 初始化敌我双方的宝可梦信息
@@ -211,6 +213,9 @@ public class FightManager : MonoBehaviour
                 StateMessage.text = "战斗胜利";
                 SetWinItems(jsonData);
                 WinCanvas.enabled = true;
+                break;
+            default:
+                Debug.Log(currStage);
                 break;
         }
     }
@@ -417,7 +422,19 @@ public class FightManager : MonoBehaviour
 
     private void DisplayFightMessage(JsonData data)
     {
-        FightMessage.text = data["message"].ToString();
+        if (fightMessageList.Count >= 3)
+        {
+            fightMessageList.RemoveAt(0);
+        }
+
+        fightMessageList.Add(data["description"].ToString());
+        string displayTest = "";
+        foreach (var message in fightMessageList)
+        {
+            displayTest += message + "\n";
+        }
+
+        FightMessage.text = displayTest;
         ProhibitAllToggleAndBtn();
     }
 
@@ -503,9 +520,18 @@ public class FightManager : MonoBehaviour
     // 获得赢得道具
     private void SetWinItems(JsonData jsonData)
     {
-        pokeballNum.text = "x" + jsonData["pokemonBall"];
-        coinNum.text = "x" + jsonData["coin"];
-        string imgPath = "Item/Image/" + jsonData["item"];
+        JsonData reward = jsonData["reward"];
+        try
+        {
+            pokeballNum.text = "x" + reward["pokemonBall"];
+        }
+        catch
+        {
+            pokeballNum.text = "x0";
+        }
+
+        coinNum.text = "x" + reward["coin"];
+        string imgPath = "Item/Image/" + reward["item"];
         itemImg.sprite = Resources.Load(imgPath, typeof(Sprite)) as Sprite;
     }
 
