@@ -49,6 +49,10 @@ public class FightManager : MonoBehaviour
     public List<Toggle> Pokemons; // 下面 3 个宝可梦 Toggle
     public List<Button> Skills; // 下面 4 个 Skills
 
+    public Text pokeballNum;
+    public Text coinNum;
+    public Image itemImg;
+
 
     private int currPokemon; // 当前出战的宝可梦
 
@@ -198,12 +202,14 @@ public class FightManager : MonoBehaviour
                 DisplayFightMessage(jsonData);
                 break;
             case "LOSE":
+                ProhibitAllToggleAndBtn();
                 StateMessage.text = "战斗失败...";
                 LoseCanvas.enabled = true;
                 break;
             case "WIN":
+                ProhibitAllToggleAndBtn();
                 StateMessage.text = "战斗胜利";
-                GetWinItems(jsonData);
+                SetWinItems(jsonData);
                 WinCanvas.enabled = true;
                 break;
         }
@@ -495,8 +501,12 @@ public class FightManager : MonoBehaviour
 
 
     // 获得赢得道具
-    private void GetWinItems(JsonData jsonData)
+    private void SetWinItems(JsonData jsonData)
     {
+        pokeballNum.text = "x" + jsonData["pokemonBall"];
+        coinNum.text = "x" + jsonData["coin"];
+        string imgPath = "Item/Image/" + jsonData["item"];
+        itemImg.sprite = Resources.Load(imgPath, typeof(Sprite)) as Sprite;
     }
 
     // 用户确认赢了
