@@ -7,13 +7,12 @@ using UnityEngine.UI;
 
 public class ShopManager : MonoBehaviour
 {
-    
     // BuyCanvas的东西
     public Canvas buyCanvas; // 购买Canvas
     public Text message; // 购买时候提示的消息
     public Button certificateBtn; // 确定购买的Btn
 
-    
+
     private static User _user;
     private List<GameObject> grids = new List<GameObject>();
     private static int occupy; // 已经使用了多少个格子
@@ -97,15 +96,15 @@ public class ShopManager : MonoBehaviour
     }
 
 
-
     // 打开BuyCanvas的时候记录itemId和price
     private int _itemId;
     private int _price;
+
     private void OpenBuyCanvas(int itemId, string itemName, int price)
     {
         _itemId = itemId;
         _price = price;
-        
+
         buyCanvas.enabled = true;
         if (price > User.GetInstance().Coin)
         {
@@ -155,4 +154,5 @@ public class ShopManager : MonoBehaviour
             Debug.Log("Success");
         }
     }
+    
 }

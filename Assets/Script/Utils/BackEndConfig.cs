@@ -3,7 +3,7 @@ using LitJson;
 
 public class BackEndConfig
 {
-    private static string url = "http://localhost";
+    private static string url = "http://10.20.48.171";
     private static string port = "10921";
 
     private static string gameLogicUrl = "ws://10.17.1.121";

@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 using Script.Shop;
 
 public class MainManager : MonoBehaviour
@@ -17,12 +18,14 @@ public class MainManager : MonoBehaviour
     public Image pokemon1; // 展示宝可梦1
     public Image pokemon2; // 展示宝可梦2
     public Image pokemon3; // 展示宝可梦3
-
-    // Start is called before the first frame update
-
+    
+    private GameObject _bgm;
 
     void Start()
     {
+        GameObject bgmPrefab = MusicPlayer.GetBgm("main_music");
+        _bgm = Instantiate(bgmPrefab);
+        
         // 同步获取User的相关信息
         UserDataSync();
 
