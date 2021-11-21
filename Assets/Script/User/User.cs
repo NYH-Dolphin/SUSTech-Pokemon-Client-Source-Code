@@ -102,7 +102,7 @@ public class User
             pokemon.Level = int.Parse(jsonData[i]["level"].ToString());
             pokemon.CurrentExp = int.Parse(jsonData[i]["experience"].ToString());
             pokemon.Potential = int.Parse(jsonData[i]["potential"].ToString());
-            
+
             JsonData jsonSkills = jsonData[i]["skills"];
             for (int j = 0; j < jsonSkills.Count; j++)
             {
@@ -310,5 +310,14 @@ public class User
     {
         get => _pokemonShowNum;
         set => _pokemonShowNum = value;
+    }
+
+
+    private int _currLevel; // 当前在冒险哪一关
+
+    public int CurrentLevel
+    {
+        get => _currLevel;
+        set => _currLevel = value;
     }
 }

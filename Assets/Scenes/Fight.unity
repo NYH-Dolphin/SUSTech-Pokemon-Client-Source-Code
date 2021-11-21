@@ -1881,7 +1881,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fafe2cfe61f6974895a912c3755e8f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AllowSwitchOff: 0
+  m_AllowSwitchOff: 1
 --- !u!1 &761533270
 GameObject:
   m_ObjectHideFlags: 0
@@ -2614,6 +2614,8 @@ MonoBehaviour:
   Pokemon1: {fileID: 1867683793}
   Pokemon2: {fileID: 2077219261}
   Pokemon3: {fileID: 552378016}
+  FightMessage: {fileID: 400298925}
+  StateMessage: {fileID: 1841486355}
   SkillNames:
   - {fileID: 588217581}
   - {fileID: 1253664878}
@@ -2626,6 +2628,15 @@ MonoBehaviour:
   - {fileID: 788825271}
   PokemonToggle: {fileID: 1822567613}
   SkillToggle: {fileID: 1966750445}
+  Pokemons:
+  - {fileID: 1696505915}
+  - {fileID: 1390253506}
+  - {fileID: 1546455042}
+  Skills:
+  - {fileID: 1142091025}
+  - {fileID: 946089484}
+  - {fileID: 530837500}
+  - {fileID: 1727496178}
 --- !u!1 &946089482
 GameObject:
   m_ObjectHideFlags: 0
@@ -4118,6 +4129,7 @@ RectTransform:
   - {fileID: 1584193475}
   - {fileID: 808282647}
   - {fileID: 1921279031}
+  - {fileID: 1841486354}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4210,19 +4222,7 @@ MonoBehaviour:
   m_Group: {fileID: 729765861}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 917684648}
-        m_TargetAssemblyTypeName: FightManager, Assembly-CSharp
-        m_MethodName: OnClickPokemon2
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1390253506}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Toggle, UnityEngine.UI
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 0
 --- !u!1 &1391598539
 GameObject:
@@ -4516,19 +4516,7 @@ MonoBehaviour:
   m_Group: {fileID: 729765861}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 917684648}
-        m_TargetAssemblyTypeName: FightManager, Assembly-CSharp
-        m_MethodName: OnClickPokemon3
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1546455042}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Toggle, UnityEngine.UI
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 0
 --- !u!1 &1584193474
 GameObject:
@@ -4867,20 +4855,8 @@ MonoBehaviour:
   m_Group: {fileID: 729765861}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 917684648}
-        m_TargetAssemblyTypeName: FightManager, Assembly-CSharp
-        m_MethodName: OnClickPokemon1
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1696505915}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Toggle, UnityEngine.UI
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  m_IsOn: 1
+      m_Calls: []
+  m_IsOn: 0
 --- !u!1 &1727496176
 GameObject:
   m_ObjectHideFlags: 0
@@ -5251,6 +5227,85 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 1
+--- !u!1 &1841486353
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1841486354}
+  - component: {fileID: 1841486356}
+  - component: {fileID: 1841486355}
+  m_Layer: 5
+  m_Name: state_message
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1841486354
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841486353}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1344241513}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 308.73, y: -98.68}
+  m_SizeDelta: {x: 143.88, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1841486355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841486353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.4528302, g: 0.18113206, b: 0.23350757, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 20
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 300
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "\u9009\u62E9\u51FA\u6218\u5B9D\u53EF\u68A6"
+--- !u!222 &1841486356
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841486353}
+  m_CullTransparentMesh: 1
 --- !u!1 &1860911865
 GameObject:
   m_ObjectHideFlags: 0

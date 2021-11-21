@@ -149,7 +149,6 @@ public class MainManager : MonoBehaviour
             Shop.SetItems(request.value["data"]);
         }
     }
-    
 
 
     public void OpenShopScene()

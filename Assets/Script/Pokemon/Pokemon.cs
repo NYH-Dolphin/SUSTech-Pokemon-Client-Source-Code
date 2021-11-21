@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Script.Skill;
-using UnityEngine;
 
 namespace Script.Pokemon
 {
