@@ -83,6 +83,7 @@ public class AdventureManager : MonoBehaviour
 
     public void OnOpenLevel()
     {
+        User.GetInstance().CurrentLevel = curLevelNum;
         switch (curLevelNum)
         {
             case 1:
