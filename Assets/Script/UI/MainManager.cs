@@ -87,7 +87,9 @@ public class MainManager : MonoBehaviour
         pokemon3.SetNativeSize();
         pokemon3.GetComponent<RectTransform>().localScale = new Vector3(0.6f, 0.6f, 0.6f);
     }
-
+    
+    
+    
 
     /**
      * 搜索获得账号中所有的物品！
@@ -183,5 +185,12 @@ public class MainManager : MonoBehaviour
     public void OpenPokemonScene()
     {
         SceneManager.LoadScene("Pokemon");
+    }
+
+
+    // 切换账号
+    public void OnClickReloginBtn()
+    {
+        SceneManager.LoadScene("Start");
     }
 }

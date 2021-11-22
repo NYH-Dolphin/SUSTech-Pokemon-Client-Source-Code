@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Script.Pokemon;
@@ -8,8 +9,9 @@ public class PokemonIntroManager : MonoBehaviour
 {
     public Image pokemonImage;
     public List<Image> starList;
-    public Image pokemonGenre; 
-    
+    public Image pokemonGenre;
+    public Text baseValue;
+
     private int curPokemonShowNum = 0;
     private string starPath = "Other/star"; // 稀有度表示星星的地址
     private string blankPath = "Other/blank"; // 空图片地址（稀有度中为Null的部分）
@@ -40,11 +42,11 @@ public class PokemonIntroManager : MonoBehaviour
         pokemonImage.sprite = spritePokemon;
         pokemonImage.SetNativeSize();
         pokemonImage.GetComponent<RectTransform>().localScale = new Vector3(0.8f, 0.8f, 0.8f);
-        
+
         string genrePath = "Pokemon/Properties/" + pokemon.GetGenreMap().Get(pokemon.Genre);
         Sprite spriteGenre = Resources.Load(genrePath, typeof(Sprite)) as Sprite;
         pokemonGenre.sprite = spriteGenre;
-        
+
         int rarity = pokemon.Rarity;
         for (int i = 0; i < starList.Count; i++)
         {
@@ -57,5 +59,10 @@ public class PokemonIntroManager : MonoBehaviour
                 starList[i].sprite = Resources.Load(blankPath, typeof(Sprite)) as Sprite;
             }
         }
+
+        baseValue.text = ""
+                         + "生命：" + $"{pokemon.Hp,-5}" + "\t" + "速度：" + $"{pokemon.Speed,-5}" + "\n"
+                         + "攻击：" + $"{pokemon.Atk,-5}" + "\t" + "防御：" + $"{pokemon.Def,-5}" + "\n"
+                         + "特攻：" + $"{pokemon.Satk,-5}" + "\t" + "特防：" + $"{pokemon.Sdef,-5}";
     }
 }

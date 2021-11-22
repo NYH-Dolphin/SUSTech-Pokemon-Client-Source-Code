@@ -17,5 +17,12 @@ public class SettingManager : BoardManager
     {
         
     }
-    
+
+
+    // 退出游戏
+    public void OnClickExitGameBtn()
+    {
+        Application.Quit();
+    }
+
 }

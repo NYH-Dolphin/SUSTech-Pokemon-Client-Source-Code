@@ -232,6 +232,8 @@ public class FightManager : MonoBehaviour
     {
         Pokemon curPokemon = GetCurPokemonByPos();
         curPokemon.CurrentHp = int.Parse(jsonData["userPokemonCurrentHp"].ToString());
+        curPokemon.CurrentHp = curPokemon.CurrentHp < 0 ? 0 : curPokemon.CurrentHp;
+        curPokemon.CurrentHp = curPokemon.CurrentHp > curPokemon.Hp ? curPokemon.Hp : curPokemon.CurrentHp;
         curPokemon.Hp = int.Parse(jsonData["userPokemonBaseHp"].ToString());
         UserPokemonHp.text = curPokemon.CurrentHp + "/" + curPokemon.Hp;
         float userHpBarWidth = 270 * ((float)curPokemon.CurrentHp / (float)curPokemon.Hp);
@@ -555,6 +557,7 @@ public class FightManager : MonoBehaviour
         FightMessage message = new FightMessage(FightCode.SURRENDER);
         SendData(message);
         _socket.CloseAsync();
+        User.GetInstance().ResetAdventurePokemonPP();
         SceneManager.LoadScene("Adventure");
     }
 
@@ -570,6 +573,7 @@ public class FightManager : MonoBehaviour
     public void OnClickLoseExitBtn()
     {
         _socket.CloseAsync();
+        User.GetInstance().ResetAdventurePokemonPP();
         SceneManager.LoadScene("Adventure");
     }
 
@@ -581,6 +585,7 @@ public class FightManager : MonoBehaviour
         try
         {
             pokeballNum.text = "x" + reward["pokemonBall"];
+            User.GetInstance().PokeBall += int.Parse(reward["pokemonBall"].ToString());
         }
         catch
         {
@@ -588,6 +593,7 @@ public class FightManager : MonoBehaviour
         }
 
         coinNum.text = "x" + reward["coin"];
+        User.GetInstance().Coin += int.Parse(reward["coin"].ToString());
         string imgPath = "Item/Image/" + reward["item"];
         itemImg.sprite = Resources.Load(imgPath, typeof(Sprite)) as Sprite;
     }
@@ -596,13 +602,18 @@ public class FightManager : MonoBehaviour
     public void OnClickWinExitBtn()
     {
         _socket.CloseAsync();
-        User.GetInstance().AdventureLevel += 1;
+        if (User.GetInstance().AdventureLevel == User.GetInstance().CurrentLevel)
+        {
+            User.GetInstance().AdventureLevel += 1;
+        }
+
+        User.GetInstance().ResetAdventurePokemonPP();
         SceneManager.LoadScene("Adventure");
     }
 
 
     // 通过 currPokemon 获得当前冒险的宝可梦
-    private Pokemon GetCurPokemonByPos()
+    public Pokemon GetCurPokemonByPos()
     {
         User user = User.GetInstance();
         return currPokemon switch

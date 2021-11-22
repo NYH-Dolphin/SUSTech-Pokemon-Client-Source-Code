@@ -30,7 +30,24 @@ public class User
         return _instance;
     }
 
-    
+
+    public void ResetAdventurePokemonPP()
+    {
+        foreach (var skill in _adventurePokemon1.Skills)
+        {
+            skill.ResetPP();
+        }
+        foreach (var skill in _adventurePokemon2.Skills)
+        {
+            skill.ResetPP();
+        }
+        foreach (var skill in _adventurePokemon3.Skills)
+        {
+            skill.ResetPP();
+        }
+        
+    }
+
 
 
     /**
@@ -102,6 +119,13 @@ public class User
             pokemon.Level = int.Parse(jsonData[i]["level"].ToString());
             pokemon.CurrentExp = int.Parse(jsonData[i]["experience"].ToString());
             pokemon.Potential = int.Parse(jsonData[i]["potential"].ToString());
+            JsonData jsonMonster = jsonData[i]["monster"];
+            pokemon.Atk = int.Parse(jsonMonster["baseAtk"].ToString());
+            pokemon.Hp = int.Parse(jsonMonster["baseHp"].ToString());
+            pokemon.Def = int.Parse(jsonMonster["baseDef"].ToString());
+            pokemon.Satk = int.Parse(jsonMonster["baseSatk"].ToString());
+            pokemon.Sdef = int.Parse(jsonMonster["baseSdef"].ToString());
+            pokemon.Speed = int.Parse(jsonMonster["baseSpeed"].ToString());
 
             JsonData jsonSkills = jsonData[i]["skills"];
             for (int j = 0; j < jsonSkills.Count; j++)

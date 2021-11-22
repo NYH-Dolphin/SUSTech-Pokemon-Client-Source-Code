@@ -6,6 +6,8 @@
         private string _name;
         private string _description;
         private string _genre;
+
+        private int _allPP; // 总pp值
         private int _pp; // pp 值
         private int _hit; // 命中率
         private int _power; // 伤害
@@ -28,7 +30,13 @@
             return _genreMap;
         }
         
-        
+
+        // 冒险结束后重新设置PP
+        public void ResetPP()
+        {
+            _pp = _allPP;
+        }
+
         public int PP
         {
             get => _pp;
@@ -76,6 +84,7 @@
             _description = description;
             _genre = genre;
             _pp = pp;
+            _allPP = pp;
             _hit = hit;
             _power = power;
         }

@@ -13,7 +13,8 @@ public class MusicHandler: MonoBehaviour
     private void DestroyBgm()
     {
         foreach (var bgm in GetDontDestroyOnLoadGameObjects())
-            Destroy(bgm);
+            if(bgm.name != "~LeanTween")
+                Destroy(bgm);
     }
 
     private GameObject[] GetDontDestroyOnLoadGameObjects()
