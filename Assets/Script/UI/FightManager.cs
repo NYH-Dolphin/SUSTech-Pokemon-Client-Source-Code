@@ -74,6 +74,7 @@ public class FightManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currStage = "START"; // 开始状态
         CanvasInitial();
         ProhibitAllToggleAndBtn();
         currPokemon = 1;
@@ -180,22 +181,29 @@ public class FightManager : MonoBehaviour
         switch (currStage)
         {
             case "CONNECTION_SUCCESS": // 连接成功
+                ProhibitAllToggleAndBtn();
                 StateMessage.text = "连接成功";
                 SelectMode(FightCode.PVE); // 选择 PVE 模式
                 break;
             case "INITIALIZATION": // 设置信息
+                Initial(jsonData); // 配置初始信息
+                ProhibitPokemonToggleByHp();
+                ProhibitAllSkillBtn();
                 FightMessage.text = "准备开始！";
                 StateMessage.text = "初始化信息";
-                Initial(jsonData); // 配置初始信息
                 InitSetCurPokemon(); // 初始化敌我双方的宝可梦信息
                 break;
             case "VALID":
+                PokemonDataSync();
+                ProhibitPokemonToggleByHp();
+                ProhibitSkillBtnByPP();
+                PokemonToggle.isOn = true;
                 StateMessage.text = "到你的回合！";
                 SelectCurPokemonAndSkill(); // 允许选择宝可梦
                 break;
             case "FORBIDDEN":
+                ProhibitAllToggleAndBtn();
                 StateMessage.text = "对手的回合！";
-                ProhibitAllToggleAndBtn(); // 禁用按钮
                 break;
             case "ROUND_INFO": // 通知双方宝可梦扣血的信息
                 DisplayRoundInfo(jsonData);
@@ -210,7 +218,7 @@ public class FightManager : MonoBehaviour
                 break;
             case "WIN":
                 ProhibitAllToggleAndBtn();
-                StateMessage.text = "战斗胜利";
+                StateMessage.text = "战斗胜利！";
                 SetWinItems(jsonData);
                 WinCanvas.enabled = true;
                 break;
@@ -222,22 +230,7 @@ public class FightManager : MonoBehaviour
 
     private void DisplayRoundInfo(JsonData jsonData)
     {
-        ProhibitAllToggleAndBtn();
-        User user = User.GetInstance();
-        Pokemon curPokemon = user.AdventurePokemon1;
-        switch (int.Parse(jsonData["userPokemonPos"].ToString()))
-        {
-            case 1:
-                curPokemon = user.AdventurePokemon1;
-                break;
-            case 2:
-                curPokemon = user.AdventurePokemon2;
-                break;
-            case 3:
-                curPokemon = user.AdventurePokemon3;
-                break;
-        }
-
+        Pokemon curPokemon = GetCurPokemonByPos();
         curPokemon.CurrentHp = int.Parse(jsonData["userPokemonCurrentHp"].ToString());
         curPokemon.Hp = int.Parse(jsonData["userPokemonBaseHp"].ToString());
         UserPokemonHp.text = curPokemon.CurrentHp + "/" + curPokemon.Hp;
@@ -349,6 +342,7 @@ public class FightManager : MonoBehaviour
                 CurrPokemon = currPokemon
             };
             SendData(message);
+            currStage = "FINISH_INITIALIZATION";
             ProhibitAllToggleAndBtn();
         }
     }
@@ -363,14 +357,27 @@ public class FightManager : MonoBehaviour
 
     void SelectCurPokemonAndSkill()
     {
-        PokemonToggle.isOn = true;
-        PokemonDataSync();
-        ProhibitPokemonToggleByHp();
-        ProhibitSkillBtnByPP();
+        if (GetCurPokemonByPos().CurrentHp <= 0)
+        {
+            if (User.GetInstance().AdventurePokemon1.CurrentHp > 0)
+            {
+                currPokemon = 1;
+                Pokemons[0].isOn = true;
+            }
+            else if (User.GetInstance().AdventurePokemon2.CurrentHp > 0)
+            {
+                currPokemon = 2;
+                Pokemons[1].isOn = true;
+            }
+            else if (User.GetInstance().AdventurePokemon3.CurrentHp > 0)
+            {
+                currPokemon = 3;
+                Pokemons[2].isOn = true;
+            }
+        }
 
         foreach (Toggle pokemon in Pokemons)
         {
-            pokemon.interactable = true;
             pokemon.onValueChanged.RemoveAllListeners();
             pokemon.onValueChanged.AddListener(value => OnClickPokemon(pokemon));
         }
@@ -387,30 +394,38 @@ public class FightManager : MonoBehaviour
     {
         if (toggle.isOn)
         {
-            currPokemon = int.Parse(toggle.name.Replace("pokemon", ""));
-            ProhibitSkillBtnByPP();
-            SwitchPanel();
+            if (currStage == "VALID")
+            {
+                currPokemon = int.Parse(toggle.name.Replace("pokemon", ""));
+                PokemonDataSync();
+                ProhibitSkillBtnByPP();
+                SwitchPanel();
+            }
         }
     }
 
     private void OnClickSkill(Button button)
     {
-        currSkill = int.Parse(button.name.Replace("skill", ""));
-        Pokemon curPokemon = GetCurPokemonByPos();
-        Skill skill = curPokemon.Skills[currSkill - 1];
-        if (skill != null)
+        if (currStage == "VALID")
         {
-            skill.PP -= 1;
-            SkillPPs[currSkill - 1].text = "PP: " + skill.PP;
-        }
+            currSkill = int.Parse(button.name.Replace("skill", ""));
+            Pokemon curPokemon = GetCurPokemonByPos();
+            Skill skill = curPokemon.Skills[currSkill - 1];
+            if (skill != null)
+            {
+                skill.PP -= 1;
+                SkillPPs[currSkill - 1].text = "PP: " + skill.PP;
+            }
 
-        FightMessage message = new FightMessage(FightCode.CHOICE)
-        {
-            CurrPokemon = currPokemon,
-            CurrSkill = currSkill
-        };
-        ProhibitAllToggleAndBtn();
-        SendData(message);
+            FightMessage message = new FightMessage(FightCode.CHOICE)
+            {
+                CurrPokemon = currPokemon,
+                CurrSkill = currSkill
+            };
+            SendData(message);
+            currStage = "FINISH_CHOICE";
+            ProhibitAllSkillBtn();
+        }
     }
 
     #endregion
@@ -435,7 +450,6 @@ public class FightManager : MonoBehaviour
         }
 
         FightMessage.text = displayTest;
-        ProhibitAllToggleAndBtn();
     }
 
     #endregion
@@ -443,7 +457,6 @@ public class FightManager : MonoBehaviour
     // 通用宝可梦信息
     private void PokemonDataSync()
     {
-        ProhibitPokemonToggleByHp();
         Pokemon curPokemon = GetCurPokemonByPos();
         string pokemonImgPath = "Pokemon/Pixel/Back/" + curPokemon.ID;
         Sprite pokemonSprite = Resources.Load(pokemonImgPath, typeof(Sprite)) as Sprite;
@@ -456,6 +469,9 @@ public class FightManager : MonoBehaviour
             SkillNames[i].text = curPokemon.Skills[i].Name;
             SkillPPs[i].text = "PP: " + curPokemon.Skills[i].PP;
         }
+
+        float userHpBarWidth = 270 * ((float)curPokemon.CurrentHp / (float)curPokemon.Hp);
+        UserPokemonHpBar.sizeDelta = new Vector2(userHpBarWidth, UserPokemonHpBar.sizeDelta.y);
     }
 
 
@@ -470,16 +486,57 @@ public class FightManager : MonoBehaviour
     }
 
 
+    // 切换到宝可梦页面
     public void OnClickPokemonToggle(Toggle toggle)
     {
         if (!toggle.isOn) return;
+        switch (currStage)
+        {
+            case "START":
+                ProhibitAllPokemonToggle();
+                break;
+            case "INITIALIZATION":
+                ProhibitPokemonToggleByHp();
+                break;
+            case "VALID":
+                ProhibitPokemonToggleByHp();
+                break;
+            case "FORBIDDEN":
+                ProhibitAllPokemonToggle();
+                break;
+            default:
+                ProhibitAllPokemonToggle();
+                break;
+        }
+
         PokemonCanvas.enabled = true;
         SkillCanvas.enabled = false;
     }
 
+    // 切换到技能页面
     public void OnClickSkillToggle(Toggle toggle)
     {
         if (!toggle.isOn) return;
+        PokemonDataSync();
+        switch (currStage)
+        {
+            case "START":
+                ProhibitAllSkillBtn();
+                break;
+            case "INITIALIZATION":
+                ProhibitAllSkillBtn();
+                break;
+            case "VALID":
+                ProhibitSkillBtnByPP();
+                break;
+            case "FORBIDDEN":
+                ProhibitAllSkillBtn();
+                break;
+            default:
+                ProhibitAllSkillBtn();
+                break;
+        }
+
         SkillCanvas.enabled = true;
         PokemonCanvas.enabled = false;
     }
@@ -558,14 +615,28 @@ public class FightManager : MonoBehaviour
     }
 
 
+    // 禁用情况
+    //----------------------------------------------
     // 禁用所有的Pokemon Toggle和Skill Btn
     private void ProhibitAllToggleAndBtn()
     {
-        foreach (Button skillBtn in Skills)
-            skillBtn.interactable = false;
+        ProhibitAllPokemonToggle();
+        ProhibitAllSkillBtn();
+    }
 
+    // 禁用所有Pokemon toggle
+    private void ProhibitAllPokemonToggle()
+    {
         foreach (Toggle pokemon in Pokemons)
             pokemon.interactable = false;
+    }
+
+
+    // 禁用所有Skill toggle
+    private void ProhibitAllSkillBtn()
+    {
+        foreach (Button skill in Skills)
+            skill.interactable = false;
     }
 
     // 通过宝可梦血量禁用宝可梦Toggle
@@ -586,4 +657,5 @@ public class FightManager : MonoBehaviour
             Skills[i].interactable = curPokemon.Skills[i].PP > 0;
         }
     }
+    //----------------------------------------------
 }
