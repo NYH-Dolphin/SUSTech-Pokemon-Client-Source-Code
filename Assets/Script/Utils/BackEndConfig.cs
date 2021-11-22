@@ -12,7 +12,7 @@ public class BackEndConfig
 
     public static string GetGameLogicAddress(string userToken)
     {
-        return gameLogicLocalHost + ":" + gameLogicPort + "/socketServer/" + userToken;
+        return gameLogicUrl + ":" + gameLogicPort + "/socketServer/" + userToken;
     }
 
     public static string GetUrl()

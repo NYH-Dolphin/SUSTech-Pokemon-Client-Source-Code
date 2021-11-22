@@ -7,5 +7,5 @@ public enum FightCode
     CHOICE,
     SURRENDER,
     EXIT,
-    SET_INITIAL_POKEMON
+    SET_INITIAL_POKEMON,
 }

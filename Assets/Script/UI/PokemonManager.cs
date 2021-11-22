@@ -15,6 +15,7 @@ public class PokemonManager : MonoBehaviour
     public Canvas UpgradeMessageCanvas;
     public Text pokemonNameAndLevel;
     private int pageNum;
+    public GameObject GameManager;
 
 
     // Start is called before the first frame update
@@ -120,6 +121,7 @@ public class PokemonManager : MonoBehaviour
 
     public void IntroToggle()
     {
+        GameManager.GetComponent<PokemonIntroManager>().PokemonDataSync();
         EnableCanvas(0);
     }
 

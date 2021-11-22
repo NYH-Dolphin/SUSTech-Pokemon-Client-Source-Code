@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using LitJson;
 using Script.Pokemon;
@@ -123,14 +122,26 @@ public class FightManager : MonoBehaviour
     // WebSocket基础握手
     void WebSocketHandShaking()
     {
-        string address = BackEndConfig.GetGameLogicAddress(User.GetInstance().Token);
-        Debug.Log(address);
-        _socket = new WebSocket(address);
-        _socket.OnOpen += SocketOnOpen;
-        _socket.OnMessage += SocketOnMessage;
-        _socket.OnClose += SocketOnClose;
-        _socket.OnError += SocketOnError;
-        _socket.ConnectAsync();
+        if (User.GetInstance().Mode == FightCode.PVP)
+        {
+            _socket = User.GetInstance().PVPSocket;
+            _socket.OnOpen += SocketOnOpen;
+            _socket.OnMessage += SocketOnMessage;
+            _socket.OnClose += SocketOnClose;
+            _socket.OnError += SocketOnError;
+        }
+        else if(User.GetInstance().Mode == FightCode.PVE)
+        {
+            string address = BackEndConfig.GetGameLogicAddress(User.GetInstance().Token);
+            Debug.Log(address);
+            _socket = new WebSocket(address);
+            _socket.OnOpen += SocketOnOpen;
+            _socket.OnMessage += SocketOnMessage;
+            _socket.OnClose += SocketOnClose;
+            _socket.OnError += SocketOnError;
+            _socket.ConnectAsync();
+        }
+       
     }
 
     // 同步用户信息
@@ -183,7 +194,7 @@ public class FightManager : MonoBehaviour
             case "CONNECTION_SUCCESS": // 连接成功
                 ProhibitAllToggleAndBtn();
                 StateMessage.text = "连接成功";
-                SelectMode(FightCode.PVE); // 选择 PVE 模式
+                SelectMode(User.GetInstance().Mode); // 选择模式
                 break;
             case "INITIALIZATION": // 设置信息
                 Initial(jsonData); // 配置初始信息
@@ -441,7 +452,7 @@ public class FightManager : MonoBehaviour
 
     private void DisplayFightMessage(JsonData data)
     {
-        if (fightMessageList.Count >= 3)
+        if (fightMessageList.Count >= 5)
         {
             fightMessageList.RemoveAt(0);
         }
@@ -556,8 +567,17 @@ public class FightManager : MonoBehaviour
     // 用户逃跑
     public void OnClickExitConfirmBtn()
     {
-        FightMessage message = new FightMessage(FightCode.SURRENDER);
-        SendData(message);
+        if (User.GetInstance().Mode == FightCode.PVE)
+        {
+            FightMessage message = new FightMessage(FightCode.SURRENDER);
+            SendData(message);
+        }else if (User.GetInstance().Mode == FightCode.PVP)
+        {
+            FightMessage message = new FightMessage(FightCode.EXIT);
+            SendData(message);
+        }
+
+
         _socket.CloseAsync();
         User.GetInstance().ResetAdventurePokemonPP();
         SceneManager.LoadScene("Adventure");
@@ -574,6 +594,11 @@ public class FightManager : MonoBehaviour
     // 用户确认输了
     public void OnClickLoseExitBtn()
     {
+        if (User.GetInstance().Mode == FightCode.PVP)
+        {
+            FightMessage message = new FightMessage(FightCode.EXIT);
+            SendData(message);
+        }
         _socket.CloseAsync();
         User.GetInstance().ResetAdventurePokemonPP();
         SceneManager.LoadScene("Adventure");
@@ -603,6 +628,11 @@ public class FightManager : MonoBehaviour
     // 用户确认赢了
     public void OnClickWinExitBtn()
     {
+        if (User.GetInstance().Mode == FightCode.PVP)
+        {
+            FightMessage message = new FightMessage(FightCode.EXIT);
+            SendData(message);
+        }
         _socket.CloseAsync();
         if (User.GetInstance().AdventureLevel == User.GetInstance().CurrentLevel)
         {

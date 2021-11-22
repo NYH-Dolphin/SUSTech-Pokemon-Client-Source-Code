@@ -3705,6 +3705,7 @@ MonoBehaviour:
   MessageCanvas: {fileID: 1282741939}
   UpgradeMessageCanvas: {fileID: 230585390}
   pokemonNameAndLevel: {fileID: 1242765639}
+  GameManager: {fileID: 560358740}
 --- !u!114 &560358743
 MonoBehaviour:
   m_ObjectHideFlags: 0

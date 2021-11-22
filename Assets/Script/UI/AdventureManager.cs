@@ -30,6 +30,7 @@ public class AdventureManager : MonoBehaviour
     void UserDataSync()
     {
         User user = User.GetInstance();
+        user.Mode = FightCode.PVE;
         // 信息配置
         string pokemon1 = "Pokemon/Image/" + user.AdventurePokemon1.ID;
         string pokemon2 = "Pokemon/Image/" + user.AdventurePokemon2.ID;

@@ -2,21 +2,31 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Runtime.CompilerServices;
 using LitJson;
 using Script.Pokemon;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using UnityWebSocket;
 
 public class User
 {
-    private bool _hasChangedMessage = false;
 
-    public bool HasChangedMesage
+    private IWebSocket _PVPSocket;
+
+    public IWebSocket PVPSocket
     {
-        get => _hasChangedMessage;
-        set => _hasChangedMessage = value;
+        get => _PVPSocket;
+        set => _PVPSocket = value;
+    }
+    private FightCode mode;
+
+    public FightCode Mode
+    {
+        get => mode;
+        set => mode = value;
     }
 
 
