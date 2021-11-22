@@ -241,6 +241,8 @@ public class FightManager : MonoBehaviour
 
         int opponentCurrentHp = int.Parse(jsonData["oppoPokemonCurrentHp"].ToString());
         int opponentHp = int.Parse(jsonData["oppoPokemonBaseHp"].ToString());
+        opponentCurrentHp = opponentCurrentHp < 0 ? 0 : opponentCurrentHp;
+        opponentCurrentHp = opponentCurrentHp > opponentHp ? opponentHp : opponentCurrentHp;
         OpponentPokemonHp.text = opponentCurrentHp + "/" + opponentHp;
         float opponentHpBarWidth = 270 * (opponentCurrentHp / (float)opponentHp);
         OpponentPokemonHpBar.sizeDelta = new Vector2(opponentHpBarWidth, OpponentPokemonHpBar.sizeDelta.y);
