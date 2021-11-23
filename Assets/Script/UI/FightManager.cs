@@ -215,6 +215,10 @@ public class FightManager : MonoBehaviour
             case "FORBIDDEN":
                 ProhibitAllToggleAndBtn();
                 StateMessage.text = "对手的回合！";
+                if (User.GetInstance().Mode == FightCode.PVP)
+                {
+                    OpponentDataSync(jsonData["monsterInfo"]);
+                }
                 break;
             case "ROUND_INFO": // 通知双方宝可梦扣血的信息
                 DisplayRoundInfo(jsonData);
@@ -312,14 +316,12 @@ public class FightManager : MonoBehaviour
         user.AdventurePokemon3.Hp = int.Parse(userData["battle3"]["baseHp"].ToString());
         user.AdventurePokemon3.CurrentHp = user.AdventurePokemon3.Hp;
         PokemonDataSync();
-        JsonData opponentData = jsonData["monsterInfo"];
-        
-        // PVP 模式的时候，默认先放对面第一宝可梦
-        if (User.GetInstance().Mode == FightCode.PVP)
-        {
-            opponentData = opponentData["battle1"];
-        }
-
+        OpponentDataSync(jsonData["monsterInfo"]);
+    }
+    
+    // 设置对面的信息
+    void OpponentDataSync(JsonData opponentData)
+    {
         string opponentPokemonPortraitPath = "Pokemon/Portrait/" + int.Parse(opponentData["id"].ToString());
         Sprite opponentPortrait = Resources.Load(opponentPokemonPortraitPath, typeof(Sprite)) as Sprite;
         OpponentPortrait.sprite = opponentPortrait;
@@ -328,7 +330,7 @@ public class FightManager : MonoBehaviour
         OpponentPokemonImg.sprite = pokemonSprite;
         OpponentPokemonName.text = opponentData["name"].ToString();
         OpponentPokemonLevel.text = "Lv." + opponentData["level"];
-        OpponentPokemonHp.text = opponentData["currentHp"] + "/" + opponentData["baseHp"];
+        OpponentPokemonHp.text = opponentData["baseHp"] + "/" + opponentData["baseHp"];
     }
 
 
@@ -580,7 +582,14 @@ public class FightManager : MonoBehaviour
 
         _socket.CloseAsync();
         User.GetInstance().ResetAdventurePokemonPP();
-        SceneManager.LoadScene("Adventure");
+        if (User.GetInstance().Mode == FightCode.PVE)
+        {
+            SceneManager.LoadScene("Adventure");
+        }
+        else
+        {
+            SceneManager.LoadScene("Main");
+        }
     }
 
     // 用户取消逃跑
@@ -601,7 +610,15 @@ public class FightManager : MonoBehaviour
         }
         _socket.CloseAsync();
         User.GetInstance().ResetAdventurePokemonPP();
-        SceneManager.LoadScene("Adventure");
+        if (User.GetInstance().Mode == FightCode.PVE)
+        {
+            SceneManager.LoadScene("Adventure");
+        }
+        else
+        {
+            SceneManager.LoadScene("Main");
+        }
+
     }
 
 
@@ -640,7 +657,14 @@ public class FightManager : MonoBehaviour
         }
 
         User.GetInstance().ResetAdventurePokemonPP();
-        SceneManager.LoadScene("Adventure");
+        if (User.GetInstance().Mode == FightCode.PVE)
+        {
+            SceneManager.LoadScene("Adventure");
+        }
+        else
+        {
+            SceneManager.LoadScene("Main");
+        }
     }
 
 
