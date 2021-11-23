@@ -156,6 +156,11 @@ public class MainManager : MonoBehaviour
     }
 
 
+    public void OpenPPTScene()
+    {
+        SceneManager.LoadScene("PPT");
+    }
+
     public void OpenShopScene()
     {
         SceneManager.LoadScene("Shop");
