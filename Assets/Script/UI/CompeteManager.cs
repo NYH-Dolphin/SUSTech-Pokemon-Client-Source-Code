@@ -118,18 +118,17 @@ public class CompeteManager : MonoBehaviour
 
     public void OnClickJoinRoomBtn()
     {
-        Regex regex = new Regex(pattern);
+        int roomNumber;
         if (string.IsNullOrEmpty(RoomNumber.text))
         {
             notice.text = "您的输入为空";
         }
-        else if (!regex.IsMatch(notice.text))
+        else if (int.TryParse(RoomNumber.text, out roomNumber) == false)
         {
             notice.text = "您输入的不是合法数字！";
         }
         else
         {
-            int roomNumber = int.Parse(RoomNumber.text);
             FightMessage message = new FightMessage(FightCode.PVP)
             {
                 CurrLevel = roomNumber
