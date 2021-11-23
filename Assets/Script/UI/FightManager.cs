@@ -317,6 +317,7 @@ public class FightManager : MonoBehaviour
         user.AdventurePokemon3.CurrentHp = user.AdventurePokemon3.Hp;
         PokemonDataSync();
         OpponentDataSync(jsonData["monsterInfo"]);
+        OpponentPokemonHp.text = jsonData["monsterInfo"]["baseHp"] + "/" + jsonData["monsterInfo"]["baseHp"];
     }
     
     // 设置对面的信息
@@ -330,7 +331,6 @@ public class FightManager : MonoBehaviour
         OpponentPokemonImg.sprite = pokemonSprite;
         OpponentPokemonName.text = opponentData["name"].ToString();
         OpponentPokemonLevel.text = "Lv." + opponentData["level"];
-        OpponentPokemonHp.text = opponentData["baseHp"] + "/" + opponentData["baseHp"];
     }
 
 
