@@ -313,6 +313,13 @@ public class FightManager : MonoBehaviour
         user.AdventurePokemon3.CurrentHp = user.AdventurePokemon3.Hp;
         PokemonDataSync();
         JsonData opponentData = jsonData["monsterInfo"];
+        
+        // PVP 模式的时候，默认先放对面第一宝可梦
+        if (User.GetInstance().Mode == FightCode.PVP)
+        {
+            opponentData = opponentData["battle1"];
+        }
+
         string opponentPokemonPortraitPath = "Pokemon/Portrait/" + int.Parse(opponentData["id"].ToString());
         Sprite opponentPortrait = Resources.Load(opponentPokemonPortraitPath, typeof(Sprite)) as Sprite;
         OpponentPortrait.sprite = opponentPortrait;
@@ -329,16 +336,9 @@ public class FightManager : MonoBehaviour
     void InitSetCurPokemon()
     {
         StateMessage.text = "选择出战宝可梦";
-        // 禁用所有 skill btn
-        foreach (Button skillBtn in Skills)
-        {
-            skillBtn.interactable = false;
-        }
-
         // 为所有 pokemon toggle 添加监听事件
         foreach (Toggle pokemon in Pokemons)
         {
-            pokemon.interactable = true;
             pokemon.onValueChanged.RemoveAllListeners();
             pokemon.onValueChanged.AddListener(value => OnChooseInitialPokemon(pokemon));
         }
