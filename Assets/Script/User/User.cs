@@ -6,6 +6,7 @@ using System.Net.Sockets;
 using System.Runtime.CompilerServices;
 using LitJson;
 using Script.Pokemon;
+using UnityEditor.Build.Reporting;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;

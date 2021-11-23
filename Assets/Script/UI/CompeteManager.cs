@@ -82,6 +82,12 @@ public class CompeteManager : MonoBehaviour
             case "CONNECTION_SUCCESS": // 连接成功
                 JoinRoomBtn.enabled = true;
                 break;
+            case "ROOM_ALREADY_EXIST": //房间已经存在，重新输入房间号
+                notice.text = "房间已存在";
+                break;
+            case "WAITING": //等待另一位玩家加入
+                notice.text = "等待另一位玩家加入";
+                break;
             case "ROOM_FOUND": // 找到房间，准备开始战斗
                 User.GetInstance().PVPSocket = _socket;
                 SceneManager.LoadScene("Fight");
@@ -129,6 +135,5 @@ public class CompeteManager : MonoBehaviour
             };
             SendData(message);
         }
-        notice.text = "正在准备联机，请稍等...";
     }
 }

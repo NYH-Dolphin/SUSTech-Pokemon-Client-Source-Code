@@ -6,7 +6,7 @@ public class BackEndConfig
     private static string url = "http://10.20.48.171";
     private static string port = "10921";
 
-    private static string gameLogicUrl = "ws://10.17.1.121";
+    private static string gameLogicUrl = "ws://10.21.66.18";
     private static string gameLogicLocalHost = "ws://127.0.0.1";
     private static string gameLogicPort = "8086";
 
