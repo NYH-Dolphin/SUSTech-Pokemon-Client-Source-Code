@@ -8,7 +8,7 @@ public class PPTManager : MonoBehaviour
 {
     private int pageNum = 1;
 
-    private int allPage = 6; // 页面数量
+    private int allPage = 9; // 页面数量
 
     public Image ppt;
 
