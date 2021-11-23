@@ -90,6 +90,7 @@ public class CompeteManager : MonoBehaviour
                 break;
             case "ROOM_FOUND": // 找到房间，准备开始战斗
                 User.GetInstance().PVPSocket = _socket;
+                _socket.OnMessage -= SocketOnMessage;
                 SceneManager.LoadScene("Fight");
                 break;
         }
