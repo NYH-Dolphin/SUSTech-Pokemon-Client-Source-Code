@@ -227,11 +227,22 @@ public class FightManager : MonoBehaviour
                 DisplayFightMessage(jsonData);
                 break;
             case "LOSE":
+                if (User.GetInstance().Mode == FightCode.PVP)
+                {
+                    FightMessage message = new FightMessage(FightCode.EXIT);
+                    SendData(message);
+                }
+
                 ProhibitAllToggleAndBtn();
                 StateMessage.text = "战斗失败...";
                 LoseCanvas.enabled = true;
                 break;
             case "WIN":
+                if (User.GetInstance().Mode == FightCode.PVP)
+                {
+                    FightMessage message = new FightMessage(FightCode.EXIT);
+                    SendData(message);
+                }
                 ProhibitAllToggleAndBtn();
                 StateMessage.text = "战斗胜利！";
                 SetWinItems(jsonData);
@@ -603,11 +614,6 @@ public class FightManager : MonoBehaviour
     // 用户确认输了
     public void OnClickLoseExitBtn()
     {
-        if (User.GetInstance().Mode == FightCode.PVP)
-        {
-            FightMessage message = new FightMessage(FightCode.EXIT);
-            SendData(message);
-        }
         _socket.CloseAsync();
         User.GetInstance().ResetAdventurePokemonPP();
         if (User.GetInstance().Mode == FightCode.PVE)
@@ -645,11 +651,6 @@ public class FightManager : MonoBehaviour
     // 用户确认赢了
     public void OnClickWinExitBtn()
     {
-        if (User.GetInstance().Mode == FightCode.PVP)
-        {
-            FightMessage message = new FightMessage(FightCode.EXIT);
-            SendData(message);
-        }
         _socket.CloseAsync();
         if (User.GetInstance().AdventureLevel == User.GetInstance().CurrentLevel)
         {
