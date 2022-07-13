@@ -232,7 +232,6 @@ public class FightManager : MonoBehaviour
                     FightMessage message = new FightMessage(FightCode.EXIT);
                     SendData(message);
                 }
-
                 ProhibitAllToggleAndBtn();
                 StateMessage.text = "战斗失败...";
                 LoseCanvas.enabled = true;

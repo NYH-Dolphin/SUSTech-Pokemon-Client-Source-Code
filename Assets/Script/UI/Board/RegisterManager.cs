@@ -43,13 +43,13 @@ public class RegisterManager : BoardManager
     IEnumerator Register()
     {
         if (String.IsNullOrEmpty(account.text))
-            message.text = "您尚未输入账号";
+            message.text = PlayerPrefs.GetString("language") == "CN" ? "您尚未输入账号" : "You don't enter the account";
         else if (String.IsNullOrEmpty(password.text))
-            message.text = "您尚未输入密码";
+            message.text = PlayerPrefs.GetString("language") == "CN" ? "您尚未输入密码" : "You don't enter the password";
         else if (String.IsNullOrEmpty(passwordCheck.text))
-            message.text = "您尚未输入确认密码";
+            message.text = PlayerPrefs.GetString("language") == "CN" ? "您尚未输入确认密码" : "You don't enter the confirm password";
         else if (!password.text.Equals(passwordCheck.text))
-            message.text = "您两次输入的密码不匹配";
+            message.text = PlayerPrefs.GetString("language") == "CN" ? "您两次输入的密码不匹配" : "Passwords don't match";
         else
         {
             WWWForm form = new WWWForm();
@@ -68,14 +68,16 @@ public class RegisterManager : BoardManager
             {
                 case 10000:
                     message.text = "";
+                    PlayerPrefs.SetString("account", account.text);
+                    PlayerPrefs.SetString("password", password.text);
                     User.SetInstance(request.value);
                     StartOP();
                     break;
                 case 50000:
-                    message.text = "您输入的账号已经有人注册";
+                    message.text = PlayerPrefs.GetString("language") == "CN" ? "您输入的账号已经有人注册" : "This account has been registered";
                     break;
                 default:
-                    message.text = "服务器异常，请稍等";
+                    message.text = PlayerPrefs.GetString("language") == "CN" ? "服务器异常，请稍等" : "Servers Error. Please wait";
                     break;
             }
         }

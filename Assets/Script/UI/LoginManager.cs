@@ -16,6 +16,11 @@ public class LoginManager : MonoBehaviour
     void Start()
     {
         password.contentType = InputField.ContentType.Password;
+        if (PlayerPrefs.GetString("account", "") != string.Empty)
+        {
+            account.text = PlayerPrefs.GetString("account");
+            password.text = PlayerPrefs.GetString("password");
+        }
     }
 
     // Update is called once per frame
@@ -45,10 +50,10 @@ public class LoginManager : MonoBehaviour
     {
         if (String.IsNullOrEmpty(account.text))
         {
-            message.text = "您尚未输入账号";
+            message.text = PlayerPrefs.GetString("language") == "CN" ? "您尚未输入账号" : "You don't enter the account";
         }else if (String.IsNullOrEmpty(password.text))
         {
-            message.text = "您尚未输入密码";
+            message.text = PlayerPrefs.GetString("language") == "CN" ? "您尚未输入密码" : "You don't enter the password";
         }
         else
         {
@@ -67,12 +72,14 @@ public class LoginManager : MonoBehaviour
             switch (statusCode)
             {
                 case 10000:
+                    PlayerPrefs.SetString("account", account.text);
+                    PlayerPrefs.SetString("password", password.text);
                     message.text = "";
                     User.SetInstance(request.value);
                     StartGame();
                     break;
                 case 10001:
-                    message.text = "您输入的账号和密码有误";
+                    message.text = PlayerPrefs.GetString("language") == "CN" ? "您输入的账号和密码有误" : "Your account or password is incorrect";
                     break;
             }
         }
