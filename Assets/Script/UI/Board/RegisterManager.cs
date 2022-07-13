@@ -64,6 +64,7 @@ public class RegisterManager : BoardManager
             }
 
             int statusCode = int.Parse(request.value["code"].ToString());
+            Debug.Log("status code " + statusCode);
             switch (statusCode)
             {
                 case 10000:
@@ -73,7 +74,7 @@ public class RegisterManager : BoardManager
                     User.SetInstance(request.value);
                     StartOP();
                     break;
-                case 50000:
+                case 10007:
                     message.text = PlayerPrefs.GetString("language") == "CN" ? "您输入的账号已经有人注册" : "This account has been registered";
                     break;
                 default:

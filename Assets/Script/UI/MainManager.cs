@@ -18,14 +18,14 @@ public class MainManager : MonoBehaviour
     public Image pokemon1; // 展示宝可梦1
     public Image pokemon2; // 展示宝可梦2
     public Image pokemon3; // 展示宝可梦3
-    
+
     private GameObject _bgm;
 
     void Start()
     {
         GameObject bgmPrefab = MusicPlayer.GetBgm("main_music");
         _bgm = Instantiate(bgmPrefab);
-        
+
         // 同步获取User的相关信息
         UserDataSync();
 
@@ -51,8 +51,18 @@ public class MainManager : MonoBehaviour
         // 信息配置
         name.text = _user.Name;
         level.text = "Lv." + _user.Level;
-        coin.text = _user.Coin > 1000000 ? _user.Coin / 10000 + "万" : _user.Coin + "";
-        pokeBall.text = _user.PokeBall + "个";
+
+        if (PlayerPrefs.GetString("language") == "CN")
+        {
+            coin.text = _user.Coin > 1000000 ? _user.Coin / 10000 + "万" : _user.Coin + "";
+        }
+        else
+        {
+            string coinNum = (_user.Coin / 1000000).ToString("0.000");
+            coin.text = _user.Coin > 1000000 ? coinNum + "million" : _user.Coin + "";
+        }
+        
+        pokeBall.text = _user.PokeBall.ToString();
         // 头像配置
         ChangePortraitImg(_user.Portrait);
         // 展示宝可梦配置
@@ -87,9 +97,7 @@ public class MainManager : MonoBehaviour
         pokemon3.SetNativeSize();
         pokemon3.GetComponent<RectTransform>().localScale = new Vector3(0.6f, 0.6f, 0.6f);
     }
-    
-    
-    
+
 
     /**
      * 搜索获得账号中所有的物品！
@@ -134,7 +142,7 @@ public class MainManager : MonoBehaviour
             User.SetPokemons(request.value["data"]);
         }
     }
-    
+
     /**
      * 搜索获得商店的所有东西
      */

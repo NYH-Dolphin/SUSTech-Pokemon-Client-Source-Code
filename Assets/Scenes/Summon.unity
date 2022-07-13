@@ -2250,6 +2250,7 @@ GameObject:
   - component: {fileID: 926375996}
   - component: {fileID: 926375998}
   - component: {fileID: 926375997}
+  - component: {fileID: 926375999}
   m_Layer: 5
   m_Name: title
   m_TagString: Untagged
@@ -2309,7 +2310,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u5145\u503C"
+  m_Text: Pay
 --- !u!222 &926375998
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2318,6 +2319,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 926375995}
   m_CullTransparentMesh: 1
+--- !u!114 &926375999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926375995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b24870c58bbc4ccbb45c5959eba48d56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CN: "\u5145\u503C"
+  EN: Pay
+  CNFontSize: 0
+  ENFontSize: 0
+  bChangeSize: 0
 --- !u!1 &926885519
 GameObject:
   m_ObjectHideFlags: 0
@@ -2630,6 +2648,7 @@ GameObject:
   - component: {fileID: 1166896031}
   - component: {fileID: 1166896033}
   - component: {fileID: 1166896032}
+  - component: {fileID: 1166896034}
   m_Layer: 5
   m_Name: title
   m_TagString: Untagged
@@ -2653,8 +2672,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -290, y: 195}
-  m_SizeDelta: {x: 80, y: 50}
+  m_AnchoredPosition: {x: -218.2, y: 195}
+  m_SizeDelta: {x: 223.61, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1166896032
 MonoBehaviour:
@@ -2689,7 +2708,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u53EC\u5524"
+  m_Text: Summon
 --- !u!222 &1166896033
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2698,6 +2717,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1166896030}
   m_CullTransparentMesh: 1
+--- !u!114 &1166896034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1166896030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b24870c58bbc4ccbb45c5959eba48d56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CN: "\u53EC\u5524"
+  EN: Summon
+  CNFontSize: 0
+  ENFontSize: 0
+  bChangeSize: 0
 --- !u!1 &1172284604
 GameObject:
   m_ObjectHideFlags: 0
