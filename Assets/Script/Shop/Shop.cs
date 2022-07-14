@@ -39,7 +39,9 @@ namespace Script.Shop
                 item.Price = int.Parse(jsonData[i]["price"].ToString());
                 item.ID = int.Parse(jsonItem["id"].ToString());
                 item.Name = jsonItem["name"].ToString();
+                item.Name_EN = jsonItem["name_en"].ToString();
                 item.Description = jsonItem["description"].ToString();
+                item.Description_EN = jsonItem["description_en"].ToString();
                 _instance.Items.Add(item);
             }
 

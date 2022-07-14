@@ -92,6 +92,7 @@ public class DrawCardManager : MonoBehaviour
                 {
                     JsonData jsonItem = jsonItemData[i];
                     Item item = new Item(jsonItem["name"].ToString(), int.Parse(jsonItem["id"].ToString()));
+                    item.Name_EN = jsonItem["name_en"].ToString();
                     items.Add(item);
                 }
             }
@@ -109,6 +110,7 @@ public class DrawCardManager : MonoBehaviour
                     Pokemon pokemon = new Pokemon();
                     pokemon.ID = int.Parse(jsonPokemon["id"].ToString());
                     pokemon.Name = jsonPokemon["name"].ToString();
+                    pokemon.Name_EN = jsonPokemon["name_en"].ToString();
                     pokemon.Rarity = int.Parse(jsonPokemon["rarity"].ToString());
                     pokemons.Add(pokemon);
                 }
@@ -138,10 +140,11 @@ public class DrawCardManager : MonoBehaviour
 
 
     private float itemScale = 1.5f;
+
     // 展示抽到的道具
     void DisplayItem(int num)
     {
-        pokemonName.text = items[num].Name;
+        pokemonName.text = PlayerPrefs.GetString("language") == "CN" ? items[num].Name : items[num].Name_EN;
         pokemonImage.GetComponent<Image>().sprite =
             Resources.Load(itemImgPath + items[num].ID, typeof(Sprite)) as Sprite;
         if (pop)
@@ -165,10 +168,11 @@ public class DrawCardManager : MonoBehaviour
 
 
     private float pokemonScale = 0.6f;
+
     // 展示抽到的宝可梦
     void DisplayPokemon(int num)
     {
-        pokemonName.text = pokemons[num].Name;
+        pokemonName.text = PlayerPrefs.GetString("language ") == "CN" ? pokemons[num].Name : pokemons[num].Name_EN;
         pokemonImage.GetComponent<Image>().sprite =
             Resources.Load(pokemonImgPath + pokemons[num].ID, typeof(Sprite)) as Sprite;
 

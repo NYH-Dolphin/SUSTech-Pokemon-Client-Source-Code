@@ -11,12 +11,19 @@ public class SummonManager : MonoBehaviour
     public Text coin;
 
     public Text lackOfMessage; // 当精灵球的个数不够的时候，提示！
-    
+
+
+    public GameObject CNPart;
+    public GameObject ENPart;
+
 
     // Start is called before the first frame update
     void Start()
     {
         UserDataSync();
+        bool active = PlayerPrefs.GetString("language") == "CN";
+        CNPart.SetActive(active);
+        ENPart.SetActive(!active);
     }
 
     // Update is called once per frame
@@ -27,8 +34,10 @@ public class SummonManager : MonoBehaviour
     void UserDataSync()
     {
         // 信息配置
-        coin.text = User.GetInstance().Coin > 1000000 ? User.GetInstance().Coin / 10000 + "万" : User.GetInstance().Coin + "";
-        pokeBall.text = User.GetInstance().PokeBall + "个";
+        coin.text = User.GetInstance().Coin > 1000000
+            ? User.GetInstance().Coin / 10000 + "万"
+            : User.GetInstance().Coin + "";
+        pokeBall.text = User.GetInstance().PokeBall.ToString();
     }
 
 
@@ -47,7 +56,7 @@ public class SummonManager : MonoBehaviour
         }
         else
         {
-            lackOfMessage.text = "精灵球个数不够哦~";
+            lackOfMessage.text = PlayerPrefs.GetString("language") == "CN" ? "精灵球个数不够哦~" : "Not enough Pokemon ball~";
         }
     }
 
@@ -60,7 +69,7 @@ public class SummonManager : MonoBehaviour
         }
         else
         {
-            lackOfMessage.text = "精灵球个数不够哦~";
+            lackOfMessage.text = PlayerPrefs.GetString("language") == "CN" ? "精灵球个数不够哦~" : "Not enough Pokemon ball~";
         }
     }
 }

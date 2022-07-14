@@ -1,8 +1,10 @@
 public class Item
 {
     protected string _name;
+    protected string _name_EN;
     protected int _id;
     protected string _description;
+    protected string _description_EN;
     protected int _price;
     protected string _quality;
     public string Name
@@ -11,6 +13,12 @@ public class Item
         set => _name = value;
     }
 
+    public string Name_EN
+    {
+        get => _name_EN;
+        set => _name_EN = value;
+    }
+    
     public int ID
     {
         get => _id;
@@ -21,6 +29,12 @@ public class Item
     {
         get => _description;
         set => _description = value;
+    }
+    
+    public string Description_EN
+    {
+        get => _description_EN;
+        set => _description_EN = value;
     }
 
     public int Price
@@ -52,16 +66,16 @@ public class Item
     
     public Item(string name, int id, string description)
     {
-        this._name = name;
-        this._id = id;
-        this._description = description;
+        _name = name;
+        _id = id;
+        _description = description;
     }
 
     
     public Item(string name, int id)
     {
-        this._name = name;
-        this._id = id;
+        _name = name;
+        _id = id;
     }
 
     public Item()

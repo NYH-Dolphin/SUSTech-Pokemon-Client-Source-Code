@@ -88,7 +88,7 @@ public class ShopManager : MonoBehaviour
         Button pPurchase = itemBtn.transform.GetChild(2).GetComponent<Button>();
         pPurchase.onClick.AddListener(() => OpenBuyCanvas(item.ID, item.Name, item.Price));
         Text pCost = pPurchase.transform.GetChild(1).GetComponent<Text>();
-        pName.text = item.Name;
+        pName.text = PlayerPrefs.GetString("language") == "CN"? item.Name: item.Name_EN;
         string imgPath = "Item/Image/" + item.ID;
         pImage.sprite = Resources.Load(imgPath, typeof(Sprite)) as Sprite;
         pCost.text = item.Price + "";
@@ -108,12 +108,12 @@ public class ShopManager : MonoBehaviour
         buyCanvas.enabled = true;
         if (price > User.GetInstance().Coin)
         {
-            message.text = "您的金币不够！";
+            message.text = PlayerPrefs.GetString("language") == "CN" ? "您的金币不够！" : "You don't have enough coin";
             certificateBtn.interactable = false;
         }
         else
         {
-            message.text = "您是否要购买[" + itemName + "]？";
+            message.text = PlayerPrefs.GetString("language") == "CN" ? $"您是否要购买[{itemName}]？" : $"Are you sure to purchase [{itemName}]?";
             certificateBtn.interactable = true;
         }
     }

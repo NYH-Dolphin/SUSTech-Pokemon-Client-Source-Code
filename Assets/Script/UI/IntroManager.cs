@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Fungus;
 using Script.Pokemon;
 using UnityEngine;
 
 public class IntroManager : MonoBehaviour
 {
+
+    public Flowchart Flowchart;
     // Start is called before the first frame update
     void Start()
     {
+        Flowchart.SetStringVariable("language", PlayerPrefs.GetString("language", "EN"));
     }
 
     // Update is called once per frame

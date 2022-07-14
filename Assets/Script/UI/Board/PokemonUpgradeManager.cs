@@ -40,7 +40,7 @@ public class PokemonUpgradeManager : MonoBehaviour
         UserDataSync();
         PokemonDataSync();
         // 初始化
-        ExpDescription.text = "小型经验包：";
+        ExpDescription.text = PlayerPrefs.GetString("language") == "CN" ? "小型经验包：" : "Small Book: ";
         ExpNum.text = "Max:" + _smallExpNum;
         _curExpType = 1;
     }
@@ -133,7 +133,7 @@ public class PokemonUpgradeManager : MonoBehaviour
     {
         if (toggle.isOn)
         {
-            ExpDescription.text = "小型经验包：";
+            ExpDescription.text = PlayerPrefs.GetString("language") == "CN" ? "小型经验包：" : "Small Book: ";
             ExpNum.text = "Max:" + _smallExpNum;
             _curExpType = 1;
         }
@@ -145,7 +145,7 @@ public class PokemonUpgradeManager : MonoBehaviour
     {
         if (toggle.isOn)
         {
-            ExpDescription.text = "中型经验包：";
+            ExpDescription.text = PlayerPrefs.GetString("language") == "CN" ? "中型经验包：" : "Medium Book: ";
             ExpNum.text = "Max:" + _middleExpNum;
             _curExpType = 2;
         }
@@ -156,7 +156,7 @@ public class PokemonUpgradeManager : MonoBehaviour
     {
         if (toggle.isOn)
         {
-            ExpDescription.text = "大型经验包：";
+            ExpDescription.text = PlayerPrefs.GetString("language") == "CN" ? "大型经验包：" : "Large Book: ";
             ExpNum.text = "Max:" + _largeExpNum;
             _curExpType = 3;
         }
@@ -168,11 +168,11 @@ public class PokemonUpgradeManager : MonoBehaviour
         Regex regex = new Regex(pattern);
         if (string.IsNullOrEmpty(ExpInput.text))
         {
-            Message.text = "您还没有输入内容！";
+            Message.text = PlayerPrefs.GetString("language") == "CN" ? "您还没有输入内容！" : "None Content!";
         }
         else if (!regex.IsMatch(ExpInput.text))
         {
-            Message.text = "您输入的不是合法数字！";
+            Message.text = PlayerPrefs.GetString("language") == "CN" ? "您输入的不是合法数字！" : "Invalid Number!";
         }
         else
         {
@@ -193,11 +193,11 @@ public class PokemonUpgradeManager : MonoBehaviour
 
             if (inputNum > expNumber)
             {
-                Message.text = "您的经验书数量不够！";
+                Message.text = PlayerPrefs.GetString("language") == "CN" ? "您的经验书数量不够！" : "Not enough books!";
             }
             else if (inputNum <= 0)
             {
-                Message.text = "您输入的数字非法！";
+                Message.text = PlayerPrefs.GetString("language") == "CN" ? "您输入的不是合法数字！" : "Invalid Number!";
             }
             else
             {
@@ -256,12 +256,18 @@ public class PokemonUpgradeManager : MonoBehaviour
             int nextLevel = int.Parse(jsonData["level"].ToString());
             if (nextLevel >= pokemon.NextLevel)
             {
-                UpgradeHintMessage.text = "预计升级到" + pokemon.NextLevel + "级";
-                OverFlowMessage.text = "可能存在经验溢出";
+                UpgradeHintMessage.text = PlayerPrefs.GetString("language") == "CN"
+                    ? $"预计升级到{pokemon.NextLevel}级"
+                    : $"Upgrade to Level.{pokemon.NextLevel}";
+                OverFlowMessage.text = PlayerPrefs.GetString("language") == "CN"
+                    ? "可能存在经验溢出"
+                    : "Possible Experience Overflow";
             }
             else
             {
-                UpgradeHintMessage.text = "预计升级到" + nextLevel + "级";
+                UpgradeHintMessage.text = PlayerPrefs.GetString("language") == "CN"
+                    ? $"预计升级到{pokemon.NextLevel}级"
+                    : $"Upgrade to Level.{pokemon.NextLevel}";
                 OverFlowMessage.text = "";
             }
         }
@@ -351,5 +357,4 @@ public class PokemonUpgradeManager : MonoBehaviour
     {
         UpgradeMessageCanvas.enabled = false;
     }
-    
 }

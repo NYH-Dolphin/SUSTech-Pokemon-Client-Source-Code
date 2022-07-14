@@ -87,7 +87,9 @@ public class PokemonManager : MonoBehaviour
         User user = User.GetInstance();
         int index = user.PokemonShowNum;
         Pokemon pokemon = user.Pokemons[index];
-        pokemonNameAndLevel.text = pokemon.Name + " Lv." + pokemon.Level + "/100";
+        pokemonNameAndLevel.text = PlayerPrefs.GetString("language") == "CN"
+            ? pokemon.Name + " Lv." + pokemon.Level + "/100"
+            : pokemon.Name_EN + " Lv." + pokemon.Level + "/100";
     }
 
 

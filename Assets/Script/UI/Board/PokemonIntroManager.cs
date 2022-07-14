@@ -3,14 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using Script.Pokemon;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class PokemonIntroManager : MonoBehaviour
 {
     public Image pokemonImage;
     public List<Image> starList;
+    public GameObject starL;
     public Image pokemonGenre;
-    public Text baseValue;
+    public Text baseValue1;
+    public Text baseValue2;
 
     private int curPokemonShowNum = 0;
     private string starPath = "Other/star"; // 稀有度表示星星的地址
@@ -48,21 +51,40 @@ public class PokemonIntroManager : MonoBehaviour
         pokemonGenre.sprite = spriteGenre;
 
         int rarity = pokemon.Rarity;
+        Debug.Log("rarity " + pokemon.Rarity);
         for (int i = 0; i < starList.Count; i++)
         {
             if (i < rarity)
             {
-                starList[i].sprite = Resources.Load(starPath, typeof(Sprite)) as Sprite;
+                starList[i].transform.gameObject.SetActive(true);
             }
             else
             {
-                starList[i].sprite = Resources.Load(blankPath, typeof(Sprite)) as Sprite;
+                starList[i].transform.gameObject.SetActive(false);
             }
         }
 
-        baseValue.text = ""
-                         + "生命：" + $"{pokemon.Hp,-5}" + "\t" + "速度：" + $"{pokemon.Speed,-5}" + "\n"
-                         + "攻击：" + $"{pokemon.Atk,-5}" + "\t" + "防御：" + $"{pokemon.Def,-5}" + "\n"
-                         + "特攻：" + $"{pokemon.Satk,-5}" + "\t" + "特防：" + $"{pokemon.Sdef,-5}";
+        if (PlayerPrefs.GetString("language") == "CN")
+        {
+            baseValue1.text = ""
+                              + $"生命：{pokemon.Hp}\n"
+                              + $"攻击：{pokemon.Atk}\n"
+                              + $"特攻：{pokemon.Satk}";
+            baseValue2.text = ""
+                              + $"速度：{pokemon.Speed}\n"
+                              + $"防御：{pokemon.Def}\n"
+                              + $"特防：{pokemon.Sdef}";
+        }
+        else
+        {
+            baseValue1.text = ""
+                              + $"HP：{pokemon.Hp}\n"
+                              + $"ATK：{pokemon.Atk}\n"
+                              + $"SATK：{pokemon.Satk}";
+            baseValue2.text = ""
+                              + $"SPD：{pokemon.Speed}\n"
+                              + $"DEF：{pokemon.Def}\n"
+                              + $"SDEF：{pokemon.Sdef}";
+        }
     }
 }

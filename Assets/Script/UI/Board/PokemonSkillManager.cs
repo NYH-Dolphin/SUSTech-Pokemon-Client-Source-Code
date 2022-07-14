@@ -57,14 +57,25 @@ public class PokemonSkillManager : MonoBehaviour
             Image skillGenre = skillBtn.transform.GetChild(1).GetComponent<Image>();
             Text skillDescription = skillBtn.transform.GetChild(2).GetComponent<Text>();
             Text skillValue = skillBtn.transform.GetChild(3).GetComponent<Text>();
-            skillName.text = skill.Name;
+            skillName.text = PlayerPrefs.GetString("language") == "CN" ? skill.Name : skill.Name_EN;
             string genrePath = "Pokemon/Properties/" + skill.GetGenreMap().Get(skill.Genre);
             Sprite spriteGenre = Resources.Load(genrePath, typeof(Sprite)) as Sprite;
             skillGenre.sprite = spriteGenre;
-            skillDescription.text = skill.Description;
-            string hit = skill.Hit == 0 ? "必中" : skill.Hit + "%";
-            string value = "PP: " + skill.PP + "  威力: " + skill.Power + "  命中: " + hit;
-            skillValue.text = value;
+            skillDescription.text =
+                PlayerPrefs.GetString("language") == "CN" ? skill.Description : skill.Description_EN;
+            if (PlayerPrefs.GetString("language") == "CN")
+            {
+                string hit = skill.Hit == 0 ? "必中" : skill.Hit + "%";
+                string value = "PP: " + skill.PP + "  威力: " + skill.Power + "  命中: " + hit;
+                skillValue.text = value;
+            }
+            else
+            {
+                string hit = skill.Hit == 0 ? "100%" : skill.Hit + "%";
+                string value = "PP: " + skill.PP + "  Pow: " + skill.Power + "  Hit Rate: " + hit;
+                skillValue.text = value;
+            }
+            
             var pos = btnPos;
             skillBtn.GetComponent<Button>().onClick.AddListener(() => OnClickSkillBtn(pokemon, pos));
             skillBtns.Add(skillBtn);
@@ -125,6 +136,8 @@ public class PokemonSkillManager : MonoBehaviour
                     int.Parse(skillData["pp"].ToString()),
                     int.Parse(skillData["hit"].ToString()),
                     int.Parse(skillData["power"].ToString()));
+                skill.Name_EN = skillData["name_en"].ToString();
+                skill.Description_EN = skillData["description_en"].ToString();
                 _skills.Add(skill);
             }
 
@@ -134,7 +147,7 @@ public class PokemonSkillManager : MonoBehaviour
                 GameObject skillBtnPrefab = Resources.Load("Item/Prefab/skill_btn_simple") as GameObject;
                 GameObject skillBtn = Instantiate(skillBtnPrefab);
                 Text skillName = skillBtn.transform.GetChild(0).GetComponent<Text>();
-                skillName.text = skill.Name;
+                skillName.text = PlayerPrefs.GetString("language") == "CN" ? skill.Name : skill.Name_EN;
                 skillBtns.Add(skillBtn);
                 skillBtn.GetComponent<Button>().onClick
                     .AddListener(() => OnChangePokemonSkills(pokemon, skill, btnPos));
@@ -173,8 +186,11 @@ public class PokemonSkillManager : MonoBehaviour
                 Pokemon userPokemon = user.Pokemons[i];
                 userPokemon.Skills[btnPos] = new Skill(skill.ID, skill.Name, skill.Description,
                     skill.Genre, skill.PP, skill.Hit, skill.Power);
+                userPokemon.Skills[btnPos].Name_EN = skill.Name_EN;
+                userPokemon.Skills[btnPos].Description_EN = skill.Description_EN;
             }
         }
+
         PokemonDataSync();
         OnClickCrossBtn();
         StartCoroutine(UploadPokemonSkills(pokemon, skill, btnPos));
@@ -203,7 +219,4 @@ public class PokemonSkillManager : MonoBehaviour
         {
         }
     }
-    
-    
-    
 }

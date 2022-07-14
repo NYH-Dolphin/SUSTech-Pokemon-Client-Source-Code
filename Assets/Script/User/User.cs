@@ -92,7 +92,9 @@ public class User
         {
             JsonData jsonItem = jsonData[i]["item"];
             Item item = new Item(jsonItem["name"].ToString(), int.Parse(jsonItem["id"].ToString()));
+            item.Name_EN = jsonItem["name_en"].ToString();
             item.Description = jsonItem["description"] == null ? "暂时为空" : jsonItem["description"].ToString();
+            item.Description_EN = jsonItem["description_en"] == null ? "null" : jsonItem["description_en"].ToString();
             int number = int.Parse(jsonData[i]["num"].ToString());
             switch (jsonItem["type"].ToString())
             {
@@ -120,6 +122,7 @@ public class User
             Pokemon pokemon = new Pokemon();
             pokemon.ID = int.Parse(jsonPokemon["id"].ToString());
             pokemon.Name = jsonPokemon["name"].ToString();
+            pokemon.Name_EN = jsonPokemon["name_en"].ToString();
             pokemon.Genre = jsonPokemon["genre"].ToString();
             pokemon.NextID = int.Parse(jsonPokemon["nextId"].ToString());
             pokemon.NextLevel = int.Parse(jsonPokemon["nextLevel"].ToString());
@@ -147,6 +150,8 @@ public class User
                     int.Parse(jsonSkills[j]["pp"].ToString()),
                     int.Parse(jsonSkills[j]["hit"].ToString()),
                     int.Parse(jsonSkills[j]["power"].ToString()));
+                skill.Name_EN = jsonSkills[j]["name_en"].ToString();
+                skill.Description_EN = jsonSkills[j]["description_en"].ToString();
                 pokemon.Skills.Add(skill);
             }
 

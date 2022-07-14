@@ -8,7 +8,8 @@ namespace Script.Pokemon
         private int _id; // 宝可梦ID
         private string _genre; //宝可梦种类
         private int _nextId; // 下一阶段宝可梦的ID
-        private String _name;
+        private string _name;// 宝可梦中文
+        private string _nameEN; // 宝可梦英文
         private List<Skill> _skills = new List<Skill>(); // 宝可梦的技能
         private int _rarity; // 稀有度
         private bool _isDeprecated; // 是否弃用
@@ -113,6 +114,12 @@ namespace Script.Pokemon
         {
             get => _genre;
             set => _genre = value;
+        }
+
+        public string Name_EN
+        {
+            get => _nameEN;
+            set => _nameEN = value;
         }
 
         public string Name

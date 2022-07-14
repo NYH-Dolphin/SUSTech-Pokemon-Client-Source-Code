@@ -139,9 +139,9 @@ public class PackageUI
         Image itemImg = itemIntro.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>();
         itemImg.sprite = Resources.Load(path, typeof(Sprite)) as Sprite;
         Text itemName = itemIntro.transform.GetChild(1).transform.GetChild(0).GetComponent<Text>();
-        itemName.text = item.Name;
+        itemName.text = PlayerPrefs.GetString("language") == "CN"? item.Name: item.Name_EN;
         Text description = itemIntro.transform.GetChild(1).transform.GetChild(1).GetComponent<Text>();
-        description.text = item.Description;
+        description.text = PlayerPrefs.GetString("language") == "CN"? item.Description : item.Description_EN;
         Text itemNumber = itemIntro.transform.GetChild(2).transform.GetChild(0).GetComponent<Text>();
         itemNumber.text = "X" + num;
         return grid;

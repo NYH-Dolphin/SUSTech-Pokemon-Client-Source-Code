@@ -194,6 +194,7 @@ GameObject:
   - component: {fileID: 88777195}
   - component: {fileID: 88777197}
   - component: {fileID: 88777196}
+  - component: {fileID: 88777198}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -253,7 +254,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u53D6\u6D88"
+  m_Text: Cancel
 --- !u!222 &88777197
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -262,6 +263,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 88777194}
   m_CullTransparentMesh: 1
+--- !u!114 &88777198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88777194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b24870c58bbc4ccbb45c5959eba48d56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CN: "\u53D6\u6D88"
+  EN: Cancel
+  CNFontSize: 0
+  ENFontSize: 0
+  bChangeSize: 0
 --- !u!1 &98103743
 GameObject:
   m_ObjectHideFlags: 0
@@ -1187,6 +1205,7 @@ GameObject:
   - component: {fileID: 469306239}
   - component: {fileID: 469306241}
   - component: {fileID: 469306240}
+  - component: {fileID: 469306242}
   m_Layer: 5
   m_Name: title
   m_TagString: Untagged
@@ -1210,8 +1229,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 137}
-  m_SizeDelta: {x: 180, y: 50}
+  m_AnchoredPosition: {x: 5.8208e-11, y: 132.6}
+  m_SizeDelta: {x: 206.25, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &469306240
 MonoBehaviour:
@@ -1235,10 +1254,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: d8b2ef70a9f0f6a48bc1d57e50c8f6ca, type: 3}
-    m_FontSize: 30
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 3
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -1246,7 +1265,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u51FA\u6218\u5B9D\u53EF\u68A6"
+  m_Text: Adventure Pokemon
 --- !u!222 &469306241
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1255,6 +1274,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 469306238}
   m_CullTransparentMesh: 1
+--- !u!114 &469306242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 469306238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b24870c58bbc4ccbb45c5959eba48d56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CN: "\u51FA\u6218\u5B9D\u53EF\u68A6"
+  EN: Adventure Pokemon
+  CNFontSize: 30
+  ENFontSize: 20
+  bChangeSize: 1
 --- !u!1 &484736977
 GameObject:
   m_ObjectHideFlags: 0
@@ -2894,6 +2930,7 @@ GameObject:
   - component: {fileID: 1049363383}
   - component: {fileID: 1049363385}
   - component: {fileID: 1049363384}
+  - component: {fileID: 1049363386}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -2953,7 +2990,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u786E\u5B9A"
+  m_Text: Confirm
 --- !u!222 &1049363385
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2962,6 +2999,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1049363382}
   m_CullTransparentMesh: 1
+--- !u!114 &1049363386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1049363382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b24870c58bbc4ccbb45c5959eba48d56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CN: "\u786E\u5B9A"
+  EN: Confirm
+  CNFontSize: 0
+  ENFontSize: 0
+  bChangeSize: 0
 --- !u!1 &1179706609
 GameObject:
   m_ObjectHideFlags: 0
@@ -4072,6 +4126,7 @@ GameObject:
   - component: {fileID: 1643248133}
   - component: {fileID: 1643248135}
   - component: {fileID: 1643248134}
+  - component: {fileID: 1643248136}
   m_Layer: 5
   m_Name: title
   m_TagString: Untagged
@@ -4095,8 +4150,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -289.99994, y: 195.00003}
-  m_SizeDelta: {x: 80, y: 50}
+  m_AnchoredPosition: {x: -187.49997, y: 195.00003}
+  m_SizeDelta: {x: 285, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1643248134
 MonoBehaviour:
@@ -4131,7 +4186,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u5192\u9669"
+  m_Text: Adventure
 --- !u!222 &1643248135
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4140,6 +4195,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1643248132}
   m_CullTransparentMesh: 1
+--- !u!114 &1643248136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1643248132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b24870c58bbc4ccbb45c5959eba48d56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CN: "\u5192\u9669"
+  EN: Adventure
+  CNFontSize: 0
+  ENFontSize: 0
+  bChangeSize: 0
 --- !u!1 &1651118668
 GameObject:
   m_ObjectHideFlags: 0
@@ -4428,6 +4500,7 @@ GameObject:
   - component: {fileID: 1760739406}
   - component: {fileID: 1760739408}
   - component: {fileID: 1760739407}
+  - component: {fileID: 1760739409}
   m_Layer: 5
   m_Name: message
   m_TagString: Untagged
@@ -4487,7 +4560,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u786E\u5B9A\u8FDB\u5165\u5173\u5361\uFF1F"
+  m_Text: Enter the level?
 --- !u!222 &1760739408
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4496,6 +4569,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1760739405}
   m_CullTransparentMesh: 1
+--- !u!114 &1760739409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1760739405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b24870c58bbc4ccbb45c5959eba48d56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CN: "\u786E\u5B9A\u8FDB\u5165\u5173\u5361\uFF1F"
+  EN: Enter the level?
+  CNFontSize: 0
+  ENFontSize: 0
+  bChangeSize: 0
 --- !u!1 &1816622747
 GameObject:
   m_ObjectHideFlags: 0

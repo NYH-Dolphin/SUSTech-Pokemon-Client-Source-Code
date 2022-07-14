@@ -4,7 +4,9 @@
     {
         private int _id;
         private string _name;
+        private string _name_EN;
         private string _description;
+        private string _description_EN;
         private string _genre;
 
         private int _allPP; // 总pp值
@@ -60,6 +62,12 @@
             get => _name;
             set => _name = value;
         }
+        
+        public string Name_EN
+        {
+            get => _name_EN;
+            set => _name_EN = value;
+        }
 
         public string Genre
         {
@@ -99,6 +107,12 @@
         {
             get => _description;
             set => _description = value;
+        }
+        
+        public string Description_EN
+        {
+            get => _description_EN;
+            set => _description_EN = value;
         }
     }
 }

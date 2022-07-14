@@ -109,15 +109,16 @@ public class PokemonEvolutionManager : MonoBehaviour
         switch (statusCode)
         {
             case 10000:
-                Message.text = "进化成功！";
+                Message.text = PlayerPrefs.GetString("language") == "CN" ? "进化成功！" : "Evolution Success!";
                 StartCoroutine(GetAllUserPokemons());
                 PokemonDataSync();
                 break;
             case 10004:
-                Message.text = "进化材料不足！";
+                Message.text = PlayerPrefs.GetString("language") == "CN" ? "进化材料不足！" : "Not enough materials!";
                 break;
             case 10006:
-                Message.text = "宝可梦等级不够！";
+                Message.text = PlayerPrefs.GetString("language") == "CN" ? "宝可梦等级不够！" : "Not enough levels!";
+                Message.text = "";
                 break;
         }
     }
