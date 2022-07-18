@@ -51,7 +51,6 @@ public class PokemonIntroManager : MonoBehaviour
         pokemonGenre.sprite = spriteGenre;
 
         int rarity = pokemon.Rarity;
-        Debug.Log("rarity " + pokemon.Rarity);
         for (int i = 0; i < starList.Count; i++)
         {
             if (i < rarity)

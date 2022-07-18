@@ -19,7 +19,6 @@ public class PackageManager : MonoBehaviour
     public Toggle inBook;
 
 
-
     private void Awake()
     {
     }
@@ -47,27 +46,47 @@ public class PackageManager : MonoBehaviour
 
     public void EnhanceToggle()
     {
-        PackageUI.SetPackageItem(gridList, 1, 0);
-        PackageUI.SetItemIntro(currentGrid);
+        int curValidGrid = PackageUI.SetPackageItem(gridList, 1, 0);
+        ActivateGrid(curValidGrid);
     }
 
     public void MaterialToggle()
     {
-        PackageUI.SetPackageItem(gridList, 2, 0);
-        PackageUI.SetItemIntro(currentGrid);
+        int curValidGrid = PackageUI.SetPackageItem(gridList, 2, 0);
+        ActivateGrid(curValidGrid);
     }
 
     public void BookToggle()
     {
-        PackageUI.SetPackageItem(gridList, 3, 0);
-        PackageUI.SetItemIntro(currentGrid);
+        int curValidGrid = PackageUI.SetPackageItem(gridList, 3, 0);
+        ActivateGrid(curValidGrid);
     }
 
 
     public void NextPage()
     {
-        PackageUI.NextRefreshGridList();
-        PackageUI.SetItemIntro(currentGrid);
+        int curValidGrid = PackageUI.NextRefreshGridList();
+        ActivateGrid(curValidGrid);
+    }
+
+
+    private void ActivateGrid(int curValidGrid)
+    {
+        if (curValidGrid < int.Parse(currentGrid.name.Replace("grid", "")))
+        {
+            PackageUI.SetItemIntro(gridList.transform.GetChild(0).gameObject);
+            gridList.transform.GetChild(0).transform.GetChild(0).GetComponent<Toggle>().isOn = true;
+            currentGrid = gridList.transform.GetChild(0).gameObject;
+        }
+        else
+        {
+            PackageUI.SetItemIntro(currentGrid);
+        }
+        
+        for (int i = 0; i < gridList.transform.childCount; i++)
+        {
+            gridList.transform.GetChild(i).transform.GetChild(0).GetComponent<Toggle>().enabled =  i + 1 <= curValidGrid;
+        }
     }
 
     public void PrevPage()
@@ -81,6 +100,4 @@ public class PackageManager : MonoBehaviour
     {
         currentGrid = PackageUI.SetItemIntro(grid);
     }
-
-    
 }

@@ -86,7 +86,14 @@ public class ShopManager : MonoBehaviour
         Image pImage = itemBtn.transform.GetChild(1).GetComponent<Image>();
         // 设置btn的点击事件
         Button pPurchase = itemBtn.transform.GetChild(2).GetComponent<Button>();
-        pPurchase.onClick.AddListener(() => OpenBuyCanvas(item.ID, item.Name, item.Price));
+        if (PlayerPrefs.GetString("language", "EN") == "CN")
+        {
+            pPurchase.onClick.AddListener(() => OpenBuyCanvas(item.ID, item.Name, item.Price));
+        }
+        else
+        {
+            pPurchase.onClick.AddListener(() => OpenBuyCanvas(item.ID, item.Name_EN, item.Price));
+        }
         Text pCost = pPurchase.transform.GetChild(1).GetComponent<Text>();
         pName.text = PlayerPrefs.GetString("language") == "CN"? item.Name: item.Name_EN;
         string imgPath = "Item/Image/" + item.ID;

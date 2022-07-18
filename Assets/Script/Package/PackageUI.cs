@@ -31,7 +31,7 @@ public class PackageUI
      * toggleNum:1-Medicine面板 2-Material面板 3-Experience面板
      * pageNum:确定是第几页
      */
-    public static void SetPackageItem(GameObject gridList, int toggleNum, int pageNum)
+    public static int SetPackageItem(GameObject gridList, int toggleNum, int pageNum)
     {
         // 设置第几页和第几个toggle
         PackageUI.pageNum = pageNum;
@@ -57,34 +57,39 @@ public class PackageUI
 
         // 从哪一页开始
         int i = 9 * pageNum;
+        int validGridCnt = 0;
         foreach (Transform grid in gridList.transform)
         {
             Image gridImage = grid.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>();
             if (i <= itemList.Count - 1)
             {
                 path = "Item/Image/" + itemList[i].GetId();
+                grid.transform.GetChild(0).GetComponent<Toggle>().enabled = true;
                 gridImage.sprite = Resources.Load(path, typeof(Sprite)) as Sprite;
+                validGridCnt += 1;
             }
             else
             {
-                gridImage.sprite = Resources.Load("Item/Image/0", typeof(Sprite)) as Sprite;
+                gridImage.sprite = Resources.Load("Item/Image/null", typeof(Sprite)) as Sprite;
             }
 
             i++;
         }
+        return validGridCnt;
     }
 
     /*
      * [下一页grid_list的刷新]
      */
-    public static void NextRefreshGridList()
+    public static int NextRefreshGridList()
     {
         if (pageNum < itemNum / 9)
         {
             pageNum++;
         }
 
-        SetPackageItem(gridList, toggleNum, pageNum);
+        int curValidGrid = SetPackageItem(gridList, toggleNum, pageNum);
+        return curValidGrid;
     }
 
     /*
