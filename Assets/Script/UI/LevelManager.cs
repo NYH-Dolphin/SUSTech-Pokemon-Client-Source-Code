@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Fungus;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
@@ -12,11 +14,13 @@ public class LevelManager : MonoBehaviour
     public Image pokemon1;
     public Image pokemon2;
     public Image pokemon3;
+    public Flowchart flowchart;
 
     // Start is called before the first frame update
     void Start()
     {
         UserDataSync();
+        flowchart.SetStringVariable("language", PlayerPrefs.GetString("language", "EN"));
     }
 
     // Update is called once per frame
