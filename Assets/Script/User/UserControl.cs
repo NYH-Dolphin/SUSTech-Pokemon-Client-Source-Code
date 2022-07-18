@@ -36,41 +36,22 @@ public class UserControl : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             direction = 0;
-            anima.SetBool(Left, false);
-            anima.SetBool(Right, true);
-            anima.SetBool(Up, false);
-            anima.SetBool(Down, false);
-            anima.SetFloat(Speed, speed);
+            anima.Play("Right");
         }
-
-        if (Input.GetKey(KeyCode.A))
+        else if (Input.GetKey(KeyCode.A))
         {
             direction = 1;
-            anima.SetBool(Left, true);
-            anima.SetBool(Right, false);
-            anima.SetBool(Up, false);
-            anima.SetBool(Down, false);
-            anima.SetFloat(Speed, speed);
+            anima.Play("Left");
         }
-
-        if (Input.GetKey(KeyCode.W))
+        else if (Input.GetKey(KeyCode.W))
         {
             direction = 2;
-            anima.SetBool(Left, false);
-            anima.SetBool(Right, false);
-            anima.SetBool(Up, true);
-            anima.SetBool(Down, false);
-            anima.SetFloat(Speed, speed);
+            anima.Play("Up");
         }
-
-        if (Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(KeyCode.S))
         {
             direction = 3;
-            anima.SetBool(Left, false);
-            anima.SetBool(Right, false);
-            anima.SetBool(Up, false);
-            anima.SetBool(Down, true);
-            anima.SetFloat(Speed, speed);
+            anima.Play("Down");
         }
 
         if (!Input.anyKey)
@@ -79,39 +60,25 @@ public class UserControl : MonoBehaviour
             {
                 case 0:
                 {
-                    anima.SetBool(Left, false);
-                    anima.SetBool(Right, true);
-                    anima.SetBool(Up, false);
-                    anima.SetBool(Down, false);
+                    anima.Play("RightStill");
                     break;
                 }
                 case 1:
                 {
-                    anima.SetBool(Left, true);
-                    anima.SetBool(Right, false);
-                    anima.SetBool(Up, false);
-                    anima.SetBool(Down, false);
+                    anima.Play("LeftStill");
                     break;
                 }
                 case 2:
                 {
-                    anima.SetBool(Left, false);
-                    anima.SetBool(Right, false);
-                    anima.SetBool(Up, true);
-                    anima.SetBool(Down, false);
+                    anima.Play("UpStill");
                     break;
                 }
                 case 3:
                 {
-                    anima.SetBool(Left, false);
-                    anima.SetBool(Right, false);
-                    anima.SetBool(Up, false);
-                    anima.SetBool(Down, true);
+                    anima.Play("DownStill");
                     break;
                 }
             }
-
-            anima.SetFloat(Speed, 0.0f);
         }
     }
     
