@@ -231,8 +231,6 @@ public class PokemonUpgradeManager : MonoBehaviour
         }
 
         StartCoroutine(GetProbablyPokemonLevel(pokemon, addExp));
-        _curPokemon = pokemon;
-        UpgradeMessageCanvas.enabled = true;
     }
 
 
@@ -241,6 +239,7 @@ public class PokemonUpgradeManager : MonoBehaviour
         WWWForm form = new WWWForm();
         form.AddField("experience", pokemon.CurrentExp + addExp);
         form.AddField("type", pokemon.GrowType);
+        Debug.Log($"experience: {pokemon.CurrentExp} + {addExp}");
         string url = BackEndConfig.GetUrl() + "/userPokemon/getLevel";
         HttpRequest request = new HttpRequest();
         StartCoroutine(request.Post(url, form));
@@ -254,6 +253,7 @@ public class PokemonUpgradeManager : MonoBehaviour
         {
             JsonData jsonData = request.value["data"];
             int nextLevel = int.Parse(jsonData["level"].ToString());
+            Debug.Log("nextlevel " + nextLevel);
             if (nextLevel >= pokemon.NextLevel)
             {
                 UpgradeHintMessage.text = PlayerPrefs.GetString("language") == "CN"
@@ -266,10 +266,13 @@ public class PokemonUpgradeManager : MonoBehaviour
             else
             {
                 UpgradeHintMessage.text = PlayerPrefs.GetString("language") == "CN"
-                    ? $"预计升级到{pokemon.NextLevel}级"
-                    : $"Upgrade to Level.{pokemon.NextLevel}";
+                    ? $"预计升级到{nextLevel}级"
+                    : $"Upgrade to Level.{nextLevel}";
                 OverFlowMessage.text = "";
             }
+
+            _curPokemon = pokemon;
+            UpgradeMessageCanvas.enabled = true;
         }
     }
 

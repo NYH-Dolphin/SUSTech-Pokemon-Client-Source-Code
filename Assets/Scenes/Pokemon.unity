@@ -2011,6 +2011,7 @@ GameObject:
   - component: {fileID: 274378425}
   - component: {fileID: 274378427}
   - component: {fileID: 274378426}
+  - component: {fileID: 274378428}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -2070,7 +2071,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u786E\u5B9A"
+  m_Text: Confirm
 --- !u!222 &274378427
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2079,6 +2080,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 274378424}
   m_CullTransparentMesh: 1
+--- !u!114 &274378428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 274378424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b24870c58bbc4ccbb45c5959eba48d56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CN: "\u786E\u8BA4"
+  EN: Confirm
+  CNFontSize: 0
+  ENFontSize: 0
+  bChangeSize: 0
 --- !u!1 &279119983
 GameObject:
   m_ObjectHideFlags: 0
@@ -4666,8 +4684,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0010204, y: -0.00000047684}
-  m_SizeDelta: {x: 350, y: 59.67}
+  m_AnchoredPosition: {x: -0.000030518, y: 7.3}
+  m_SizeDelta: {x: 350, y: 84.834}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &753077298
 MonoBehaviour:
@@ -9012,18 +9030,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1113440212}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1486955219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10802,8 +10808,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.49002, y: 7.53}
-  m_SizeDelta: {x: 103.26, y: 15.06}
+  m_AnchoredPosition: {x: -0.0009346, y: 7.53}
+  m_SizeDelta: {x: 280, y: 15.06}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1718767826
 GameObject:
@@ -11050,7 +11056,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1706838566}
+      - m_Target: {fileID: 1113440212}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: Play
         m_Mode: 1
@@ -11933,8 +11939,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.49004, y: 33.5}
-  m_SizeDelta: {x: 280.98, y: 59.67}
+  m_AnchoredPosition: {x: -0.0010414, y: 32.985}
+  m_SizeDelta: {x: 350, y: 65.97}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1910314526
 MonoBehaviour:
@@ -12066,6 +12072,7 @@ GameObject:
   - component: {fileID: 1924549057}
   - component: {fileID: 1924549059}
   - component: {fileID: 1924549058}
+  - component: {fileID: 1924549060}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -12125,7 +12132,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u53D6\u6D88"
+  m_Text: Cancel
 --- !u!222 &1924549059
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12134,6 +12141,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1924549056}
   m_CullTransparentMesh: 1
+--- !u!114 &1924549060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924549056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b24870c58bbc4ccbb45c5959eba48d56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CN: "\u53D6\u6D88"
+  EN: Cancel
+  CNFontSize: 0
+  ENFontSize: 0
+  bChangeSize: 0
 --- !u!1 &1947875857
 GameObject:
   m_ObjectHideFlags: 0
