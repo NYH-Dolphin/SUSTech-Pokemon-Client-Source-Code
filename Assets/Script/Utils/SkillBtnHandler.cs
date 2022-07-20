@@ -9,8 +9,6 @@ public class SkillBtnHandler : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public int SkillNum;
     public GameObject SkillDescription;
     private GameObject skillMessage;
-    
-    
 
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -23,14 +21,24 @@ public class SkillBtnHandler : MonoBehaviour, IPointerEnterHandler, IPointerExit
         Image skillGenre = skillMessage.transform.GetChild(1).GetComponent<Image>();
         Text skillDescription = skillMessage.transform.GetChild(2).GetComponent<Text>();
         Text skillValue = skillMessage.transform.GetChild(3).GetComponent<Text>();
-        skillName.text = skill.Name;
+        skillName.text = PlayerPrefs.GetString("language", "EN") == "CN" ? skill.Name : skill.Name_EN;
         string genrePath = "Pokemon/Properties/" + skill.GetGenreMap().Get(skill.Genre);
         Sprite spriteGenre = Resources.Load(genrePath, typeof(Sprite)) as Sprite;
         skillGenre.sprite = spriteGenre;
-        skillDescription.text = skill.Description;
-        string hit = skill.Hit == 0 ? "必中" : skill.Hit + "%";
-        string value = "PP: " + skill.PP + "  威力: " + skill.Power + "  命中: " + hit;
-        skillValue.text = value;
+        skillDescription.text =
+            PlayerPrefs.GetString("language", "EN") == "CN" ? skill.Description : skill.Description_EN;
+        if (PlayerPrefs.GetString("language", "EN") == "CN")
+        {
+            string hit = skill.Hit == 0 ? "必中" : skill.Hit + "%";
+            string value = "PP: " + skill.PP + "  威力: " + skill.Power + "  命中: " + hit;
+            skillValue.text = value;
+        }
+        else
+        {
+            string hit = skill.Hit == 0 ? "100%" : skill.Hit + "%";
+            string value = "PP: " + skill.PP + "  Pow: " + skill.Power + "  Hit: " + hit;
+            skillValue.text = value;
+        }
         skillMessage.GetComponent<RectTransform>().localPosition = new Vector3(0, 0);
     }
 

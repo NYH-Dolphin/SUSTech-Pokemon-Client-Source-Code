@@ -130,7 +130,7 @@ public class FightManager : MonoBehaviour
             _socket.OnClose += SocketOnClose;
             _socket.OnError += SocketOnError;
         }
-        else if(User.GetInstance().Mode == FightCode.PVE)
+        else if (User.GetInstance().Mode == FightCode.PVE)
         {
             string address = BackEndConfig.GetGameLogicAddress(User.GetInstance().Token);
             Debug.Log(address);
@@ -141,7 +141,6 @@ public class FightManager : MonoBehaviour
             _socket.OnError += SocketOnError;
             _socket.ConnectAsync();
         }
-       
     }
 
     // 同步用户信息
@@ -193,15 +192,21 @@ public class FightManager : MonoBehaviour
         {
             case "CONNECTION_SUCCESS": // 连接成功
                 ProhibitAllToggleAndBtn();
-                StateMessage.text = "连接成功";
+                StateMessage.text = PlayerPrefs.GetString("language", "EN") == "CN"
+                    ? "连接成功"
+                    : "Connection Success";
                 SelectMode(User.GetInstance().Mode); // 选择模式
                 break;
             case "INITIALIZATION": // 设置信息
                 Initial(jsonData); // 配置初始信息
                 ProhibitPokemonToggleByHp();
                 ProhibitAllSkillBtn();
-                FightMessage.text = "准备开始！";
-                StateMessage.text = "初始化信息";
+                FightMessage.text = StateMessage.text = PlayerPrefs.GetString("language", "EN") == "CN"
+                    ? "准备开始！"
+                    : "Ready To Start";
+                StateMessage.text = StateMessage.text = PlayerPrefs.GetString("language", "EN") == "CN"
+                    ? "初始化信息"
+                    : "Intial Information";
                 InitSetCurPokemon(); // 初始化敌我双方的宝可梦信息
                 break;
             case "VALID":
@@ -209,16 +214,21 @@ public class FightManager : MonoBehaviour
                 ProhibitPokemonToggleByHp();
                 ProhibitSkillBtnByPP();
                 PokemonToggle.isOn = true;
-                StateMessage.text = "到你的回合！";
+                StateMessage.text = StateMessage.text = PlayerPrefs.GetString("language", "EN") == "CN"
+                    ? "到你的回合！"
+                    : "Your round!";
                 SelectCurPokemonAndSkill(); // 允许选择宝可梦
                 break;
             case "FORBIDDEN":
                 ProhibitAllToggleAndBtn();
-                StateMessage.text = "对手的回合！";
+                StateMessage.text = StateMessage.text = PlayerPrefs.GetString("language", "EN") == "CN"
+                    ? "对手的回合！"
+                    : "Opponent's round!";
                 if (User.GetInstance().Mode == FightCode.PVP)
                 {
                     OpponentDataSync(jsonData["monsterInfo"]);
                 }
+
                 break;
             case "ROUND_INFO": // 通知双方宝可梦扣血的信息
                 DisplayRoundInfo(jsonData);
@@ -232,8 +242,11 @@ public class FightManager : MonoBehaviour
                     FightMessage message = new FightMessage(FightCode.EXIT);
                     SendData(message);
                 }
+
                 ProhibitAllToggleAndBtn();
-                StateMessage.text = "战斗失败...";
+                StateMessage.text = PlayerPrefs.GetString("language", "EN") == "CN"
+                    ? "战斗失败..."
+                    : "You Lose...";
                 LoseCanvas.enabled = true;
                 break;
             case "WIN":
@@ -242,8 +255,11 @@ public class FightManager : MonoBehaviour
                     FightMessage message = new FightMessage(FightCode.EXIT);
                     SendData(message);
                 }
+
                 ProhibitAllToggleAndBtn();
-                StateMessage.text = "战斗胜利！";
+                StateMessage.text = PlayerPrefs.GetString("language", "EN") == "CN"
+                    ? "战斗胜利！"
+                    : "You Win!";
                 SetWinItems(jsonData);
                 WinCanvas.enabled = true;
                 break;
@@ -329,7 +345,7 @@ public class FightManager : MonoBehaviour
         OpponentDataSync(jsonData["monsterInfo"]);
         OpponentPokemonHp.text = jsonData["monsterInfo"]["baseHp"] + "/" + jsonData["monsterInfo"]["baseHp"];
     }
-    
+
     // 设置对面的信息
     void OpponentDataSync(JsonData opponentData)
     {
@@ -339,7 +355,9 @@ public class FightManager : MonoBehaviour
         string pokemonImgPath = "Pokemon/Pixel/Front/" + int.Parse(opponentData["id"].ToString());
         Sprite pokemonSprite = Resources.Load(pokemonImgPath, typeof(Sprite)) as Sprite;
         OpponentPokemonImg.sprite = pokemonSprite;
-        OpponentPokemonName.text = opponentData["name"].ToString();
+        OpponentPokemonName.text = PlayerPrefs.GetString("language", "EN") == "CN"
+            ? opponentData["name"].ToString()
+            : opponentData["name_en"].ToString();
         OpponentPokemonLevel.text = "Lv." + opponentData["level"];
     }
 
@@ -347,7 +365,9 @@ public class FightManager : MonoBehaviour
     // 初始化时设置出场宝可梦
     void InitSetCurPokemon()
     {
-        StateMessage.text = "选择出战宝可梦";
+        StateMessage.text = PlayerPrefs.GetString("language", "EN") == "CN"
+            ? "选择出战宝可梦"
+            : "Select Pokemon";
         // 为所有 pokemon toggle 添加监听事件
         foreach (Toggle pokemon in Pokemons)
         {
@@ -464,7 +484,7 @@ public class FightManager : MonoBehaviour
 
     private void DisplayFightMessage(JsonData data)
     {
-        if (fightMessageList.Count >= 5)
+        if (fightMessageList.Count >= 8)
         {
             fightMessageList.RemoveAt(0);
         }
@@ -488,12 +508,20 @@ public class FightManager : MonoBehaviour
         string pokemonImgPath = "Pokemon/Pixel/Back/" + curPokemon.ID;
         Sprite pokemonSprite = Resources.Load(pokemonImgPath, typeof(Sprite)) as Sprite;
         UserPokemonImg.sprite = pokemonSprite;
-        UserPokemonName.text = curPokemon.Name;
+        UserPokemonName.text = PlayerPrefs.GetString("language", "EN") == "CN" ? curPokemon.Name : curPokemon.Name_EN;
         UserPokemonLevel.text = "Lv." + curPokemon.Level;
         UserPokemonHp.text = curPokemon.CurrentHp + "/" + curPokemon.Hp;
         for (int i = 0; i < 4; i++)
         {
-            SkillNames[i].text = curPokemon.Skills[i].Name;
+            SkillNames[i].text = PlayerPrefs.GetString("language", "EN") == "CN" ? curPokemon.Skills[i].Name:curPokemon.Skills[i].Name_EN ;
+            if (PlayerPrefs.GetString("language", "EN") == "CN")
+            {
+                SkillNames[i].fontSize = 20;
+            }
+            else
+            {
+                SkillNames[i].fontSize = 15;
+            }
             SkillPPs[i].text = "PP: " + curPokemon.Skills[i].PP;
         }
 
@@ -583,7 +611,8 @@ public class FightManager : MonoBehaviour
         {
             FightMessage message = new FightMessage(FightCode.SURRENDER);
             SendData(message);
-        }else if (User.GetInstance().Mode == FightCode.PVP)
+        }
+        else if (User.GetInstance().Mode == FightCode.PVP)
         {
             FightMessage message = new FightMessage(FightCode.EXIT);
             SendData(message);
@@ -623,7 +652,6 @@ public class FightManager : MonoBehaviour
         {
             SceneManager.LoadScene("Main");
         }
-
     }
 
 

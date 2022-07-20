@@ -254,7 +254,7 @@ public class PokemonUpgradeManager : MonoBehaviour
             JsonData jsonData = request.value["data"];
             int nextLevel = int.Parse(jsonData["level"].ToString());
             Debug.Log("nextlevel " + nextLevel);
-            if (nextLevel >= pokemon.NextLevel)
+            if (nextLevel > pokemon.NextLevel)
             {
                 UpgradeHintMessage.text = PlayerPrefs.GetString("language") == "CN"
                     ? $"预计升级到{pokemon.NextLevel}级"
