@@ -17,6 +17,7 @@ public class UserControl : MonoBehaviour
     private static readonly int Down = Animator.StringToHash("down");
     private static readonly int Speed = Animator.StringToHash("speed");
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -81,5 +82,4 @@ public class UserControl : MonoBehaviour
             }
         }
     }
-    
 }

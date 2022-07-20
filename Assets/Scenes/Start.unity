@@ -217,7 +217,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CN: "\u5BC6\u7801:"
   EN: 'Password:'
-  CNFontSize: 25
+  CNFontSize: 20
   ENFontSize: 16
   bChangeSize: 1
 --- !u!1 &119715962
@@ -2343,7 +2343,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CN: "\u767B\u5F55:"
   EN: 'Login:'
-  CNFontSize: 25
+  CNFontSize: 20
   ENFontSize: 16
   bChangeSize: 1
 --- !u!1 &629980297
@@ -4269,7 +4269,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CN: "\u8BED\u8A00\uFF1A"
   EN: 'Language:'
-  CNFontSize: 25
+  CNFontSize: 20
   ENFontSize: 20
   bChangeSize: 1
 --- !u!114 &1274887693
