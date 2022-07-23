@@ -13,8 +13,8 @@ public class SummonManager : MonoBehaviour
     public Text lackOfMessage; // 当精灵球的个数不够的时候，提示！
 
 
-    public GameObject CNPart;
-    public GameObject ENPart;
+    public List<GameObject> CNPart;
+    public List<GameObject> ENPart;
 
 
     // Start is called before the first frame update
@@ -22,8 +22,16 @@ public class SummonManager : MonoBehaviour
     {
         UserDataSync();
         bool active = PlayerPrefs.GetString("language") == "CN";
-        CNPart.SetActive(active);
-        ENPart.SetActive(!active);
+
+        foreach (var obj in CNPart)
+        {
+            obj.SetActive(active);
+        }
+
+        foreach (var obj in ENPart)
+        {
+            obj.SetActive(!active);
+        }
     }
 
     // Update is called once per frame

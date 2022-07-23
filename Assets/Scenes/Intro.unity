@@ -719,7 +719,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25fb867d2049d41f597aefdd6b19f598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameText: "\u80D6\u4E01"
+  nameText: Jigglypuff
   nameColor: {r: 0, g: 0, b: 0, a: 1}
   soundEffect: {fileID: 0}
   portraits:
@@ -1312,9 +1312,8 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 1258568873}
-  selectedCommands:
-  - {fileID: 1258568925}
+  - {fileID: 1258568875}
+  selectedCommands: []
   variables:
   - {fileID: 1258568894}
   description: 
@@ -3511,33 +3510,33 @@ MonoBehaviour:
       xiaozhi original right: Hi, I''m
       Ash Ketchum
 
-      miaowazhongzi 1 left: I am very glad that you can join
-      our college
+      miaowazhongzi 1 left: I am very glad that you can join our
+      college
 
-      miaowazhongzi 1 left: I''ve been guarding Shuren Academy
-      for a long time
+      miaowazhongzi 1 left: I''ve been guarding Shuren Academy for
+      a long time
 
-      miaowazhongzi 1 left: And I''d like to bring a new
-      friend
+      miaowazhongzi 1 left: And I''d like to bring a new friend
 
-      xiaozhi original right: Well, it''s nice to be your friend
+      xiaozhi
+      original right: Well, it''s nice to be your friend
 
-      hide
-      xiaozhi:
+      hide xiaozhi:
 
-      miaowazhongzi 1 middle: So the next thing
+      miaowazhongzi
+      1 middle: So the next thing
 
-      pipi 35
-      left: Welcome to...
+      pipi 35 left: Welcome to...
 
-      pangding 39 right: The beautiful SUSTech
+      pangding
+      39 right: The beautiful SUSTech
 
-      hide
-      miaowazhongzi:
+      hide miaowazhongzi:
 
       hide pipi:
 
-      hide pangding:'
+      hide
+      pangding:'
   clearPrevious:
     booleanRef: {fileID: 0}
     booleanVal: 1
@@ -3552,7 +3551,7 @@ MonoBehaviour:
     booleanVal: 1
 --- !u!114 &1258568910
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -3566,7 +3565,7 @@ MonoBehaviour:
   indentLevel: 0
 --- !u!114 &1258568911
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -3580,7 +3579,7 @@ MonoBehaviour:
   indentLevel: 0
 --- !u!114 &1258568912
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -3823,7 +3822,7 @@ MonoBehaviour:
     vector3Val: {x: 0, y: 0, z: 0}
 --- !u!114 &1258568913
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -3839,34 +3838,34 @@ MonoBehaviour:
     stringRef: {fileID: 0}
     stringVal: 'xiaohuolong 4 left: Hi hi! Ash Ketchum!
 
-      xiaozhi original
-      right: WOW!
+      xiaozhi original right:
+      WOW!
 
       xiaohuolong 4 left: I''m Criginal right: Hi.
 
-      xiaozhi
-      original right: Hi!
+      xiaozhi original
+      right: Hi!
 
-      xiaohuolong 4 left: I am the guardian pokemon of
-      The Zhicheng Academy
+      xiaohuolong 4 left: I am the guardian pokemon of The Zhicheng
+      Academy
 
-      xiaohuolong 4 left: I''m so glad you could join
-      us
+      xiaohuolong 4 left: I''m so glad you could join us
 
-      xiaohuolong 4 left: Let us be your tour guide at SUSTech
+      xiaohuolong
+      4 left: Let us be your tour guide at SUSTech
 
-      xiaozhi
-      original right: Wow, thank you so much
+      xiaozhi original right:
+      Wow, thank you so much
 
       hide xiaozhi:
 
-      xiaohuolong
-      4 middle: So the next thing
+      xiaohuolong 4 middle: So
+      the next thing
 
       pipi 35 left: Welcome to...
 
-      pangding
-      39 right: The beautiful SUSTech
+      pangding 39 right:
+      The beautiful SUSTech
 
       hide xiaohuolong:
 
@@ -3888,7 +3887,7 @@ MonoBehaviour:
     booleanVal: 1
 --- !u!114 &1258568914
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -3902,7 +3901,7 @@ MonoBehaviour:
   indentLevel: 0
 --- !u!114 &1258568915
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -3916,7 +3915,7 @@ MonoBehaviour:
   indentLevel: 0
 --- !u!114 &1258568916
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -4159,7 +4158,7 @@ MonoBehaviour:
     vector3Val: {x: 0, y: 0, z: 0}
 --- !u!114 &1258568917
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -4224,7 +4223,7 @@ MonoBehaviour:
     booleanVal: 1
 --- !u!114 &1258568918
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -4238,7 +4237,7 @@ MonoBehaviour:
   indentLevel: 0
 --- !u!114 &1258568919
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -4252,7 +4251,7 @@ MonoBehaviour:
   indentLevel: 0
 --- !u!114 &1258568920
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -4495,7 +4494,7 @@ MonoBehaviour:
     vector3Val: {x: 0, y: 0, z: 0}
 --- !u!114 &1258568921
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -4542,10 +4541,10 @@ MonoBehaviour:
 
       pangding 39 right: The beautiful SUSTech
 
-      hide
-      xiaomaoguai:
+      hide xiaomaoguai:
 
-      hide pipi:
+      hide
+      pipi:
 
       hide pangding:'
   clearPrevious:
@@ -4562,7 +4561,7 @@ MonoBehaviour:
     booleanVal: 1
 --- !u!114 &1258568922
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -4576,7 +4575,7 @@ MonoBehaviour:
   indentLevel: 0
 --- !u!114 &1258568923
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -4590,7 +4589,7 @@ MonoBehaviour:
   indentLevel: 0
 --- !u!114 &1258568924
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -4833,7 +4832,7 @@ MonoBehaviour:
     vector3Val: {x: 0, y: 0, z: 0}
 --- !u!114 &1258568925
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -4997,7 +4996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25fb867d2049d41f597aefdd6b19f598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameText: "\u76AE\u76AE"
+  nameText: Pippi
   nameColor: {r: 0, g: 0, b: 0, a: 1}
   soundEffect: {fileID: 0}
   portraits:
@@ -5332,7 +5331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aac1050dd5c8b08409922ef2c9fc5d2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Flowchart: {fileID: 0}
+  Flowchart: {fileID: 1258568860}
 --- !u!4 &1885892784
 Transform:
   m_ObjectHideFlags: 0

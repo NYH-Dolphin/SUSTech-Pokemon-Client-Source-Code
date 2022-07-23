@@ -106,6 +106,7 @@ public class PokemonEvolutionManager : MonoBehaviour
 
         int statusCode = int.Parse(request.value["code"].ToString());
         OpenMessageCanvas();
+        Debug.Log("status code " + statusCode);
         switch (statusCode)
         {
             case 10000:
@@ -118,7 +119,6 @@ public class PokemonEvolutionManager : MonoBehaviour
                 break;
             case 10006:
                 Message.text = PlayerPrefs.GetString("language") == "CN" ? "宝可梦等级不够！" : "Not enough levels!";
-                Message.text = "";
                 break;
         }
     }

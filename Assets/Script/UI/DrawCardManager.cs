@@ -12,6 +12,9 @@ using UnityEngine.Video;
 public class DrawCardManager : MonoBehaviour
 {
     public VideoPlayer VideoPlayer;
+    public AudioSource itemAudioEffect; // 道具抽卡音效
+    public AudioSource pokemonNormalAudioEffect; // 常规宝可梦抽卡音效
+    public AudioSource pokemonRareAudioEffect; //稀有宝可梦抽卡音效
     private bool isPlayerStarted;
     private bool showSummonResult; // 标志抽卡视频播放完成，可以展示抽到的宝可梦了
 
@@ -150,6 +153,9 @@ public class DrawCardManager : MonoBehaviour
         if (pop)
         {
             pokemonImage.transform.localScale = new Vector3(0, 0, 0);
+            itemAudioEffect.Play();
+            pokemonRareAudioEffect.Stop();
+            pokemonNormalAudioEffect.Stop();
             pop = false;
         }
         else
@@ -162,7 +168,7 @@ public class DrawCardManager : MonoBehaviour
 
         for (int i = 0; i < starList.Count; i++)
         {
-            starList[i].sprite = Resources.Load(blankPath, typeof(Sprite)) as Sprite;
+            starList[i].gameObject.SetActive(false);
         }
     }
 
@@ -172,7 +178,7 @@ public class DrawCardManager : MonoBehaviour
     // 展示抽到的宝可梦
     void DisplayPokemon(int num)
     {
-        pokemonName.text = PlayerPrefs.GetString("language ") == "CN" ? pokemons[num].Name : pokemons[num].Name_EN;
+        pokemonName.text = PlayerPrefs.GetString("language") == "CN" ? pokemons[num].Name : pokemons[num].Name_EN;
         pokemonImage.GetComponent<Image>().sprite =
             Resources.Load(pokemonImgPath + pokemons[num].ID, typeof(Sprite)) as Sprite;
 
@@ -180,7 +186,19 @@ public class DrawCardManager : MonoBehaviour
         if (pop)
         {
             pokemonImage.transform.localScale = new Vector3(0, 0, 0);
-            pokemonImage.transform.localScale = new Vector3(0, 0, 0);
+            if (pokemons[num].Rarity >= 4)
+            {
+                itemAudioEffect.Stop();
+                pokemonRareAudioEffect.Play();
+                pokemonNormalAudioEffect.Stop();
+            }
+            else
+            {
+                itemAudioEffect.Stop();
+                pokemonRareAudioEffect.Stop();
+                pokemonNormalAudioEffect.Play();
+            }
+            
             pop = false;
         }
         else
@@ -195,15 +213,10 @@ public class DrawCardManager : MonoBehaviour
         int rarity = pokemons[num].Rarity;
         for (int i = 0; i < starList.Count; i++)
         {
-            if (i < rarity)
-            {
-                starList[i].sprite = Resources.Load(starPath, typeof(Sprite)) as Sprite;
-            }
-            else
-            {
-                starList[i].sprite = Resources.Load(blankPath, typeof(Sprite)) as Sprite;
-            }
+            starList[i].gameObject.SetActive(i < rarity);
         }
+
+       
     }
 
     /**

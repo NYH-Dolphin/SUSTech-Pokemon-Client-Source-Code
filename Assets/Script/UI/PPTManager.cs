@@ -6,17 +6,26 @@ using UnityEngine.UI;
 
 public class PPTManager : MonoBehaviour
 {
-    private int pageNum = 1;
+    public List<GameObject> helpManualPages;
 
-    private int allPage = 9; // 页面数量
-
-    public Image ppt;
+    private int _pageNum = 1;
 
     // Start is called before the first frame update
     void Start()
     {
-        ChangePPT();
+        _pageNum = 0;
+        OpenPage(_pageNum);
     }
+
+
+    private void OpenPage(int num)
+    {
+        for (int i = 0; i < helpManualPages.Count; i++)
+        {
+            helpManualPages[i].SetActive(i == num);
+        }
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -26,31 +35,14 @@ public class PPTManager : MonoBehaviour
 
     public void OnClickPrevPage()
     {
-        if (pageNum - 1 >= 1)
-        {
-            pageNum--;
-            ChangePPT();
-        }
+        _pageNum = _pageNum - 1 < 0 ? _pageNum : _pageNum - 1;
+        OpenPage(_pageNum);
     }
-
-
-    // index 从0开始 
-    // 一共有4页ppt 0 1 2 3
+    
     public void OnClickNextPage()
     {
-        if (pageNum + 1 <= allPage)
-        {
-            pageNum++;
-            ChangePPT();
-        }
-    }
-
-
-    private void ChangePPT()
-    {
-        string pptPath = "Other/PPT/" + pageNum;
-        Sprite spriteGenre = Resources.Load(pptPath, typeof(Sprite)) as Sprite;
-        ppt.sprite = spriteGenre;
+        _pageNum = _pageNum + 1 >= helpManualPages.Count ? _pageNum : _pageNum + 1;
+        OpenPage(_pageNum);
     }
 
 
